@@ -152,7 +152,7 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ModifyAdjunctReappointmentLetter" sap:VirtualizedContainerService.HintSize="486,3832" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ModifyAdjunctReappointmentLetter" sap:VirtualizedContainerService.HintSize="2585,3832" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -183,7 +183,7 @@
     in_dictChairMemo("ReappointmentEndDate").ToString(),
     "MM/dd/yyyy HH:mm:ss",
     Globalization.CultureInfo.InvariantCulture
-).ToString("MM/dd/yyyy")]</InArgument>
+).ToString("MMMM d, yyyy")]</InArgument>
         </Assign.Value>
       </Assign>
       <Assign sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_2">
@@ -195,7 +195,7 @@
     in_dictChairMemo("ReappointmentStartDate").ToString(),
     "MM/dd/yyyy HH:mm:ss",
     Globalization.CultureInfo.InvariantCulture
-).ToString("MM/dd/yyyy")]</InArgument>
+).ToString("MMMM d, yyyy")]</InArgument>
         </Assign.Value>
       </Assign>
       <Assign sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_3">
@@ -218,16 +218,16 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - System Date" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_1" Replace="[DateTime.Now.ToString(&quot;MM/dd/yyyy&quot;)]" ReplaceAll="False" Search="DATE" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Full Name" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_2" Replace="[in_dictCV(&quot;CandidateName&quot;)]" ReplaceAll="False" Search="NAME" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Email Address" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_3" Replace="[in_dictCV(&quot;CvEmail&quot;)]" ReplaceAll="False" Search="EMAIL ADDRESS" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Last Name" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_4" Replace="[in_taskName.Split(&quot;,&quot;c)(0)]" ReplaceAll="False" Search="LAST NAME" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Chair Name" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_5" Replace="[in_dictChairMemo(&quot;Chair&quot;)]" ReplaceAll="True" Search="CHAIR" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Title" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_11" Replace="[in_title.ToString()]" ReplaceAll="False" Search="TITLE" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Dept" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_7" Replace="[in_department.ToString()]" ReplaceAll="False" Search="DEPT" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Term" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_8" Replace="[in_dictChairMemo(&quot;ReappointmentTerm&quot;).ToString()]" ReplaceAll="False" Search="TERM" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Start Date" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_9" Replace="[startDate]" ReplaceAll="False" Search="DATE" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - End Date" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_6" Replace="[endDate]" ReplaceAll="False" Search="DATE" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - System Date" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_1" Replace="[DateTime.Now.ToString(&quot;MM/dd/yyyy&quot;)]" ReplaceAll="False" Search="%[Date]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Full Name" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_2" Replace="[System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(in_dictCV(&quot;CandidateName&quot;).ToLower)]" ReplaceAll="True" Search="%[Name]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Email Address" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_3" Replace="[in_dictCV(&quot;CvEmail&quot;)]" ReplaceAll="False" Search="%[Email Address]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Last Name" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_4" Replace="[in_taskName.Split(&quot;,&quot;c)(0)]" ReplaceAll="False" Search="%[Last Name]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Chair Name" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_5" Replace="[in_dictChairMemo(&quot;Chair&quot;)]" ReplaceAll="True" Search="%[Chair]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Title" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_11" Replace="[in_title.ToString()]" ReplaceAll="False" Search="%[Title]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Dept" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_7" Replace="[in_department.ToString()]" ReplaceAll="False" Search="%[Dept]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Term" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_8" Replace="[in_dictChairMemo(&quot;ReappointmentTerm&quot;).ToString()]" ReplaceAll="False" Search="%[Term]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Start Date" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_9" Replace="[startDate]" ReplaceAll="False" Search="%[Date]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - End Date" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_6" Replace="[endDate]" ReplaceAll="False" Search="%[Date]" />
               <p:WordSaveAs DisplayName="Save Document As" FilePath="[saveFolder]" sap:VirtualizedContainerService.HintSize="416,216" sap2010:WorkflowViewState.IdRef="WordSaveAs_1" ReplaceExisting="False" />
             </Sequence>
           </ActivityAction>
