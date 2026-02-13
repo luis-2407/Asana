@@ -1,0 +1,248 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ModifyAdjunctReappointmentLetter" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:uwahm="clr-namespace:UiPath.Web.Activities.Http.Models;assembly=UiPath.Web.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_taskGID" Type="InArgument(x:String)" />
+    <x:Property Name="in_downloadFolder" Type="InArgument(x:String)" />
+    <x:Property Name="in_department" Type="InArgument(x:String)" />
+    <x:Property Name="in_title" Type="InArgument(x:String)" />
+    <x:Property Name="in_taskName" Type="InArgument(x:String)" />
+    <x:Property Name="in_dictCV" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="in_dictChairMemo" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ModifyAdjunctReappointmentLetter_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.Word</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+      <x:String>UiPath.Word.Activities</x:String>
+      <x:String>UiPath.Web.Activities.Http.Models</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Web.Activities.Http</x:String>
+      <x:String>UiPath.Sdk.Activities</x:String>
+      <x:String>UiPath.Sdk.Activities.DependencyInjection.Contracts</x:String>
+      <x:String>UiPath.Sdk.Activities.DependencyInjection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.IntegrationService.Activities.SWEntities.CE57C3C636C_tasks_Replace.Bundle</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.GptIxp34.Bundle</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction</x:String>
+      <x:String>UiPath.Core.Activities.Storage</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
+      <x:String>UiPath.Platform</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Models.FilterBuilder</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Models</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Helpers.TypeDetailsCustomization</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Activities</x:String>
+      <x:String>UiPath.Platform.Activities</x:String>
+      <x:String>UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_projects_sub_tasks.Bundle</x:String>
+      <x:String>UiPath.IntegrationService.Activities.SWEntities.C7B246E9CE8_tasks_Retrieve.Bundle</x:String>
+      <x:String>UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_projects.Bundle</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>C7B246E9CE8_tasks_Re.v58lB2e0lYE1IRd9vAKGxo1</AssemblyReference>
+      <AssemblyReference>CE57C3C636C_tasks_Re.0XEw23ZnTRJ1jsF443CPpU1</AssemblyReference>
+      <AssemblyReference>CE9C9C83C26_projects.8iQ0w3NZlAH1qKXLAbs6C4</AssemblyReference>
+      <AssemblyReference>CE9C9C83C26_projects.IfOj9202TtI181yAk2295j23</AssemblyReference>
+      <AssemblyReference>ExtendedExtractionRe.aCVbXYJonC14YhLsH6rQf4</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Net.HttpListener</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.Net.NameResolution</AssemblyReference>
+      <AssemblyReference>System.Net.Primitives</AssemblyReference>
+      <AssemblyReference>System.Net.Requests</AssemblyReference>
+      <AssemblyReference>System.Net.ServicePoint</AssemblyReference>
+      <AssemblyReference>System.Net.WebClient</AssemblyReference>
+      <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
+      <AssemblyReference>System.Net.WebProxy</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.IntegrationService.Activities.Runtime</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR.StudioWeb.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ModifyAdjunctReappointmentLetter" sap:VirtualizedContainerService.HintSize="486,3832" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="Modify Adjunct Reappointment Letter" sap:VirtualizedContainerService.HintSize="486,3809" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="uwahm:HttpResponseSummary" Name="apiOutput" />
+        <Variable x:TypeArguments="x:Int32" Name="statusCode" />
+        <Variable x:TypeArguments="x:String" Name="apiResponse" />
+        <Variable x:TypeArguments="upr:ILocalResource" Name="result" />
+        <Variable x:TypeArguments="x:String" Name="endDate" />
+        <Variable x:TypeArguments="x:String" Name="startDate" />
+        <Variable x:TypeArguments="x:String" Name="saveFolder" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ucas:DownloadStorageFile TimeoutMS="{x:Null}" Destination="Data\Input\Adjunct Reappointment - Template.docx" DisplayName="Download Storage File" FolderPath="Academic Affairs/Schools/Engineering/Faculty_Reappointments_Automation" sap:VirtualizedContainerService.HintSize="452,167" sap2010:WorkflowViewState.IdRef="DownloadStorageFile_1" Path="Adjunct Reappointment - Template.docx" Result="[result]" StorageBucketName="Templates" />
+      <Assign sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[endDate]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String" xml:space="preserve">[DateTime.ParseExact(
+    in_dictChairMemo("ReappointmentEndDate").ToString(),
+    "MM/dd/yyyy HH:mm:ss",
+    Globalization.CultureInfo.InvariantCulture
+).ToString("MM/dd/yyyy")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_2">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[startDate]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String" xml:space="preserve">[DateTime.ParseExact(
+    in_dictChairMemo("ReappointmentStartDate").ToString(),
+    "MM/dd/yyyy HH:mm:ss",
+    Globalization.CultureInfo.InvariantCulture
+).ToString("MM/dd/yyyy")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_3">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[saveFolder]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[(in_downloadFolder + "\" + in_taskName + "\" + in_taskName + "-" + "Adjunct Reappointment.docx").Trim()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <p:WordApplicationScope SensitivityLabel="{x:Null}" CreateNewFile="False" DisplayName="Word Application Scope" FilePath="[result.LocalPath]" sap:VirtualizedContainerService.HintSize="452,2671" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1" SensitivityOperation="None">
+        <p:WordApplicationScope.Body>
+          <ActivityAction x:TypeArguments="ui:WordDocument">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,2540" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - System Date" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_1" Replace="[DateTime.Now.ToString(&quot;MM/dd/yyyy&quot;)]" ReplaceAll="False" Search="DATE" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Full Name" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_2" Replace="[in_dictCV(&quot;CandidateName&quot;)]" ReplaceAll="False" Search="NAME" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Email Address" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_3" Replace="[in_dictCV(&quot;CvEmail&quot;)]" ReplaceAll="False" Search="EMAIL ADDRESS" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Last Name" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_4" Replace="[in_taskName.Split(&quot;,&quot;c)(0)]" ReplaceAll="False" Search="LAST NAME" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Chair Name" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_5" Replace="[in_dictChairMemo(&quot;Chair&quot;)]" ReplaceAll="True" Search="CHAIR" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Title" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_11" Replace="[in_title.ToString()]" ReplaceAll="False" Search="TITLE" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Dept" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_7" Replace="[in_department.ToString()]" ReplaceAll="False" Search="DEPT" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Term" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_8" Replace="[in_dictChairMemo(&quot;ReappointmentTerm&quot;).ToString()]" ReplaceAll="False" Search="TERM" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Start Date" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_9" Replace="[startDate]" ReplaceAll="False" Search="DATE" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - End Date" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_6" Replace="[endDate]" ReplaceAll="False" Search="DATE" />
+              <p:WordSaveAs DisplayName="Save Document As" FilePath="[saveFolder]" sap:VirtualizedContainerService.HintSize="416,216" sap2010:WorkflowViewState.IdRef="WordSaveAs_1" ReplaceExisting="False" />
+            </Sequence>
+          </ActivityAction>
+        </p:WordApplicationScope.Body>
+      </p:WordApplicationScope>
+      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim url As String = &quot;https://app.asana.com/api/1.0/attachments&quot;&#xA;&#xA;Dim responseText As String = &quot;&quot;&#xA;Dim statusCodeValue As Integer = -1&#xA;&#xA;Dim client As New System.Net.Http.HttpClient()&#xA;&#xA;Try&#xA;    ' Auth header&#xA;    client.DefaultRequestHeaders.Authorization =&#xA;        New System.Net.Http.Headers.AuthenticationHeaderValue(&quot;Bearer&quot;, inPersonalAccessToken)&#xA;&#xA;    Dim form As New System.Net.Http.MultipartFormDataContent()&#xA;&#xA;    ' Required: parent (task GID)&#xA;    form.Add(New System.Net.Http.StringContent(inTaskGid), &quot;parent&quot;)&#xA;&#xA;    ' Required: file (binary)&#xA;    Dim bytes As Byte() = System.IO.File.ReadAllBytes(inFilePath)&#xA;    Dim fileContent As New System.Net.Http.ByteArrayContent(bytes)&#xA;    fileContent.Headers.ContentType =&#xA;        New System.Net.Http.Headers.MediaTypeHeaderValue(&quot;application/octet-stream&quot;)&#xA;&#xA;    form.Add(fileContent, &quot;file&quot;, System.IO.Path.GetFileName(inFilePath))&#xA;&#xA;    Dim resp As System.Net.Http.HttpResponseMessage = client.PostAsync(url, form).Result&#xA;&#xA;    statusCodeValue = CInt(resp.StatusCode)&#xA;    responseText = resp.Content.ReadAsStringAsync().Result&#xA;&#xA;Finally&#xA;    client.Dispose()&#xA;End Try&#xA;&#xA;outStatusCode = statusCodeValue&#xA;outResponse = responseText&#xA;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="452,197" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+        <ui:InvokeCode.Arguments>
+          <InArgument x:TypeArguments="x:String" x:Key="inPersonalAccessToken">2/1212982367753843/1213153733282738:dedad1ffda66837ab8acbb188d255836</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="inTaskGid">[in_taskGID]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="inFilePath">[saveFolder]</InArgument>
+          <OutArgument x:TypeArguments="x:Int32" x:Key="outStatusCode">[statusCode]</OutArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="outResponse">[apiResponse]</OutArgument>
+        </ui:InvokeCode.Arguments>
+      </ui:InvokeCode>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[apiResponse]" />
+    </Sequence>
+  </Sequence>
+</Activity>

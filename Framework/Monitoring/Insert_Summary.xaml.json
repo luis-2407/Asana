@@ -1,0 +1,129 @@
+{
+  "DisplayName": "Insert_Summary",
+  "Tooltip": "This contains the activities to create the summary and to connect to the database. If the connection is successfull, it will execute the Store Procedure to insert the data, if not, it will throw an exception so the report can be included manually. ",
+  "HelpLink": null,
+  "Color": null,
+  "OriginalIconFileName": null,
+  "Arguments": [
+    {
+      "Name": "in_ProcessName",
+      "DisplayName": "in_ProcessName",
+      "Category": "Process",
+      "Tooltip": "Name of the Process being executed. This should come from the Config file",
+      "Placeholder": null,
+      "Widget": "TextComposer",
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "in_ProcessFolder",
+      "DisplayName": "in_ProcessFolder",
+      "Category": "Process",
+      "Tooltip": "Folder where the process executes in Orchestrator. ",
+      "Placeholder": null,
+      "Widget": "TextComposer",
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "in_dt_TransactionData",
+      "DisplayName": "in_dt_TransactionData",
+      "Category": "Process",
+      "Tooltip": "Transaction data for the process. ",
+      "Placeholder": null,
+      "Widget": null,
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "in_DBCredentialsAssetName",
+      "DisplayName": "in_DBCredentialsAssetName",
+      "Category": "Process",
+      "Tooltip": "Credentials Asset that hold the username and password for the DB",
+      "Placeholder": null,
+      "Widget": "TextComposer",
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "in_ConnectionAssetName",
+      "DisplayName": "in_ConnectionAssetName",
+      "Category": "Process",
+      "Tooltip": "Asset that holds the text for the connection string",
+      "Placeholder": null,
+      "Widget": "TextComposer",
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "in_dt_Notifications",
+      "DisplayName": "in_dt_Notifications",
+      "Category": "Process",
+      "Tooltip": null,
+      "Placeholder": null,
+      "Widget": null,
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "in_UseOffice365",
+      "DisplayName": "in_UseOffice365",
+      "Category": "Office365",
+      "Tooltip": null,
+      "Placeholder": null,
+      "Widget": "Toggle",
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "in_AzureTenantID",
+      "DisplayName": "in_AzureTenantID",
+      "Category": "Office365",
+      "Tooltip": null,
+      "Placeholder": null,
+      "Widget": "TextComposer",
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "in_AzureAssetFolder",
+      "DisplayName": "in_AzureAssetFolder",
+      "Category": "Office365",
+      "Tooltip": null,
+      "Placeholder": null,
+      "Widget": "TextComposer",
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "in_AzureAssetAppIDAndSecret",
+      "DisplayName": "in_AzureAssetAppIDAndSecret",
+      "Category": "Office365",
+      "Tooltip": null,
+      "Placeholder": null,
+      "Widget": "TextComposer",
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    }
+  ]
+}

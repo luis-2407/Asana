@@ -1,0 +1,180 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="TestAsanaActivity" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="TestAsanaActivity_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uiascb="clr-namespace:UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_projects_sub_tasks.Bundle;assembly=CE9C9C83C26_projects.8iQ0w3NZlAH1qKXLAbs6C4" xmlns:uiascb1="clr-namespace:UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_tasks_Retrieve.Bundle;assembly=CE9C9C83C26_tasks_Re.TVZDJ2BegfC1Rvyv14FU8dz1" xmlns:uiascb2="clr-namespace:UiPath.IntegrationService.Activities.SWEntities.C7B246E9CE8_tasks_Retrieve.Bundle;assembly=C7B246E9CE8_tasks_Re.v58lB2e0lYE1IRd9vAKGxo1" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Models.FilterBuilder</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Models</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Helpers.TypeDetailsCustomization</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Activities</x:String>
+      <x:String>UiPath.Platform.Activities</x:String>
+      <x:String>UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_projects.Bundle</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_projects_sub_tasks.Bundle</x:String>
+      <x:String>UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_projects_sub_tasks.Bundle</x:String>
+      <x:String>UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_tasks_Retrieve.Bundle</x:String>
+      <x:String>UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_tasks_Retrieve.Bundle</x:String>
+      <x:String>UiPath.IntegrationService.Activities.SWEntities.C7B246E9CE8_tasks_Retrieve.Bundle</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>CE9C9C83C26_projects.8iQ0w3NZlAH1qKXLAbs6C4</AssemblyReference>
+      <AssemblyReference>CE9C9C83C26_projects.IfOj9202TtI181yAk2295j23</AssemblyReference>
+      <AssemblyReference>CE9C9C83C26_tasks_Re.TVZDJ2BegfC1Rvyv14FU8dz1</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.IntegrationService.Activities.Runtime</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>C7B246E9CE8_tasks_Re.v58lB2e0lYE1IRd9vAKGxo1</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="TestAsanaActivity" sap:VirtualizedContainerService.HintSize="2591,1027.6566666666668" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:List(x:String)" Default="[New List(Of String) From {&#xA;    &quot;Assignment Number&quot;,&#xA;    &quot;Business Title&quot;,&#xA;    &quot;Projected End Date&quot;,&#xA;    &quot;Department&quot;,&#xA;    &quot;Adobe Sign CC Email Address&quot;,&#xA;    &quot;Status&quot;&#xA;}]" Name="customFieldsAR" />
+      <Variable x:TypeArguments="uiascb:projects_sub_tasks[]" Name="projectTasks" />
+      <Variable x:TypeArguments="uiascb1:tasks_Retrieve" Name="tasksMetadata" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence sap:VirtualizedContainerService.HintSize="486,901" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <isactr:ConnectorActivity Configuration="H4sIAAAAAAAACq1Va28aORT9K9Z8phOarKIUKR/IJNuyzYMG2l3tbhWZmQvjxWNP/UhCEf99z3gMIUDV/bBCQuBzfe+55z68TH4VJAubaeW4UGSS3jIZETd5ySeSWjDp/fW1k3zg9rMSU0HFeFETDp3x1EkGqvZuY7dMbnlFSS+pjf6Hcjcokk5yKWwt+SIiwxZhIkBkcyNqJ7QCNC6JxYvs/eASeBMKgHVGqBn+39M3LwwV6+gh8LXOefQw5K6E2cDekCt1MeQGQV2TVmO/6mz45bqqJZDiwQqV0x7LbI2zDf6K6p2SC2bIeaOY43ZumSu5Y9wQI+FKMgzXog+mTYuW/JHYhEix/LV7wAIeREUp6+c51c4yzgru6E1zyNr8Wz/E5rR40qZgSj+lBzTa1eSTJ7P4T6JM2zLuahGruyvBJU3RMZa1t5jTUY+/1f9KquLPovLVPeXI2d6HEGiAXZI3/Bnxg83BvopumPLVBNXR07X1C/EX2kI5moELeGtTcYejgXInx8HzlHvpvnDpYXnc7e7ndqsVJSuMzJ13B4fjN+EeYp/bXi+0z4/GBPTW8KuUXrh+Fk3Tp+BHMxMojMg8ipzSfu7Eo3CCbDr6/Uq59md29S57l52dZMenGxIP1k8eQqD0wqtCUrqPYAewQ3fTM/Gp+3Ry+6fsf3j77eMf1/2JPc1+6bAvZCzYnL9Nu80Ht6GbN3SuyDvDZYcN/USK/CMtxnpO6lx5KeOMk4XmUy4tZvyebK2VpR/NfKty6CUIG9DNcrI32GprB1vQ6uuqk2yvs2be4RA772WxWccxm5vORAmXSUwKYUNaiIrVqaCDNsgDx17AT/mGW654+w2bWIlFLNl7wqYVOYC7mtqa4fRaIGnQalKT4jsV61uxIxqc9aVkcRSa2DwvCVroua9DRwaOd5OmMO0tNB128GYf77dbpqWvVNOeuy2HBh6F8W1nYNc+WXZXP+/azFunq1jLoHrL+cLoJ0tm4KhqOON8aETFzQIqBjIzvA9gMOT5nM9oW/bjk9e6x9D9qPXmfPvOWXraqB2E+QnjbfUOyLZXMbyMztXtFmtqezXGUXiHesnR+v7RcvMgro7Wrq65mnkkB0Nqlg9W2BB/R6h93Cx4cy8M8TmKkJWwbuobp2JMz+5C6hye8Dyv/gVrRnt1yQcAAA==" ConnectionId="9ede119f-f8e5-4b74-8a4a-20e9c9c83c26" DisplayName="List All Records" sap:VirtualizedContainerService.HintSize="452,273" sap2010:WorkflowViewState.IdRef="ConnectorActivity_3" UiPathActivityTypeId="a2ee7fda-31eb-3481-9f48-f7497fc6b39d">
+        <isactr:ConnectorActivity.FieldObjects>
+          <isactr:FieldObject Name="projectId" Type="FieldArgument">
+            <isactr:FieldObject.Value>
+              <InArgument x:TypeArguments="x:String">1212377550448425</InArgument>
+            </isactr:FieldObject.Value>
+          </isactr:FieldObject>
+          <isactr:FieldObject Name="Jit_projects_sub_tasks" Type="FieldArgument">
+            <isactr:FieldObject.Value>
+              <OutArgument x:TypeArguments="uiascb:projects_sub_tasks[]">[projectTasks]</OutArgument>
+            </isactr:FieldObject.Value>
+          </isactr:FieldObject>
+        </isactr:ConnectorActivity.FieldObjects>
+      </isactr:ConnectorActivity>
+      <ui:ForEach x:TypeArguments="uiascb:projects_sub_tasks" CurrentIndex="{x:Null}" DisplayName="For Each currentprojects_sub_tasks" sap:VirtualizedContainerService.HintSize="452,545" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[projectTasks]">
+        <ui:ForEach.Body>
+          <ActivityAction x:TypeArguments="uiascb:projects_sub_tasks">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="uiascb:projects_sub_tasks" Name="currentprojects_sub_tasks" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,423" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="scg:List(uiascb2:custom_fields)" Name="tasksMetadataObject" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <isactr:ConnectorActivity Configuration="H4sIAAAAAAAACnVUYU/bMBD9K5U/Z4GWCUEkPtAAWxmMqi1M2oSQSY7Gq+tk9rkQqv73vTRuB6JTpap+d+d79+65S3GhSOcuLQ1LZciKZCnGJG1WyEdNbVAkv+4jMTCV5y2wFN/lnEQiVC4icaZcpWUdoIl0swYkl1lVsSpNAxbUYQQ6gzPEJnXVZDq2ykxxHtEfryzlImHrKWpZXZWZDNVDyQXSBu6auCjzobRoxQ3dJn8Fejeed/K7VPzQ9HU7aboPPP+Ru1VN13hgmKZ2TWRMdqEyik8zVgvFilw8/nFuuP2Znh+nx+nRQdo7bDs+jAjz0YLivje5pvg9GnV2VcSTu59nl70+TZ/S7mhRL7qfL26P8tdu1Lkj68DipBvvNx/Ue83e0okhz1bqqDP0j1pl36ielDMyJ8ZrHcQlxyJ5ktpB3BG5qjSO/id2K+Vabqi3jm5SsQDYZHPBm9DqfhWJW6OeFOWNfnDUvMKFMNG21jiWJqPt8rCnpQhDoe16LHSFFw1lXFrMAdgr3FN8kk4a2X4jJ2ygDqtKPRYE98AGj79RGza82ftX5qo1DsAvxP16kAvwbWbW6pXyzXWhDimdYOJUZgVBnHLmqzupoSNIrzZ435bPjuyAaR7woVVzaWtQb1wopngeMOdQZjM5pbez9g7eDxtan4YBt/jbmqP4cDvibi/vHP+mota/wDbm+6DK+QTQ+pklYm9dubdU+QrglTRTD/YIkMH5Wr4McRxDOJH09vdxk3R9S3KGt5wWyG5ECl6b0Av3dZmBCP5FVn8Bfrpl2nAEAAA=" ConnectionId="9ede119f-f8e5-4b74-8a4a-20e9c9c83c26" DisplayName="Get Task" sap:VirtualizedContainerService.HintSize="416,189" sap2010:WorkflowViewState.IdRef="ConnectorActivity_2" UiPathActivityTypeId="b2dfb2c6-d4dc-3130-a876-e415dc932d1f">
+                <isactr:ConnectorActivity.FieldObjects>
+                  <isactr:FieldObject Name="id" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <InArgument x:TypeArguments="x:String">[currentprojects_sub_tasks.gid]</InArgument>
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="Jit_tasks" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <OutArgument x:TypeArguments="uiascb1:tasks_Retrieve">[tasksMetadata]</OutArgument>
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                </isactr:ConnectorActivity.FieldObjects>
+              </isactr:ConnectorActivity>
+              <Assign DisplayName="Assign - Filter Custom Fields" sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="Assign_1">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="scg:List(uiascb2:custom_fields)">[tasksMetadataObject]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="scg:List(uiascb1:custom_fields)">[tasksMetadata.custom_fields.Where(function(x) customFieldsAR.Contains(x.name)).ToList()]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEach.Body>
+      </ui:ForEach>
+    </Sequence>
+  </Sequence>
+</Activity>

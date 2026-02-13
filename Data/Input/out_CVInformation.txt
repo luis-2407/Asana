@@ -1,0 +1,4 @@
+
+Candidate Information Table data:
+candidate_name | current_position | cv_email | home_institution
+Dr. Rima Chakrabarti | Not extracted | cr73@rice.edu | Not extracted

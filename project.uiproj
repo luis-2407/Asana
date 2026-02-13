@@ -1,0 +1,6 @@
+{
+  "Name": "Auxis-ReFramework",
+  "ProjectType": "Process",
+  "Description": "Auxis Robotic Enterprise Framework",
+  "MainFile": "Main.xaml"
+}

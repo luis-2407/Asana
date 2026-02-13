@@ -1,0 +1,223 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Misc_SendError" this:Misc_SendError.in_NotificationID="UnexpectedError" this:Misc_SendError.in_UseOffice365="False" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="ID of the notification to be sent, use UnexpectedError by default." Name="in_NotificationID" Type="InArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property sap2010:Annotation.AnnotationText="Array of values to replace in the body." Name="in_BodyValues" Type="InArgument(s:String[])" />
+    <x:Property sap2010:Annotation.AnnotationText="Array of values to replace in the subject." Name="in_SubjectValues" Type="InArgument(s:String[])" />
+    <x:Property sap2010:Annotation.AnnotationText="Address that receives the email, in case it is variable." Name="in_ToAddress" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Address that receives the email as carbon copy, in case it is variable." Name="in_CCAddress" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Outlook account used to send the email. If not provided, the default account is used. This field is required when using O365." Name="in_OutlookAccount" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Outlook account used to send emails on behalf of another user or group. This field is required when using O365." Name="in_OutlookOnBehalfOf" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Data table with the notifications." Name="in_dt_Notifications" Type="InArgument(sd:DataTable)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property sap2010:Annotation.AnnotationText="Check as True if you want to send the notification with the Office 365 activities, otherwise check as false to use the classic ones." Name="in_UseOffice365" Type="InArgument(x:Boolean)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property sap2010:Annotation.AnnotationText="The ID of your Azure Tenant." Name="in_AzureTenantID" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Name of the folder for the Application Azure credentials. Leave it blank to use the current folder." Name="in_AzureAssetFolder" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Name of the credential asset that contains the Username the Azure Application ID and the password the Secret Key for the O365 Email activity." Name="in_AzureAssetAppIDAndSecret" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:Misc_SendError.in_AzureTenantID>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Misc_SendError.in_AzureTenantID>
+  <this:Misc_SendError.in_AzureAssetAppIDAndSecret>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Misc_SendError.in_AzureAssetAppIDAndSecret>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:Annotation.AnnotationText>UPTF00000294eyI8SGVscExpbms+a19fQmFja2luZ0ZpZWxkIjpudWxsLCI8SW5pdGlhbFRvb2x0aXA+a19fQmFja2luZ0ZpZWxkIjoiU2VuZCBhbiBlbWFpbCBiYXNlZCBvbiB0aGUgTm90aWZpY2F0aW9ucyBzcHJlYWRzaGVldCBhbmQgYXR0YWNoIGEgc2NyZWVuc2hvdCBvZiB0aGUgZW50aXJlIHNjcmVlbi5cblxuUHJlY29uZGl0aW9uOiBQYXNzIHRoZSByZXF1aXJlZCBhcmd1bWVudHMgKE5vdGlmaWNhdGlvbklELCBOb3RpZmljYXRpb25EdCwgVXNlck9mZmljZTM2NSlcblBvc3QgYWN0aW9uOiBTZW5kcyBhbiBlbWFpbC5UaGlzIHdvcmtmbG93IGlzIHByb3RlY3RlZCB1bmRlciB0aGUgVVMgQ29weXJpZ2h0IE9mZmljZSBhbmQgaXMgaW50ZW5kZWQgZm9yIHRoZSBzb2xlbHkgdXNhZ2Ugb2YgQXV4aXMgTExDLlxuVXNhZ2Ugb2YgdGhpcyB3b3JrZmxvdyB3aXRob3V0IHdyaXR0ZW4gYXBwcm92YWwgaXMgbm90IHBlcm1pdHRlZC4iLCI8VmVyc2lvbj5rX19CYWNraW5nRmllbGQiOjF9</sap2010:Annotation.AnnotationText>
+  <sap:VirtualizedContainerService.HintSize>1794,1801</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Send_Error_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="44">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="58">
+      <AssemblyReference>GlobalVariablesT1PNoYwrqg</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Send an email based on the Notifications spreadsheet and attach a screenshot of the entire screen.&#xA;&#xA;Precondition: Pass the required arguments (NotificationID, NotificationDt, UserOffice365)&#xA;Post action: Sends an email.This workflow is protected under the US Copyright Office and is intended for the solely usage of Auxis LLC.&#xA;Usage of this workflow without written approval is not permitted." DisplayName="Misc_SendError" sap:VirtualizedContainerService.HintSize="1155,1633" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="Folder" />
+      <Variable x:TypeArguments="x:String" Name="Attachment" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message - Misc_SendError Started" sap:VirtualizedContainerService.HintSize="452,126" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Misc_SendError Started&quot;]" />
+    <Sequence DisplayName="Validate folder" sap:VirtualizedContainerService.HintSize="452,600" sap2010:WorkflowViewState.IdRef="Sequence_8">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="Assign - Folder" sap:VirtualizedContainerService.HintSize="418,175" sap2010:WorkflowViewState.IdRef="Assign_5">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Folder]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[Environment.CurrentDirectory + "\Exceptions_Screenshots"]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <If Condition="[Not Directory.Exists(Folder)]" DisplayName="If Folder doesn't exist, create it" sap:VirtualizedContainerService.HintSize="418,333" sap2010:WorkflowViewState.IdRef="If_4">
+        <If.Then>
+          <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder - Exceptions_Screenshots" sap:VirtualizedContainerService.HintSize="416,81" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[Folder]" />
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,100" sap2010:WorkflowViewState.IdRef="Sequence_9">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </If.Else>
+      </If>
+    </Sequence>
+    <Sequence DisplayName="Take screenshot" sap:VirtualizedContainerService.HintSize="452,544" sap2010:WorkflowViewState.IdRef="Sequence_7">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="ui:Image" Name="Screenshot" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="Assign - Attachment" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_4">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Attachment]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[Folder + "\ErrorScreenshot_" + Now.ToString("yyyyMMdd_HHmmss") + ".jpg"]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:TakeScreenshot WaitBefore="{x:Null}" DisplayName="Take Screenshot - Desktop" sap:VirtualizedContainerService.HintSize="416,119" sap2010:WorkflowViewState.IdRef="TakeScreenshot_1" Screenshot="[Screenshot]">
+        <ui:TakeScreenshot.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" Id="9a2deb14-c0a9-4fef-acea-1356e2e0a306">
+            <ui:Target.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:Target.TimeoutMS>
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:TakeScreenshot.Target>
+      </ui:TakeScreenshot>
+      <ui:SaveImage DisplayName="Save Image - Screenshot" FileName="[Attachment]" sap:VirtualizedContainerService.HintSize="416,158" sap2010:WorkflowViewState.IdRef="SaveImage_1" Image="[Screenshot]" />
+    </Sequence>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Send_Notification.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="452,146" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Framework\Email\Send_Notification.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="s:String[]" x:Key="in_BodyValues">[in_BodyValues]</InArgument>
+        <InArgument x:TypeArguments="s:String[]" x:Key="in_SubjectValues">[in_SubjectValues]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_NotificationID">[in_NotificationID]</InArgument>
+        <InArgument x:TypeArguments="s:String[]" x:Key="in_AttachmentFolders" />
+        <InArgument x:TypeArguments="s:String[]" x:Key="in_Attachments">[{Attachment}]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ToAddress">[in_ToAddress]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_CCAddress">[in_CCAddress]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_OutlookAccount">[in_OutlookAccount]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_OutlookOnBehalfOf">[in_OutlookOnBehalfOf]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_Notifications">[in_dt_Notifications]</InArgument>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="in_UseOffice365">[in_UseOffice365]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_AzureTenantID">[in_AzureTenantID]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_AzureAssetFolder">[in_AzureAssetFolder]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_AzureAssetAppIDAndSecret">[in_AzureAssetAppIDAndSecret]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:LogMessage DisplayName="Log Message - Misc_SendError Completed" sap:VirtualizedContainerService.HintSize="452,117" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Misc_SendError Completed&quot;]" />
+  </Sequence>
+</Activity>

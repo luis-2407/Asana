@@ -1,0 +1,333 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ClasificationCVorChairMemo" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_taskName" Type="InArgument(x:String)" />
+    <x:Property Name="in_folderPath" Type="InArgument(x:String)" />
+    <x:Property Name="out_chairMemoRenamedFile" Type="InArgument(upr:IResource)" />
+    <x:Property Name="out_cvRenamedFile" Type="InArgument(upr:IResource)" />
+  </x:Members>
+  <this:ClasificationCVorChairMemo.out_chairMemoRenamedFile>
+    <InArgument x:TypeArguments="upr:IResource" />
+  </this:ClasificationCVorChairMemo.out_chairMemoRenamedFile>
+  <this:ClasificationCVorChairMemo.out_cvRenamedFile>
+    <InArgument x:TypeArguments="upr:IResource" />
+  </this:ClasificationCVorChairMemo.out_cvRenamedFile>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ClasificationCVorChairMemo_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>Xceed.Pdf.Layout.List</x:String>
+      <x:String>Xceed.Pdf.Layout</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.PDF</x:String>
+      <x:String>UiPath.Platform</x:String>
+      <x:String>UiPath.IntegrationService.Activities.SWEntities.CE57C3C636C_tasks_Replace.Bundle</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.GptIxp34.Bundle</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>CE57C3C636C_tasks_Re.0XEw23ZnTRJ1jsF443CPpU1</AssemblyReference>
+      <AssemblyReference>ExtendedExtractionRe.aCVbXYJonC14YhLsH6rQf4</AssemblyReference>
+      <AssemblyReference>GlobalVariablesT1PNoYwrqg</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR.StudioWeb.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Xceed.PDF.NET</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ClasificationCVorChairMemo" sap:VirtualizedContainerService.HintSize="2585,2014" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Int32" Name="cvScore" />
+      <Variable x:TypeArguments="x:Int32" Name="chairMemoScore" />
+      <Variable x:TypeArguments="scg:List(x:String)" Default="[New List(Of String) From {&#xA;    &quot;curriculum vitae&quot;,&#xA;    &quot;c.v.&quot;,&#xA;    &quot;cv&quot;,&#xA;    &quot;resume&quot;,&#xA;    &quot;résumé&quot;,&#xA;    &quot;biographical sketch&quot;,&#xA;    &quot;academic cv&quot;,&#xA;    &quot;education&quot;,&#xA;    &quot;academic background&quot;,&#xA;    &quot;degrees&quot;,&#xA;    &quot;professional experience&quot;,&#xA;    &quot;work experience&quot;,&#xA;    &quot;employment history&quot;,&#xA;    &quot;academic appointments&quot;,&#xA;    &quot;academic positions&quot;,&#xA;    &quot;professional appointments&quot;,&#xA;    &quot;research experience&quot;,&#xA;    &quot;teaching experience&quot;,&#xA;    &quot;publications&quot;,&#xA;    &quot;selected publications&quot;,&#xA;    &quot;peer-reviewed publications&quot;,&#xA;    &quot;journal articles&quot;,&#xA;    &quot;books&quot;,&#xA;    &quot;book chapters&quot;,&#xA;    &quot;conference papers&quot;,&#xA;    &quot;conference presentations&quot;,&#xA;    &quot;presentations&quot;,&#xA;    &quot;invited talks&quot;,&#xA;    &quot;grants&quot;,&#xA;    &quot;grants and funding&quot;,&#xA;    &quot;funded research&quot;,&#xA;    &quot;awards&quot;,&#xA;    &quot;awards and honors&quot;,&#xA;    &quot;honors&quot;,&#xA;    &quot;fellowships&quot;,&#xA;    &quot;scholarships&quot;,&#xA;    &quot;professional memberships&quot;,&#xA;    &quot;professional affiliations&quot;,&#xA;    &quot;service&quot;,&#xA;    &quot;professional service&quot;,&#xA;    &quot;committee service&quot;,&#xA;    &quot;editorial service&quot;,&#xA;    &quot;skills&quot;,&#xA;    &quot;technical skills&quot;,&#xA;    &quot;languages&quot;,&#xA;    &quot;certifications&quot;,&#xA;    &quot;licenses&quot;,&#xA;    &quot;references&quot;,&#xA;    &quot;research interests&quot;,&#xA;    &quot;teaching interests&quot;,&#xA;    &quot;ph.d.&quot;,&#xA;    &quot;phd&quot;,&#xA;    &quot;ph.d&quot;,&#xA;    &quot;doctorate&quot;,&#xA;    &quot;doctoral&quot;,&#xA;    &quot;m.s.&quot;,&#xA;    &quot;ms&quot;,&#xA;    &quot;m.sc.&quot;,&#xA;    &quot;msc&quot;,&#xA;    &quot;m.a.&quot;,&#xA;    &quot;ma&quot;,&#xA;    &quot;mba&quot;,&#xA;    &quot;m.b.a.&quot;,&#xA;    &quot;b.s.&quot;,&#xA;    &quot;bs&quot;,&#xA;    &quot;b.sc.&quot;,&#xA;    &quot;bsc&quot;,&#xA;    &quot;b.a.&quot;,&#xA;    &quot;ba&quot;,&#xA;    &quot;bachelor&quot;,&#xA;    &quot;master&quot;,&#xA;    &quot;postdoctoral&quot;,&#xA;    &quot;postdoc&quot;,&#xA;    &quot;post-doctoral&quot;,&#xA;    &quot;dissertation&quot;,&#xA;    &quot;thesis&quot;,&#xA;    &quot;professor&quot;,&#xA;    &quot;associate professor&quot;,&#xA;    &quot;assistant professor&quot;,&#xA;    &quot;full professor&quot;,&#xA;    &quot;emeritus&quot;,&#xA;    &quot;lecturer&quot;,&#xA;    &quot;instructor&quot;,&#xA;    &quot;research associate&quot;,&#xA;    &quot;research assistant&quot;,&#xA;    &quot;research scientist&quot;,&#xA;    &quot;senior scientist&quot;,&#xA;    &quot;principal investigator&quot;,&#xA;    &quot;co-investigator&quot;,&#xA;    &quot;visiting professor&quot;,&#xA;    &quot;visiting scholar&quot;,&#xA;    &quot;postdoctoral fellow&quot;,&#xA;    &quot;graduate assistant&quot;,&#xA;    &quot;teaching assistant&quot;,&#xA;    &quot;present&quot;,&#xA;    &quot;current&quot;,&#xA;    &quot;to present&quot;,&#xA;    &quot;- present&quot;,&#xA;    &quot;–present&quot;,&#xA;    &quot;ongoing&quot;,&#xA;    &quot;journal of&quot;,&#xA;    &quot;proceedings of&quot;,&#xA;    &quot;vol.&quot;,&#xA;    &quot;volume&quot;,&#xA;    &quot;issue&quot;,&#xA;    &quot;pp.&quot;,&#xA;    &quot;pages&quot;,&#xA;    &quot;doi:&quot;,&#xA;    &quot;doi&quot;,&#xA;    &quot;issn&quot;,&#xA;    &quot;isbn&quot;,&#xA;    &quot;et al&quot;,&#xA;    &quot;et al.&quot;,&#xA;    &quot;eds.&quot;,&#xA;    &quot;editors&quot;,&#xA;    &quot;edited by&quot;,&#xA;    &quot;in press&quot;,&#xA;    &quot;forthcoming&quot;,&#xA;    &quot;submitted&quot;,&#xA;    &quot;under review&quot;,&#xA;    &quot;accepted&quot;,&#xA;    &quot;published&quot;,&#xA;    &quot;peer-reviewed&quot;,&#xA;    &quot;refereed&quot;,&#xA;    &quot;nsf&quot;,&#xA;    &quot;nih&quot;,&#xA;    &quot;national science foundation&quot;,&#xA;    &quot;national institutes of health&quot;,&#xA;    &quot;principal investigator&quot;,&#xA;    &quot;co-pi&quot;,&#xA;    &quot;funded&quot;,&#xA;    &quot;grant number&quot;,&#xA;    &quot;award amount&quot;,&#xA;    &quot;funding period&quot;,&#xA;    &quot;email:&quot;,&#xA;    &quot;e-mail:&quot;,&#xA;    &quot;phone:&quot;,&#xA;    &quot;telephone:&quot;,&#xA;    &quot;address:&quot;,&#xA;    &quot;office:&quot;,&#xA;    &quot;fax:&quot;,&#xA;    &quot;orcid&quot;,&#xA;    &quot;google scholar&quot;,&#xA;    &quot;researchgate&quot;,&#xA;    &quot;linkedin&quot;,&#xA;    &quot;website:&quot;,&#xA;    &quot;web:&quot;,&#xA;    &quot;homepage&quot;,&#xA;    &quot;university&quot;,&#xA;    &quot;college&quot;,&#xA;    &quot;institute&quot;,&#xA;    &quot;school of&quot;,&#xA;    &quot;department of&quot;,&#xA;    &quot;faculty of&quot;,&#xA;    &quot;center for&quot;,&#xA;    &quot;centre for&quot;,&#xA;    &quot;laboratory&quot;,&#xA;    &quot;lab&quot;,&#xA;    &quot;member&quot;,&#xA;    &quot;fellow&quot;,&#xA;    &quot;associate member&quot;,&#xA;    &quot;board member&quot;,&#xA;    &quot;reviewer&quot;,&#xA;    &quot;editorial board&quot;,&#xA;    &quot;society&quot;,&#xA;    &quot;association&quot;,&#xA;    &quot;committee member&quot;,&#xA;    &quot;courses taught&quot;,&#xA;    &quot;teaching portfolio&quot;,&#xA;    &quot;course development&quot;,&#xA;    &quot;curriculum development&quot;,&#xA;    &quot;student advising&quot;,&#xA;    &quot;thesis advisor&quot;,&#xA;    &quot;dissertation committee&quot;,&#xA;    &quot;graduate students supervised&quot;,&#xA;    &quot;mentoring&quot;&#xA;}]" Name="cvKeyWords" />
+      <Variable x:TypeArguments="scg:List(x:String)" Default="[New List(Of String) From {&#xA;    &quot;dear&quot;,&#xA;    &quot;sincerely&quot;,&#xA;    &quot;regards&quot;,&#xA;    &quot;respectfully&quot;,&#xA;    &quot;to whom it may concern&quot;,&#xA;    &quot;re:&quot;,&#xA;    &quot;subject:&quot;,&#xA;    &quot;memorandum&quot;,&#xA;    &quot;memo&quot;,&#xA;    &quot;recommend&quot;,&#xA;    &quot;recommendation&quot;,&#xA;    &quot;recommending&quot;,&#xA;    &quot;strongly recommend&quot;,&#xA;    &quot;nominate&quot;,&#xA;    &quot;nomination&quot;,&#xA;    &quot;propose&quot;,&#xA;    &quot;proposing&quot;,&#xA;    &quot;endorse&quot;,&#xA;    &quot;endorsement&quot;,&#xA;    &quot;support&quot;,&#xA;    &quot;supporting&quot;,&#xA;    &quot;approve&quot;,&#xA;    &quot;approval&quot;,&#xA;    &quot;request&quot;,&#xA;    &quot;requesting&quot;,&#xA;    &quot;adjunct&quot;,&#xA;    &quot;adjunct professor&quot;,&#xA;    &quot;adjunct faculty&quot;,&#xA;    &quot;appointment&quot;,&#xA;    &quot;appoint&quot;,&#xA;    &quot;reappointment&quot;,&#xA;    &quot;renewal&quot;,&#xA;    &quot;renew&quot;,&#xA;    &quot;term of appointment&quot;,&#xA;    &quot;effective date&quot;,&#xA;    &quot;appointment period&quot;,&#xA;    &quot;academic year&quot;,&#xA;    &quot;fall semester&quot;,&#xA;    &quot;spring semester&quot;,&#xA;    &quot;summer session&quot;,&#xA;    &quot;the candidate&quot;,&#xA;    &quot;this candidate&quot;,&#xA;    &quot;he will&quot;,&#xA;    &quot;she will&quot;,&#xA;    &quot;they will&quot;,&#xA;    &quot;he has&quot;,&#xA;    &quot;she has&quot;,&#xA;    &quot;they have&quot;,&#xA;    &quot;his expertise&quot;,&#xA;    &quot;her expertise&quot;,&#xA;    &quot;their expertise&quot;,&#xA;    &quot;his qualifications&quot;,&#xA;    &quot;her qualifications&quot;,&#xA;    &quot;their qualifications&quot;,&#xA;    &quot;dr.&quot;,&#xA;    &quot;professor&quot;,&#xA;    &quot;department of&quot;,&#xA;    &quot;department chair&quot;,&#xA;    &quot;dean&quot;,&#xA;    &quot;provost&quot;,&#xA;    &quot;committee&quot;,&#xA;    &quot;faculty affairs&quot;,&#xA;    &quot;human resources&quot;,&#xA;    &quot;on behalf of&quot;,&#xA;    &quot;i am writing&quot;,&#xA;    &quot;i am pleased&quot;,&#xA;    &quot;it is my pleasure&quot;,&#xA;    &quot;this letter&quot;,&#xA;    &quot;this memo&quot;,&#xA;    &quot;please consider&quot;,&#xA;    &quot;for your consideration&quot;,&#xA;    &quot;pursuant to&quot;,&#xA;    &quot;in accordance with&quot;,&#xA;    &quot;rice university&quot;,&#xA;    &quot;rice&quot;,&#xA;    &quot;owl&quot;,&#xA;    &quot;will teach&quot;,&#xA;    &quot;will be teaching&quot;,&#xA;    &quot;course&quot;,&#xA;    &quot;courses&quot;,&#xA;    &quot;class&quot;,&#xA;    &quot;instruction&quot;,&#xA;    &quot;curriculum&quot;,&#xA;    &quot;syllabus&quot;,&#xA;    &quot;enrollment&quot;,&#xA;    &quot;students&quot;,&#xA;    &quot;undergraduate&quot;,&#xA;    &quot;graduate&quot;,&#xA;    &quot;seminar&quot;,&#xA;    &quot;qualifications&quot;,&#xA;    &quot;qualified&quot;,&#xA;    &quot;expertise&quot;,&#xA;    &quot;experience makes&quot;,&#xA;    &quot;well-suited&quot;,&#xA;    &quot;ideal candidate&quot;,&#xA;    &quot;brings&quot;,&#xA;    &quot;contribution&quot;,&#xA;    &quot;asset&quot;,&#xA;    &quot;valuable addition&quot;,&#xA;    &quot;benefit&quot;,&#xA;    &quot;enhance&quot;,&#xA;    &quot;strengthen&quot;,&#xA;    &quot;compensation&quot;,&#xA;    &quot;salary&quot;,&#xA;    &quot;stipend&quot;,&#xA;    &quot;payment&quot;,&#xA;    &quot;remuneration&quot;,&#xA;    &quot;per course&quot;,&#xA;    &quot;course load&quot;,&#xA;    &quot;workload&quot;,&#xA;    &quot;credit hours&quot;,&#xA;    &quot;contact hours&quot;,&#xA;    &quot;chair&quot;,&#xA;    &quot;department chair&quot;,&#xA;    &quot;head&quot;,&#xA;    &quot;director&quot;,&#xA;    &quot;signed&quot;,&#xA;    &quot;signature&quot;,&#xA;    &quot;submitted by&quot;,&#xA;    &quot;approved by&quot;,&#xA;    &quot;date:&quot;&#xA;}]" Name="chairMemoKeyWords" />
+      <Variable x:TypeArguments="x:String" Name="out_documentType" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="Clasification CV or Chair Memo" sap:VirtualizedContainerService.HintSize="588,1991" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="documentText" />
+        <Variable x:TypeArguments="x:Double" Name="threshold" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:ForEachFileX DisplayName="For Each File in Folder" Folder="[in_folderPath]" sap:VirtualizedContainerService.HintSize="554,1908" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+        <ui:ForEachFileX.Body>
+          <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
+            <ActivityAction.Argument1>
+              <DelegateInArgument x:TypeArguments="si:FileInfo" Name="CurrentFile" />
+            </ActivityAction.Argument1>
+            <ActivityAction.Argument2>
+              <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+            </ActivityAction.Argument2>
+            <Sequence sap:VirtualizedContainerService.HintSize="520,1621" sap2010:WorkflowViewState.IdRef="Sequence_11">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="486,1561" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text" sap:VirtualizedContainerService.HintSize="452,123" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[LocalResource.FromPath(CurrentFile.ToString())]" Text="[documentText]" />
+                <Assign DisplayName="Assign - Thereshold" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Double">[threshold]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Double">[1.5]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign DisplayName="Assign - Document To Lower" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[documentText]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[documentText.ToLower]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each keyword in Chair Memo List" sap:VirtualizedContainerService.HintSize="452,57" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[chairMemoKeyWords]">
+                  <ui:ForEach.Body>
+                    <ActivityAction x:TypeArguments="x:String">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:String" Name="keyword" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486,526" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If Condition="[documentText.Contains(keyword.ToLower())]" DisplayName="If - Make Lower Keyword to Validate" sap:VirtualizedContainerService.HintSize="452,462" sap2010:WorkflowViewState.IdRef="If_1">
+                          <If.Then>
+                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,234" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign DisplayName="Assign - Increase Chair Memo Score" sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Int32">[chairMemoScore]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Int32">[chairMemoScore + 1]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEach.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:ForEach>
+                <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each keyword in CV List" sap:VirtualizedContainerService.HintSize="452,57" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[cvKeyWords]">
+                  <ui:ForEach.Body>
+                    <ActivityAction x:TypeArguments="x:String">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:String" Name="keyword" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486,526" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <If Condition="[documentText.Contains(keyword.ToLower())]" DisplayName="If - Make Lower Keyword to Validate" sap:VirtualizedContainerService.HintSize="452,462" sap2010:WorkflowViewState.IdRef="If_2">
+                          <If.Then>
+                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,234" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign DisplayName="Assign - Increase Chair Memo Score" sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="Assign_4">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Int32">[cvScore]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Int32">[cvScore + 1]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEach.Body>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:ForEach>
+                <ui:InvokeCode ContinueOnError="{x:Null}" Code="' Initialize result&#xA;documentType = &quot;UNKNOWN&quot;&#xA;&#xA;' Classification logic&#xA;If chairMemoScore &gt; 0 AndAlso cvScore &gt; 0 Then&#xA;    ' Both have matches - compare ratio&#xA;    If chairMemoScore &gt;= cvScore * threshold Then&#xA;        documentType = &quot;CHAIR_MEMO&quot;&#xA;    ElseIf cvScore &gt;= chairMemoScore Then&#xA;        documentType = &quot;CV&quot;&#xA;    End If&#xA;ElseIf chairMemoScore &gt; 5 Then&#xA;    documentType = &quot;CHAIR_MEMO&quot;&#xA;ElseIf cvScore &gt; 5 Then&#xA;    documentType = &quot;CV&quot;&#xA;End If" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="452,197" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                  <ui:InvokeCode.Arguments>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="chairMemoScore">[chairMemoScore]</InArgument>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="cvScore">[cvScore]</InArgument>
+                    <InArgument x:TypeArguments="x:Double" x:Key="threshold">[threshold]</InArgument>
+                    <OutArgument x:TypeArguments="x:String" x:Key="documentType">[out_documentType]</OutArgument>
+                  </ui:InvokeCode.Arguments>
+                </ui:InvokeCode>
+                <If Condition="[out_documentType = &quot;CHAIR MEMO&quot;]" DisplayName="If - Rename file based on document type" sap:VirtualizedContainerService.HintSize="452,694" sap2010:WorkflowViewState.IdRef="If_3">
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,282" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:RenameFileX FileResource="{x:Null}" DisplayName="Rename File" FilePath="[CurrentFile.ToString()]" sap:VirtualizedContainerService.HintSize="416,218" sap2010:WorkflowViewState.IdRef="RenameFileX_1" KeepExtension="True" NewName="[in_taskName + DateTime.Now.Year.ToString + &quot;- Chair Memo&quot;]" OutputFileResource="[out_chairMemoRenamedFile]" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,282" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:RenameFileX FileResource="{x:Null}" DisplayName="Rename File" FilePath="[CurrentFile.ToString()]" sap:VirtualizedContainerService.HintSize="416,218" sap2010:WorkflowViewState.IdRef="RenameFileX_2" KeepExtension="True" NewName="[in_taskName + DateTime.Now.Year.ToString + &quot;- CV&quot;]" OutputFileResource="[out_cvRenamedFile]" />
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEachFileX.Body>
+      </ui:ForEachFileX>
+    </Sequence>
+  </Sequence>
+</Activity>
