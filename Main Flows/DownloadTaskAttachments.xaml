@@ -65,6 +65,7 @@
       <x:String>UiPath</x:String>
       <x:String>UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_projects_sub_tasks.Bundle</x:String>
       <x:String>UiPath.IntegrationService.Activities.SWEntities.C7B246E9CE8_tasks_Retrieve.Bundle</x:String>
+      <x:String>UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_tasks_Replace.Bundle</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -73,7 +74,6 @@
       <AssemblyReference>CE9C9C83C26_projects.8iQ0w3NZlAH1qKXLAbs6C4</AssemblyReference>
       <AssemblyReference>ExtendedExtractionRe.aCVbXYJonC14YhLsH6rQf4</AssemblyReference>
       <AssemblyReference>ExtendedExtractionRe.HHcfSpC5cJ1HxSM9kPdPr3</AssemblyReference>
-      <AssemblyReference>GlobalVariablesT1PNoYwrqg</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
@@ -142,15 +142,16 @@
       <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>CE9C9C83C26_tasks_Re.3RtzP31kVFE1cl59L11TnfQ3</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DownloadTaskAttachments" sap:VirtualizedContainerService.HintSize="2585,4214" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DownloadTaskAttachments" sap:VirtualizedContainerService.HintSize="2591,1027.6566666666668" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Download Attachments" sap:VirtualizedContainerService.HintSize="558,4191" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Download Attachments" sap:VirtualizedContainerService.HintSize="450,557" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="out_ResponseBodyUrl" />
         <Variable x:TypeArguments="njl:JObject" Name="out_jsonObject" />
@@ -161,7 +162,7 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <isactr:ConnectorHttpActivity Configuration="H4sIAAAAAAAACu1WS2/bMAz+K4OOg5tsPRpDgTzcJlu2eK3bHYYeFJuJ1diSqkdTz8h/HyXb2boEWwYUu6w5OCZNfvxIk5Rrcs6gyPRIcEMZB0XCmky5tKbRk/BrTT7REkhISjC5yEhAxkzLglat+mOnTirpZG0U4yuUL+HeMgUZCY2yEDSRZiKlhgmOhkORVWQb7PCtKvbAI55Jwbh5BvgcaAZK/0ASiztIHfK5UCU1qMlY6pypqt41YQKGwsqWwE2rOTvzobUUXMOxoe8tqOo5Av8p0MLJ+6Uag2YrtK8bgIEP1rzb5r51mLAMXHq2gObpJSy9x68d0OlvaGG9KbmIEnK7vXVcnkBe5WJzFORUfxFqvSzEJnqUCrT2GTb13Q8Xz68SdIqv3XUczaIkcuIgGU08DSTy/+R6bEOi4dyag7P9D4ejofDStS9d+/edkgo/tIeOAtDYpEtaaDge2G2J1jdW8MBgE1OFkYwbBdyW7dEW+okPyDUeUDgqxkgd9vtUyh7VlNNeKkqUWP9t7w1aTdpRQv+BRX/Fvu3GEKgC9Qqq9/nitf+h/SBNQboBQ8CCNRz7dxodAuKOZRyvkzbhPQvk/9mfLWG9xfsp14byFJ5mcYP/TXwk6CkiLMfpFuoDoCuxTFKTn/hkmqunZdgDM1Ub+gLw44Cl+GDuN0O3N7AYXfUxdZR2NYuF180lqC7/kQJqwLEe0TQHfCVibWW36eqdfqjERoOaGihbfaxYiZsH+bq1hYsspumaruDn3E5PfXK/4XeAS0BmlK8sQqEOXM0TeDTDQqRrH2n7HT48KxEiCQAA" ConnectionId="8206fc8b-8cde-4412-b499-837b246e9ce8" DisplayName="Asana HTTP Request" sap:VirtualizedContainerService.HintSize="524,498" sap2010:WorkflowViewState.IdRef="ConnectorHttpActivity_1" UiPathActivityTypeId="8e7dad69-7016-3a0b-bad0-1435a7cd7c28">
+      <isactr:ConnectorHttpActivity Configuration="H4sIAAAAAAAACu1WS2/bMAz+K4OOg5tsPRpDgTzcJlu2eK3bHYYeFJuJ1diSqkdTz8h/HyXb2boEWwYUu6w5OCZNfvxIk5Rrcs6gyPRIcEMZB0XCmky5tKbRk/BrTT7REkhISjC5yEhAxkzLglat+mOnTirpZG0U4yuUL+HeMgUZCY2yEDSRZiKlhgmOhkORVWQb7PCtKvbAI55Jwbh5BvgcaAZK/0ASiztIHfK5UCU1qMlY6pypqt41YQKGwsqWwE2rOTvzobUUXMOxoe8tqOo5Av8p0MLJ+6Uag2YrtK8bgIEP1rzb5r51mLAMXHq2gObpJSy9x68d0OlvaGG9KbmIEnK7vXVcnkBe5WJzFORUfxFqvSzEJnqUCrT2GTb13Q8Xz68SdIqv3XUczaIkcuIgGU08DSTy/+R6bEOi4dyag7P9D4ejofDStS9d+/edkgo/tIeOAtDYpEtaaDge2G2J1jdW8MBgE1OFkYwbBdyW7dEW+okPyDUeUDgqxkgd9vtUyh7VlNNeKkqUWP9t7w1aTdpRQv+BRX/Fvu3GEKgC9Qqq9/nitf+h/SBNQboBQ8CCNRz7dxodAuKOZRyvkzbhPQvk/9mfLWG9xfsp14byFJ5mcYP/TXwk6CkiLMfpFuoDoCuxTFKTn/hkmqunZdgDM1Ub+gLw44Cl+GDuN0O3N7AYXfUxdZR2NYuF180lqC7/kQJqwLEe0TQHfCVibWW36eqdfqjERoOaGihbfaxYiZsH+bq1hYsspumaruDn3E5PfXK/4XeAS0BmlK8sQqEOXM0TeDTDQqRrH2n7HT48KxEiCQAA" ConnectionId="8206fc8b-8cde-4412-b499-837b246e9ce8" DisplayName="Asana HTTP Request" sap:VirtualizedContainerService.HintSize="416,127" sap2010:WorkflowViewState.IdRef="ConnectorHttpActivity_1" UiPathActivityTypeId="8e7dad69-7016-3a0b-bad0-1435a7cd7c28">
         <isactr:ConnectorHttpActivity.FieldObjects>
           <isactr:FieldObject Name="method" Type="FieldArgument">
             <isactr:FieldObject.Value>
@@ -206,7 +207,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </isactr:ConnectorHttpActivity>
-      <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="524,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[out_jsonObject]" JsonString="[out_ResponseBodyUrl]">
+      <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="416,87" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[out_jsonObject]" JsonString="[out_ResponseBodyUrl]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -214,7 +215,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:DeserializeJson>
-      <Assign DisplayName="Assign - JSON Array Attachments" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign DisplayName="Assign - JSON Array Attachments" sap:VirtualizedContainerService.HintSize="416,87" sap2010:WorkflowViewState.IdRef="Assign_1">
         <Assign.To>
           <OutArgument x:TypeArguments="njl:JArray">[attachmentsArray]</OutArgument>
         </Assign.To>
@@ -228,7 +229,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <If Condition="[attachmentsArray.Count &gt; 2]" DisplayName="If - Number of attachments are greater than 2" sap:VirtualizedContainerService.HintSize="524,415" sap2010:WorkflowViewState.IdRef="If_1">
+      <If Condition="[attachmentsArray.Count &gt; 2]" DisplayName="If - Number of attachments are greater than 2" sap:VirtualizedContainerService.HintSize="416,95" sap2010:WorkflowViewState.IdRef="If_1">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -255,7 +256,7 @@
           </Sequence>
         </If.Else>
       </If>
-      <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each - Attachment Included" sap:VirtualizedContainerService.HintSize="524,2846" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[attachmentsArray]">
+      <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each - Attachment Included" sap:VirtualizedContainerService.HintSize="416,78" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[attachmentsArray]">
         <ui:ForEach.Body>
           <ActivityAction x:TypeArguments="njl:JToken">
             <ActivityAction.Argument>

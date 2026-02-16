@@ -72,6 +72,7 @@
       <x:String>UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_projects_sub_tasks.Bundle</x:String>
       <x:String>UiPath.IntegrationService.Activities.SWEntities.C7B246E9CE8_tasks_Retrieve.Bundle</x:String>
       <x:String>UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_projects.Bundle</x:String>
+      <x:String>UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_tasks_Replace.Bundle</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -157,6 +158,7 @@
       <AssemblyReference>C7B246E9CE8_tasks_Re.v58lB2e0lYE1IRd9vAKGxo1</AssemblyReference>
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
       <AssemblyReference>CE9C9C83C26_projects.IfOj9202TtI181yAk2295j23</AssemblyReference>
+      <AssemblyReference>CE9C9C83C26_tasks_Re.3RtzP31kVFE1cl59L11TnfQ3</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. &#xA;&#xA;in_TransactionItem: Use this argument when using orchestrator.&#xA;&#xA;io_dr_TranactionItem: Wll contain the transaction item when not using orchestrator." DisplayName="Process" sap:VirtualizedContainerService.HintSize="2591,1027.6566666666668" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -186,6 +188,7 @@
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ExtractInformationFromIXP - Invoke Workflow File (Main Flows\ExtractInformationFromIXP.xaml)" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Main Flows\ExtractInformationFromIXP.xaml">
       <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_projectedEndDate">[io_drTransactionItem("Projected End Date").ToString]</InArgument>
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="out_dictCV">[dictPropertiesCV]</OutArgument>
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="out_dictChairMemo">[dictPropertiesChairMemo]</OutArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_taskName">[io_drTransactionItem("taskName").ToString]</InArgument>

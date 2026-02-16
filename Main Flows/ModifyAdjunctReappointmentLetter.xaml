@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ModifyAdjunctReappointmentLetter" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:uwahm="clr-namespace:UiPath.Web.Activities.Http.Models;assembly=UiPath.Web.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ModifyAdjunctReappointmentLetter" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uiascb="clr-namespace:UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_tasks_Replace.Bundle;assembly=CE9C9C83C26_tasks_Re.3RtzP31kVFE1cl59L11TnfQ3" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:uwah="clr-namespace:UiPath.Web.Activities.Http;assembly=UiPath.Web.Activities" xmlns:uwahm="clr-namespace:UiPath.Web.Activities.Http.Models;assembly=UiPath.Web.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_taskGID" Type="InArgument(x:String)" />
     <x:Property Name="in_downloadFolder" Type="InArgument(x:String)" />
@@ -70,6 +70,13 @@
       <x:String>UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_projects_sub_tasks.Bundle</x:String>
       <x:String>UiPath.IntegrationService.Activities.SWEntities.C7B246E9CE8_tasks_Retrieve.Bundle</x:String>
       <x:String>UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_projects.Bundle</x:String>
+      <x:String>UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_tasks_Replace.Bundle</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>UiPath.Web.Activities.JSON.Models</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.Collections.Specialized</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -150,16 +157,32 @@
       <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>CE9C9C83C26_tasks_Re.3RtzP31kVFE1cl59L11TnfQ3</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Collections.Specialized</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ModifyAdjunctReappointmentLetter" sap:VirtualizedContainerService.HintSize="2585,3832" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ModifyAdjunctReappointmentLetter" sap:VirtualizedContainerService.HintSize="2585,4041" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="mapStatus">
+        <Variable.Default>
+          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:String)" ExpressionText="New Dictionary(Of String,String) From {&#xD;&#xA;    {&quot;Ready for automation&quot;,&quot;1212913254438530&quot;},&#xD;&#xA;    {&quot;Ready to review&quot;,&quot;1212913254438531&quot;},&#xD;&#xA;    {&quot;Letter reviewed&quot;,&quot;1212913254438532&quot;},&#xD;&#xA;    {&quot;Sent for signature (Adobe Sign)&quot;,&quot;1212913254438533&quot;},&#xD;&#xA;    {&quot;Letter signed&quot;,&quot;1212913254438534&quot;},&#xD;&#xA;    {&quot;Error&quot;,&quot;1212913254438535&quot;}&#xD;&#xA;}" />
+        </Variable.Default>
+      </Variable>
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Modify Adjunct Reappointment Letter" sap:VirtualizedContainerService.HintSize="486,3809" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Modify Adjunct Reappointment Letter" sap:VirtualizedContainerService.HintSize="520,4018" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
+        <Variable x:TypeArguments="scg:Dictionary(x:Int32, x:String)" Name="numberToLetterDict">
+          <Variable.Default>
+            <VisualBasicValue x:TypeArguments="scg:Dictionary(x:Int32, x:String)" ExpressionText="New Dictionary(Of Integer, String) From {&#xD;&#xA;    {1,&quot;one&quot;},&#xD;&#xA;    {2,&quot;two&quot;},&#xD;&#xA;    {3,&quot;three&quot;},&#xD;&#xA;    {4,&quot;four&quot;},&#xD;&#xA;    {5,&quot;five&quot;},&#xD;&#xA;    {6,&quot;six&quot;},&#xD;&#xA;    {7,&quot;seven&quot;},&#xD;&#xA;    {8,&quot;eight&quot;},&#xD;&#xA;    {9,&quot;nine&quot;}&#xD;&#xA;}" />
+          </Variable.Default>
+        </Variable>
         <Variable x:TypeArguments="uwahm:HttpResponseSummary" Name="apiOutput" />
         <Variable x:TypeArguments="x:Int32" Name="statusCode" />
         <Variable x:TypeArguments="x:String" Name="apiResponse" />
@@ -167,14 +190,21 @@
         <Variable x:TypeArguments="x:String" Name="endDate" />
         <Variable x:TypeArguments="x:String" Name="startDate" />
         <Variable x:TypeArguments="x:String" Name="saveFolder" />
+        <Variable x:TypeArguments="x:String" Name="request" />
+        <Variable x:TypeArguments="x:String" Name="updateStatusLink" />
+        <Variable x:TypeArguments="x:String" Name="numberMatch" />
+        <Variable x:TypeArguments="x:String" Name="outSubtask" />
+        <Variable x:TypeArguments="njl:JObject" Name="outSubtaskObject" />
+        <Variable x:TypeArguments="njl:JArray" Name="taskJArray" />
+        <Variable x:TypeArguments="x:String" Name="draftTaskGID" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ucas:DownloadStorageFile TimeoutMS="{x:Null}" Destination="Data\Input\Adjunct Reappointment - Template.docx" DisplayName="Download Storage File" FolderPath="Academic Affairs/Schools/Engineering/Faculty_Reappointments_Automation" sap:VirtualizedContainerService.HintSize="452,167" sap2010:WorkflowViewState.IdRef="DownloadStorageFile_1" Path="Adjunct Reappointment - Template.docx" Result="[result]" StorageBucketName="Templates" />
-      <Assign sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <ucas:DownloadStorageFile TimeoutMS="{x:Null}" Destination="Data\Input\Adjunct Reappointment - Template.docx" DisplayName="Download Storage File" FolderPath="Academic Affairs/Schools/Engineering/Faculty_Reappointments_Automation" sap:VirtualizedContainerService.HintSize="486,167" sap2010:WorkflowViewState.IdRef="DownloadStorageFile_1" Path="Adjunct Reappointment - Template.docx" Result="[result]" StorageBucketName="Templates" />
+      <Assign DisplayName="Assign - Format End Date" sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_1">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[endDate]</OutArgument>
         </Assign.To>
@@ -186,7 +216,7 @@
 ).ToString("MMMM d, yyyy")]</InArgument>
         </Assign.Value>
       </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign DisplayName="Assign - Format Start Date" sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_2">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[startDate]</OutArgument>
         </Assign.To>
@@ -198,7 +228,7 @@
 ).ToString("MMMM d, yyyy")]</InArgument>
         </Assign.Value>
       </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign DisplayName="Assign - Save Folder Modified Letter" sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_3">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[saveFolder]</OutArgument>
         </Assign.To>
@@ -206,34 +236,57 @@
           <InArgument x:TypeArguments="x:String">[(in_downloadFolder + "\" + in_taskName + "\" + in_taskName + "-" + "Adjunct Reappointment.docx").Trim()]</InArgument>
         </Assign.Value>
       </Assign>
-      <p:WordApplicationScope SensitivityLabel="{x:Null}" CreateNewFile="False" DisplayName="Word Application Scope" FilePath="[result.LocalPath]" sap:VirtualizedContainerService.HintSize="452,2671" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1" SensitivityOperation="None">
+      <Assign DisplayName="Assign - Ready to Review Request" sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_4">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[request]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">["{""data"":{""custom_fields"":{""1212913254438529"":""" &amp; mapStatus("Ready to review") &amp; """}}}"]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign - Link Status" sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_5">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[updateStatusLink]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[("https://app.asana.com/api/1.0"+"/tasks/" + in_taskGID).Trim]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:Matches DisplayName="Find Matching Patterns" FirstMatch="[numberMatch]" sap:VirtualizedContainerService.HintSize="486,92" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[in_dictChairMemo(&quot;ReappointmentTerm&quot;).ToString]" IsBuilderTabModified="False" Pattern="\d+" RegexOption="IgnoreCase, Compiled" />
+      <p:WordApplicationScope SensitivityLabel="{x:Null}" CreateNewFile="False" DisplayName="Word Application Scope" FilePath="[result.LocalPath]" sap:VirtualizedContainerService.HintSize="486,57" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1" SensitivityOperation="None">
         <p:WordApplicationScope.Body>
           <ActivityAction x:TypeArguments="ui:WordDocument">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,2540" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,2496" sap2010:WorkflowViewState.IdRef="Sequence_3">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - System Date" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_1" Replace="[DateTime.Now.ToString(&quot;MM/dd/yyyy&quot;)]" ReplaceAll="False" Search="%[Date]" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Full Name" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_2" Replace="[System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(in_dictCV(&quot;CandidateName&quot;).ToLower)]" ReplaceAll="True" Search="%[Name]" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Email Address" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_3" Replace="[in_dictCV(&quot;CvEmail&quot;)]" ReplaceAll="False" Search="%[Email Address]" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Last Name" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_4" Replace="[in_taskName.Split(&quot;,&quot;c)(0)]" ReplaceAll="False" Search="%[Last Name]" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Chair Name" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_5" Replace="[in_dictChairMemo(&quot;Chair&quot;)]" ReplaceAll="True" Search="%[Chair]" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Title" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_11" Replace="[in_title.ToString()]" ReplaceAll="False" Search="%[Title]" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Dept" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_7" Replace="[in_department.ToString()]" ReplaceAll="False" Search="%[Dept]" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Term" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_8" Replace="[in_dictChairMemo(&quot;ReappointmentTerm&quot;).ToString()]" ReplaceAll="False" Search="%[Term]" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Start Date" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_9" Replace="[startDate]" ReplaceAll="False" Search="%[Date]" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - End Date" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_6" Replace="[endDate]" ReplaceAll="False" Search="%[Date]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - System Date" sap:VirtualizedContainerService.HintSize="416,222" sap2010:WorkflowViewState.IdRef="WordReplaceText_1" Replace="[DateTime.Now.ToString(&quot;MMMM d, yyyy&quot;)]" ReplaceAll="False" Search="%[Date]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Full Name" sap:VirtualizedContainerService.HintSize="416,222" sap2010:WorkflowViewState.IdRef="WordReplaceText_2" Replace="[System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(in_dictCV(&quot;CandidateName&quot;).ToLower)]" ReplaceAll="True" Search="%[Name]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Email Address" sap:VirtualizedContainerService.HintSize="416,222" sap2010:WorkflowViewState.IdRef="WordReplaceText_3" Replace="[in_dictCV(&quot;CvEmail&quot;)]" ReplaceAll="False" Search="%[Email Address]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Last Name" sap:VirtualizedContainerService.HintSize="416,222" sap2010:WorkflowViewState.IdRef="WordReplaceText_4" Replace="[in_taskName.Split(&quot;,&quot;c)(0)]" ReplaceAll="False" Search="%[Last Name]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Chair Name" sap:VirtualizedContainerService.HintSize="416,222" sap2010:WorkflowViewState.IdRef="WordReplaceText_5" Replace="[in_dictChairMemo(&quot;Chair&quot;)]" ReplaceAll="True" Search="%[Chair]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Title" sap:VirtualizedContainerService.HintSize="416,222" sap2010:WorkflowViewState.IdRef="WordReplaceText_11" Replace="[in_title.ToString()]" ReplaceAll="False" Search="%[Title]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Dept" sap:VirtualizedContainerService.HintSize="416,222" sap2010:WorkflowViewState.IdRef="WordReplaceText_7" Replace="[in_department.ToString()]" ReplaceAll="False" Search="%[Dept]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Term" sap:VirtualizedContainerService.HintSize="416,222" sap2010:WorkflowViewState.IdRef="WordReplaceText_8" Replace="[numberToLetterDict(CInt(numberMatch)) + &quot;years&quot;]" ReplaceAll="False" Search="%[Term]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Start Date" sap:VirtualizedContainerService.HintSize="416,222" sap2010:WorkflowViewState.IdRef="WordReplaceText_9" Replace="[startDate]" ReplaceAll="False" Search="%[Date]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - End Date" sap:VirtualizedContainerService.HintSize="416,222" sap2010:WorkflowViewState.IdRef="WordReplaceText_6" Replace="[endDate]" ReplaceAll="False" Search="%[Date]" />
               <p:WordSaveAs DisplayName="Save Document As" FilePath="[saveFolder]" sap:VirtualizedContainerService.HintSize="416,216" sap2010:WorkflowViewState.IdRef="WordSaveAs_1" ReplaceExisting="False" />
             </Sequence>
           </ActivityAction>
         </p:WordApplicationScope.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
       </p:WordApplicationScope>
-      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim url As String = &quot;https://app.asana.com/api/1.0/attachments&quot;&#xA;&#xA;Dim responseText As String = &quot;&quot;&#xA;Dim statusCodeValue As Integer = -1&#xA;&#xA;Dim client As New System.Net.Http.HttpClient()&#xA;&#xA;Try&#xA;    ' Auth header&#xA;    client.DefaultRequestHeaders.Authorization =&#xA;        New System.Net.Http.Headers.AuthenticationHeaderValue(&quot;Bearer&quot;, inPersonalAccessToken)&#xA;&#xA;    Dim form As New System.Net.Http.MultipartFormDataContent()&#xA;&#xA;    ' Required: parent (task GID)&#xA;    form.Add(New System.Net.Http.StringContent(inTaskGid), &quot;parent&quot;)&#xA;&#xA;    ' Required: file (binary)&#xA;    Dim bytes As Byte() = System.IO.File.ReadAllBytes(inFilePath)&#xA;    Dim fileContent As New System.Net.Http.ByteArrayContent(bytes)&#xA;    fileContent.Headers.ContentType =&#xA;        New System.Net.Http.Headers.MediaTypeHeaderValue(&quot;application/octet-stream&quot;)&#xA;&#xA;    form.Add(fileContent, &quot;file&quot;, System.IO.Path.GetFileName(inFilePath))&#xA;&#xA;    Dim resp As System.Net.Http.HttpResponseMessage = client.PostAsync(url, form).Result&#xA;&#xA;    statusCodeValue = CInt(resp.StatusCode)&#xA;    responseText = resp.Content.ReadAsStringAsync().Result&#xA;&#xA;Finally&#xA;    client.Dispose()&#xA;End Try&#xA;&#xA;outStatusCode = statusCodeValue&#xA;outResponse = responseText&#xA;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="452,197" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim url As String = &quot;https://app.asana.com/api/1.0/attachments&quot;&#xA;&#xA;Dim responseText As String = &quot;&quot;&#xA;Dim statusCodeValue As Integer = -1&#xA;&#xA;Dim client As New System.Net.Http.HttpClient()&#xA;&#xA;Try&#xA;    ' Auth header&#xA;    client.DefaultRequestHeaders.Authorization =&#xA;        New System.Net.Http.Headers.AuthenticationHeaderValue(&quot;Bearer&quot;, inPersonalAccessToken)&#xA;&#xA;    Dim form As New System.Net.Http.MultipartFormDataContent()&#xA;&#xA;    ' Required: parent (task GID)&#xA;    form.Add(New System.Net.Http.StringContent(inTaskGid), &quot;parent&quot;)&#xA;&#xA;    ' Required: file (binary)&#xA;    Dim bytes As Byte() = System.IO.File.ReadAllBytes(inFilePath)&#xA;    Dim fileContent As New System.Net.Http.ByteArrayContent(bytes)&#xA;    fileContent.Headers.ContentType =&#xA;        New System.Net.Http.Headers.MediaTypeHeaderValue(&quot;application/octet-stream&quot;)&#xA;&#xA;    form.Add(fileContent, &quot;file&quot;, System.IO.Path.GetFileName(inFilePath))&#xA;&#xA;    Dim resp As System.Net.Http.HttpResponseMessage = client.PostAsync(url, form).Result&#xA;&#xA;    statusCodeValue = CInt(resp.StatusCode)&#xA;    responseText = resp.Content.ReadAsStringAsync().Result&#xA;&#xA;Finally&#xA;    client.Dispose()&#xA;End Try&#xA;&#xA;outStatusCode = statusCodeValue&#xA;outResponse = responseText&#xA;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="486,197" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
         <ui:InvokeCode.Arguments>
           <InArgument x:TypeArguments="x:String" x:Key="inPersonalAccessToken">2/1212982367753843/1213153733282738:dedad1ffda66837ab8acbb188d255836</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="inTaskGid">[in_taskGID]</InArgument>
@@ -242,7 +295,132 @@
           <OutArgument x:TypeArguments="x:String" x:Key="outResponse">[apiResponse]</OutArgument>
         </ui:InvokeCode.Arguments>
       </ui:InvokeCode>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[apiResponse]" />
+      <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request - Update Ready to Review" EnableCookies="True" FileOverwrite="Replace" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[new System.Collections.Generic.Dictionary(Of System.String, System.String) From { { &quot;Content-Type&quot;, &quot;application/json&quot; },{ &quot;Accept&quot;, &quot;application/json&quot; } }]" sap:VirtualizedContainerService.HintSize="486,443" sap2010:WorkflowViewState.IdRef="NetHttpRequest_1" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="PUT" Multiplier="2" OAuthToken="2/1212982367753843/1213153733282738:dedad1ffda66837ab8acbb188d255836" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="[updateStatusLink]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="True" SaveResponseAsFile="True" TextPayload="[request]" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+        <uwah:NetHttpRequest.TimeoutInMiliseconds>
+          <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+            <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
+          </InArgument>
+        </uwah:NetHttpRequest.TimeoutInMiliseconds>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </uwah:NetHttpRequest>
+      <isactr:ConnectorHttpActivity Configuration="H4sIAAAAAAAACu1WS2/bMAz+K4OOg5vscTOGAnm4TbZs8Vq3Oww9KDYTq7ElVY+mnpH/Pkq2s3UJtgwodllzcEya/PiRJinX5IxBkemR4IYyDoqENZlyaU2jJ+HXmnyiJZCQlGBykZGAjJmWBa1a9cdOnVTSydooxlcoX8CdZQoyEhplIWgizURKDRMcDYciq8g22OFbVeyBRzyTgnHzBPA50AyU/oEkFreQOuQzoUpqUJOx1DlTVb1rwgQMhZUtgZtWc3rqQ2spuIZjQ99ZUNVTBP5ToIWT90s1Bs1WaF83AAMfrHm3zX3rMGEZuPRsAc3TC1h6j187oNNf08J6U3IeJeRme+O4PIK8zMXmKMip/iLUelmITfQgFWjtM2zqux8unl8m6BRfues4mkVJ5MRBMpp4Gkjk/8n12IZEw7k1B2f7Hw5HQ+G5a5+79u87JRV+aA8dBaCxSZe00HA8sNsSrW+s4J7BJqYKIxk3Crgt26Mt9BMfkCs8oHBUjJE67PeplD2qKae9VJQosf7r3iu0mrSjhP4Di/6KfduNIVAF6gVU7/PFS/9D+0GagnQDhoAFazj2bzU6BMQdyzheJ23CexbI/7M/W8J6i/dTrg3lKTzO4hr/m/hI0FNEWI7TLdQHQFdimaQmP/HJNFdPy7B7Zqo29DngxwFL8cHcb4Zub2Axuupj6ijtahYLr5tLUF3+IwXUgGM9omkO+ErE2spu09U7/VCJjQY1NVC2+lixEjcP8nVrCxdZTNM1XcHPub1565P7Db8DXAIyo3xlEQp14GqewIMZFiJd+0jb77/gqhoiCQAA" ConnectionId="1b792568-f673-4668-8c8a-69f8e85d4395" DisplayName="Asana HTTP Request" sap:VirtualizedContainerService.HintSize="486,498" sap2010:WorkflowViewState.IdRef="ConnectorHttpActivity_2" UiPathActivityTypeId="8e7dad69-7016-3a0b-bad0-1435a7cd7c28">
+        <isactr:ConnectorHttpActivity.FieldObjects>
+          <isactr:FieldObject Name="method" Type="FieldArgument">
+            <isactr:FieldObject.Value>
+              <InArgument x:TypeArguments="x:String">GET</InArgument>
+            </isactr:FieldObject.Value>
+          </isactr:FieldObject>
+          <isactr:FieldObject Name="url" Type="FieldArgument">
+            <isactr:FieldObject.Value>
+              <InArgument x:TypeArguments="x:String">["/tasks/"+in_taskGID+"/subtasks"]</InArgument>
+            </isactr:FieldObject.Value>
+          </isactr:FieldObject>
+          <isactr:FieldObject Name="headers" Type="FieldArgument" />
+          <isactr:FieldObject Name="query" Type="FieldArgument" />
+          <isactr:FieldObject Name="body" Type="FieldArgument" />
+          <isactr:FieldObject Name="out_headers" Type="FieldArgument">
+            <isactr:FieldObject.Value>
+              <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" />
+            </isactr:FieldObject.Value>
+          </isactr:FieldObject>
+          <isactr:FieldObject Name="out_body" Type="FieldArgument">
+            <isactr:FieldObject.Value>
+              <OutArgument x:TypeArguments="x:String">[outSubtask]</OutArgument>
+            </isactr:FieldObject.Value>
+          </isactr:FieldObject>
+          <isactr:FieldObject Name="out_code" Type="FieldArgument">
+            <isactr:FieldObject.Value>
+              <OutArgument x:TypeArguments="x:Int32" />
+            </isactr:FieldObject.Value>
+          </isactr:FieldObject>
+        </isactr:ConnectorHttpActivity.FieldObjects>
+      </isactr:ConnectorHttpActivity>
+      <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="486,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[outSubtaskObject]" JsonString="[outSubtask]" />
+      <Assign DisplayName="Assign - Create JArray" sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_6">
+        <Assign.To>
+          <OutArgument x:TypeArguments="njl:JArray">[taskJArray]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="njl:JArray">[CType(outSubtaskObject("data"),JArray)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign - Subtask GID" sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_7">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[draftTaskGID]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String" xml:space="preserve">[taskJarray.
+    Where(Function(t) t("name").ToString = "Dean’s Office drafts appointment letter").
+    Select(Function(t) t("gid").ToString).
+    FirstOrDefault()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request - Update Subtask" EnableCookies="True" FileOverwrite="Replace" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[new System.Collections.Generic.Dictionary(Of System.String, System.String) From { { &quot;Content-Type&quot;, &quot;application/json&quot; },{ &quot;Accept&quot;, &quot;application/json&quot; } }]" sap:VirtualizedContainerService.HintSize="486,443" sap2010:WorkflowViewState.IdRef="NetHttpRequest_2" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="PUT" Multiplier="2" OAuthToken="2/1212982367753843/1213153733282738:dedad1ffda66837ab8acbb188d255836" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="[(&quot;https://app.asana.com/api/1.0&quot;+&quot;/tasks/&quot; + draftTaskGID).Trim]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="True" SaveResponseAsFile="True" TextPayload="[request]" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+        <uwah:NetHttpRequest.TimeoutInMiliseconds>
+          <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+            <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
+          </InArgument>
+        </uwah:NetHttpRequest.TimeoutInMiliseconds>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </uwah:NetHttpRequest>
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,639" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+        <ui:CommentOut.Body>
+          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,537" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <isactr:ConnectorActivity Configuration="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" ConnectionId="9ede119f-f8e5-4b74-8a4a-20e9c9c83c26" DisplayName="Update Task" sap:VirtualizedContainerService.HintSize="416,477" sap2010:WorkflowViewState.IdRef="ConnectorActivity_1" UiPathActivityTypeId="04264222-d646-3c69-b433-ce45c28b3c20">
+              <isactr:ConnectorActivity.FieldObjects>
+                <isactr:FieldObject Name="workspace" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:String">85637488105110</InArgument>
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="id" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:String">[in_taskGID]</InArgument>
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="assigneeGid" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:String">luis</InArgument>
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="due_on" Type="FieldArgument" />
+                <isactr:FieldObject Name="name" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:String" />
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="approval_status" Type="FieldArgument" />
+                <isactr:FieldObject Name="completed" Type="FieldArgument" />
+                <isactr:FieldObject Name="out_gid" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <OutArgument x:TypeArguments="x:String" />
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="Jit_tasks" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <OutArgument x:TypeArguments="uiascb:tasks_Replace" />
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+              </isactr:ConnectorActivity.FieldObjects>
+            </isactr:ConnectorActivity>
+          </Sequence>
+        </ui:CommentOut.Body>
+      </ui:CommentOut>
     </Sequence>
   </Sequence>
 </Activity>
