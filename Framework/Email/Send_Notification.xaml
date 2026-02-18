@@ -68,7 +68,6 @@
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
     <scg:List x:TypeArguments="AssemblyReference" Capacity="100">
-      <AssemblyReference>GlobalVariablesT1PNoYwrqg</AssemblyReference>
       <AssemblyReference>Microsoft.Graph</AssemblyReference>
       <AssemblyReference>Microsoft.Graph.Core</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
@@ -127,7 +126,7 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Send an email based on the Notifications spreadsheet.&#xA;&#xA;Precondition: Pass the required arguments (NotificationID, NotificationDt, UserOffice365)&#xA;Post action: Sends an email.&#xA;This workflow is protected under the US Copyright Office and is intended for the solely usage of Auxis LLC.&#xA;Usage of this workflow without written approval is not permitted.         " DisplayName="Misc_SendNotification" sap:VirtualizedContainerService.HintSize="2306,3459" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Send an email based on the Notifications spreadsheet.&#xA;&#xA;Precondition: Pass the required arguments (NotificationID, NotificationDt, UserOffice365)&#xA;Post action: Sends an email.&#xA;This workflow is protected under the US Copyright Office and is intended for the solely usage of Auxis LLC.&#xA;Usage of this workflow without written approval is not permitted.         " DisplayName="Misc_SendNotification" sap:VirtualizedContainerService.HintSize="2306,3534" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredNotifications" />
     </Sequence.Variables>
@@ -139,7 +138,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message - Misc_SendNotification Started" sap:VirtualizedContainerService.HintSize="520,175" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Misc_SendNotification Started&quot;]" />
-    <Sequence DisplayName="Validate arguments" sap:VirtualizedContainerService.HintSize="520,1913" sap2010:WorkflowViewState.IdRef="Sequence_13">
+    <Sequence DisplayName="Validate arguments" sap:VirtualizedContainerService.HintSize="520,1988" sap2010:WorkflowViewState.IdRef="Sequence_13">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -190,7 +189,7 @@
           </If.Else>
         </If>
       </Sequence>
-      <Sequence sap2010:Annotation.AnnotationText="Validates if the NotificationID exists. If should appear only one time.&#xA;&#xA;If the NotificationID is not found or appears more than once, an error is reported." DisplayName="Validate if NotificationID exists" sap:VirtualizedContainerService.HintSize="486,963" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence sap2010:Annotation.AnnotationText="Validates if the NotificationID exists. If should appear only one time.&#xA;&#xA;If the NotificationID is not found or appears more than once, an error is reported." DisplayName="Validate if NotificationID exists" sap:VirtualizedContainerService.HintSize="486,1038" sap2010:WorkflowViewState.IdRef="Sequence_2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -231,12 +230,18 @@
             </Sequence>
           </If.Else>
         </If>
-        <If Condition="[dt_FilteredNotifications.rows.Count &gt; 1]" DisplayName="If there is more than one NotificationID" sap:VirtualizedContainerService.HintSize="452,262" sap2010:WorkflowViewState.IdRef="If_2">
+        <If Condition="[dt_FilteredNotifications.rows.Count &gt; 1]" DisplayName="If there is more than one NotificationID" sap:VirtualizedContainerService.HintSize="452,337" sap2010:WorkflowViewState.IdRef="If_2">
           <If.Then>
-            <Throw DisplayName="Throw - Multiple NotificationID found" Exception="[new BusinessRuleException(&quot;More than one notification was found with the provided ID.&quot;)]" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Throw_2" />
+            <Throw DisplayName="Throw - Multiple NotificationID found" Exception="[new BusinessRuleException(&quot;More than one notification was found with the provided ID.&quot;)]" sap:VirtualizedContainerService.HintSize="450,91" sap2010:WorkflowViewState.IdRef="Throw_2" />
           </If.Then>
           <If.Else>
-            <Sequence DisplayName="" sap2010:WorkflowViewState.IdRef="Sequence_19" />
+            <Sequence DisplayName="" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_19">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Sequence>
           </If.Else>
         </If>
       </Sequence>

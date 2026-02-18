@@ -1,16 +1,10 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ClasificationCVorChairMemo" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ClasificationCVorChairMemo" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisape="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.PDF.ExtractPDFText;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_taskName" Type="InArgument(x:String)" />
     <x:Property Name="in_folderPath" Type="InArgument(x:String)" />
-    <x:Property Name="out_chairMemoRenamedFile" Type="InArgument(upr:IResource)" />
-    <x:Property Name="out_cvRenamedFile" Type="InArgument(upr:IResource)" />
+    <x:Property Name="out_chairMemoRenamedFile" Type="InOutArgument(upr:IResource)" />
+    <x:Property Name="out_cvRenamedFile" Type="InOutArgument(upr:IResource)" />
   </x:Members>
-  <this:ClasificationCVorChairMemo.out_chairMemoRenamedFile>
-    <InArgument x:TypeArguments="upr:IResource" />
-  </this:ClasificationCVorChairMemo.out_chairMemoRenamedFile>
-  <this:ClasificationCVorChairMemo.out_cvRenamedFile>
-    <InArgument x:TypeArguments="upr:IResource" />
-  </this:ClasificationCVorChairMemo.out_cvRenamedFile>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
@@ -57,13 +51,14 @@
       <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction</x:String>
       <x:String>UiPath.Shared.Activities.Business</x:String>
       <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.IntegrationService.Activities.SWEntities.CB26248ECE7_v2_sub_generateChatCompletion_Create.Bundle</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
     <sco:Collection x:TypeArguments="AssemblyReference">
       <AssemblyReference>CE57C3C636C_tasks_Re.0XEw23ZnTRJ1jsF443CPpU1</AssemblyReference>
       <AssemblyReference>ExtendedExtractionRe.aCVbXYJonC14YhLsH6rQf4</AssemblyReference>
-      <AssemblyReference>GlobalVariablesT1PNoYwrqg</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
       <AssemblyReference>NPOI</AssemblyReference>
@@ -130,9 +125,10 @@
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>Xceed.PDF.NET</AssemblyReference>
+      <AssemblyReference>CB26248ECE7_v2_sub_g.KFVw43jU2UQ1NgLIT2SMTth2</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ClasificationCVorChairMemo" sap:VirtualizedContainerService.HintSize="2585,2014" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ClasificationCVorChairMemo" sap:VirtualizedContainerService.HintSize="752,2958" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="cvScore" />
       <Variable x:TypeArguments="x:Int32" Name="chairMemoScore" />
@@ -145,7 +141,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Clasification CV or Chair Memo" sap:VirtualizedContainerService.HintSize="588,1991" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Clasification CV or Chair Memo" sap:VirtualizedContainerService.HintSize="588,2935.3333333333335" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="documentText" />
         <Variable x:TypeArguments="x:Double" Name="threshold" />
@@ -155,7 +151,7 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:ForEachFileX DisplayName="For Each File in Folder" Folder="[in_folderPath]" sap:VirtualizedContainerService.HintSize="554,1908" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+      <ui:ForEachFileX DisplayName="For Each File in Folder" Folder="[in_folderPath]" sap:VirtualizedContainerService.HintSize="554,2852.6666666666665" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
         <ui:ForEachFileX.Body>
           <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
             <ActivityAction.Argument1>
@@ -164,20 +160,57 @@
             <ActivityAction.Argument2>
               <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
             </ActivityAction.Argument2>
-            <Sequence sap:VirtualizedContainerService.HintSize="520,1621" sap2010:WorkflowViewState.IdRef="Sequence_11">
+            <Sequence sap:VirtualizedContainerService.HintSize="520,2560.6666666666665" sap2010:WorkflowViewState.IdRef="Sequence_11">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="486,1561" sap2010:WorkflowViewState.IdRef="Sequence_10">
+              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="486,2500.6666666666665" sap2010:WorkflowViewState.IdRef="Sequence_10">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text" sap:VirtualizedContainerService.HintSize="452,123" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[LocalResource.FromPath(CurrentFile.ToString())]" Text="[documentText]" />
-                <Assign DisplayName="Assign - Thereshold" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_3">
+                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="452,638" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                  <TryCatch.Try>
+                    <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="450,182.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text" sap:VirtualizedContainerService.HintSize="416,118.66666666666667" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[LocalResource.FromPath(CurrentFile.ToString())]" Text="[documentText]" />
+                    </Sequence>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                      <ActivityAction x:TypeArguments="s:Exception">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,182.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Throw DisplayName="Throw - B4 - File Corrupted" Exception="[new BusinessRuleException(&quot;One or more documents could not be opened or read by the automation. Please review the affected file(s):&quot; + CurrentFile.ToString)]" sap:VirtualizedContainerService.HintSize="416,118.66666666666667" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                        </Sequence>
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                  <TryCatch.Finally>
+                    <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="450,94.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </TryCatch.Finally>
+                </TryCatch>
+                <Assign DisplayName="Assign - Thereshold" sap:VirtualizedContainerService.HintSize="452,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_3">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:Double">[threshold]</OutArgument>
                   </Assign.To>
@@ -185,7 +218,7 @@
                     <InArgument x:TypeArguments="x:Double">[1.5]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <Assign DisplayName="Assign - Document To Lower" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+                <Assign DisplayName="Assign - Document To Lower" sap:VirtualizedContainerService.HintSize="452,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_1">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[documentText]</OutArgument>
                   </Assign.To>
@@ -193,7 +226,7 @@
                     <InArgument x:TypeArguments="x:String">[documentText.ToLower]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each keyword in Chair Memo List" sap:VirtualizedContainerService.HintSize="452,57" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[chairMemoKeyWords]">
+                <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each keyword in Chair Memo List" sap:VirtualizedContainerService.HintSize="452,57.333333333333336" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[chairMemoKeyWords]">
                   <ui:ForEach.Body>
                     <ActivityAction x:TypeArguments="x:String">
                       <ActivityAction.Argument>
@@ -243,7 +276,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:ForEach>
-                <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each keyword in CV List" sap:VirtualizedContainerService.HintSize="452,57" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[cvKeyWords]">
+                <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each keyword in CV List" sap:VirtualizedContainerService.HintSize="452,57.333333333333336" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[cvKeyWords]">
                   <ui:ForEach.Body>
                     <ActivityAction x:TypeArguments="x:String">
                       <ActivityAction.Argument>
@@ -293,7 +326,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:ForEach>
-                <ui:InvokeCode ContinueOnError="{x:Null}" Code="' Initialize result&#xA;documentType = &quot;UNKNOWN&quot;&#xA;&#xA;' Classification logic&#xA;If chairMemoScore &gt; 0 AndAlso cvScore &gt; 0 Then&#xA;    ' Both have matches - compare ratio&#xA;    If chairMemoScore &gt;= cvScore * threshold Then&#xA;        documentType = &quot;CHAIR_MEMO&quot;&#xA;    ElseIf cvScore &gt;= chairMemoScore Then&#xA;        documentType = &quot;CV&quot;&#xA;    End If&#xA;ElseIf chairMemoScore &gt; 5 Then&#xA;    documentType = &quot;CHAIR_MEMO&quot;&#xA;ElseIf cvScore &gt; 5 Then&#xA;    documentType = &quot;CV&quot;&#xA;End If" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="452,197" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                <ui:InvokeCode ContinueOnError="{x:Null}" Code="' Initialize result&#xD;&#xA;documentType = &quot;UNKNOWN&quot;&#xD;&#xA;&#xD;&#xA;' UNKNOWN condition (Option 2)&#xD;&#xA;If chairMemoScore &lt; 5 AndAlso cvScore &lt; 5 Then&#xD;&#xA;    documentType = &quot;UNKNOWN&quot;&#xD;&#xA;&#xD;&#xA;' Classification logic&#xD;&#xA;ElseIf chairMemoScore &gt; 0 AndAlso cvScore &gt; 0 Then&#xD;&#xA;    &#xD;&#xA;    If chairMemoScore &gt;= cvScore * threshold Then&#xD;&#xA;        documentType = &quot;CHAIR MEMO&quot;&#xD;&#xA;    &#xD;&#xA;    ElseIf cvScore &gt;= chairMemoScore Then&#xD;&#xA;        documentType = &quot;CV&quot;&#xD;&#xA;    End If&#xD;&#xA;&#xD;&#xA;ElseIf chairMemoScore &gt; 5 Then&#xD;&#xA;    documentType = &quot;CHAIR MEMO&quot;&#xD;&#xA;&#xD;&#xA;ElseIf cvScore &gt; 5 Then&#xD;&#xA;    documentType = &quot;CV&quot;&#xD;&#xA;&#xD;&#xA;End If" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="452,197.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
                   <ui:InvokeCode.Arguments>
                     <InArgument x:TypeArguments="x:Int32" x:Key="chairMemoScore">[chairMemoScore]</InArgument>
                     <InArgument x:TypeArguments="x:Int32" x:Key="cvScore">[cvScore]</InArgument>
@@ -301,25 +334,46 @@
                     <OutArgument x:TypeArguments="x:String" x:Key="documentType">[out_documentType]</OutArgument>
                   </ui:InvokeCode.Arguments>
                 </ui:InvokeCode>
-                <If Condition="[out_documentType = &quot;CHAIR MEMO&quot;]" DisplayName="If - Rename file based on document type" sap:VirtualizedContainerService.HintSize="452,694" sap2010:WorkflowViewState.IdRef="If_3">
+                <If Condition="[out_documentType = &quot;UNKNOWN&quot;]" DisplayName="If - Validate if file is unknown" sap:VirtualizedContainerService.HintSize="452,417.3333333333333" sap2010:WorkflowViewState.IdRef="If_4">
                   <If.Then>
-                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,282" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,182.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_17">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:RenameFileX FileResource="{x:Null}" DisplayName="Rename File" FilePath="[CurrentFile.ToString()]" sap:VirtualizedContainerService.HintSize="416,218" sap2010:WorkflowViewState.IdRef="RenameFileX_1" KeepExtension="True" NewName="[in_taskName + DateTime.Now.Year.ToString + &quot;- Chair Memo&quot;]" OutputFileResource="[out_chairMemoRenamedFile]" />
+                      <Throw DisplayName="Throw - B3 - Document not Identified" Exception="[New BusinessRuleException(&quot;Required documents missing or could not be identified. Please ensure one valid CV and one Chair Memo are attached.&quot;)]" sap:VirtualizedContainerService.HintSize="416,118.66666666666667" sap2010:WorkflowViewState.IdRef="Throw_2" />
                     </Sequence>
                   </If.Then>
                   <If.Else>
-                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,282" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_18">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:RenameFileX FileResource="{x:Null}" DisplayName="Rename File" FilePath="[CurrentFile.ToString()]" sap:VirtualizedContainerService.HintSize="416,218" sap2010:WorkflowViewState.IdRef="RenameFileX_2" KeepExtension="True" NewName="[in_taskName + DateTime.Now.Year.ToString + &quot;- CV&quot;]" OutputFileResource="[out_cvRenamedFile]" />
+                    </Sequence>
+                  </If.Else>
+                </If>
+                <If Condition="[out_documentType = &quot;CHAIR MEMO&quot;]" DisplayName="If - Rename file based on document type" sap:VirtualizedContainerService.HintSize="452,697.3333333333334" sap2010:WorkflowViewState.IdRef="If_3">
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,283.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:RenameFileX FileResource="{x:Null}" DisplayName="Rename File" FilePath="[CurrentFile.ToString()]" sap:VirtualizedContainerService.HintSize="416,219.33333333333334" sap2010:WorkflowViewState.IdRef="RenameFileX_1" KeepExtension="True" NewName="[in_taskName + &quot; &quot; + DateTime.Now.Year.ToString + &quot;- Chair Memo&quot;]" OutputFileResource="[out_chairMemoRenamedFile]" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,283.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:RenameFileX FileResource="{x:Null}" DisplayName="Rename File" FilePath="[CurrentFile.ToString()]" sap:VirtualizedContainerService.HintSize="416,219.33333333333334" sap2010:WorkflowViewState.IdRef="RenameFileX_2" KeepExtension="True" NewName="[in_taskName + &quot; &quot; +DateTime.Now.Year.ToString + &quot; - CV&quot;]" OutputFileResource="[out_cvRenamedFile]" />
                     </Sequence>
                   </If.Else>
                 </If>

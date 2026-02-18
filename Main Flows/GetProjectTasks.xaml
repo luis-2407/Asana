@@ -77,6 +77,7 @@
       <x:String>UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_tasks_Retrieve.Bundle</x:String>
       <x:String>UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_projects.Bundle</x:String>
       <x:String>UiPath.IntegrationService.Activities.SWEntities.CE9C9C83C26_tasks_Replace.Bundle</x:String>
+      <x:String>UiPath.IntegrationService.Activities.SWEntities.CB26248ECE7_v2_sub_generateChatCompletion_Create.Bundle</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -171,6 +172,7 @@
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>CE9C9C83C26_tasks_Re.3RtzP31kVFE1cl59L11TnfQ3</AssemblyReference>
+      <AssemblyReference>CB26248ECE7_v2_sub_g.KFVw43jU2UQ1NgLIT2SMTth2</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="GetProjectTasks" sap:VirtualizedContainerService.HintSize="2585,2322" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -179,7 +181,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Get Project Tasks" sap:VirtualizedContainerService.HintSize="522,2299" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Get Project Tasks" sap:VirtualizedContainerService.HintSize="522,2276" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="uiascb:projects_sub_tasks[]" Name="tasksOfProject" />
         <Variable x:TypeArguments="uiascb1:tasks_Retrieve" Name="tasksMetadata" />
