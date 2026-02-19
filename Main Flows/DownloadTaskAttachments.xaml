@@ -149,7 +149,7 @@
       <AssemblyReference>CB26248ECE7_v2_sub_g.KFVw43jU2UQ1NgLIT2SMTth2</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DownloadTaskAttachments" sap:VirtualizedContainerService.HintSize="554.6666666666666,580" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DownloadTaskAttachments" sap:VirtualizedContainerService.HintSize="1394,4214" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -160,6 +160,11 @@
         <Variable x:TypeArguments="x:String" Name="out_ResponseBodyUrl" />
         <Variable x:TypeArguments="njl:JObject" Name="out_jsonObject" />
         <Variable x:TypeArguments="njl:JArray" Name="attachmentsArray" />
+        <Variable x:TypeArguments="x:Boolean" Name="isFolderPresent" />
+        <Variable x:TypeArguments="x:String" Name="downloadURL" />
+        <Variable x:TypeArguments="x:String" Name="fileName" />
+        <Variable x:TypeArguments="x:String" Name="outStatus" />
+        <Variable x:TypeArguments="x:Boolean" Name="IsPDFAssigned" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -267,11 +272,6 @@
               <DelegateInArgument x:TypeArguments="njl:JToken" Name="currentItem" />
             </ActivityAction.Argument>
             <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="522,2724" sap2010:WorkflowViewState.IdRef="Sequence_3">
-              <Sequence.Variables>
-                <Variable x:TypeArguments="x:String" Name="fileName" />
-                <Variable x:TypeArguments="x:String" Name="downloadURL" />
-                <Variable x:TypeArguments="x:Boolean" Name="isFolderPresent" />
-              </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -343,9 +343,6 @@
                 </sap:WorkflowViewStateService.ViewState>
                 <If.Then>
                   <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,373" sap2010:WorkflowViewState.IdRef="Sequence_6">
-                    <Sequence.Variables>
-                      <Variable x:TypeArguments="x:String" Name="outStatus" />
-                    </Sequence.Variables>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -380,6 +377,7 @@
                     </sap:WorkflowViewStateService.ViewState>
                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ClasificationCVorChairMemo - Invoke Workflow File (Main Flows\ClasificationCVorChairMemo.xaml)" sap:VirtualizedContainerService.HintSize="452,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Main Flows\ClasificationCVorChairMemo.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
+                        <InOutArgument x:TypeArguments="x:Boolean" x:Key="io_pdfAssigned">[IsPDFAssigned]</InOutArgument>
                         <InArgument x:TypeArguments="x:String" x:Key="in_taskName">[in_taskName]</InArgument>
                         <InArgument x:TypeArguments="x:String" x:Key="in_folderPath">[in_downloadFolder + "\" + in_taskName]</InArgument>
                         <InOutArgument x:TypeArguments="upr:IResource" x:Key="out_chairMemoRenamedFile">[out_filepathChairMemo]</InOutArgument>
