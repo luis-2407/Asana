@@ -147,13 +147,13 @@
       <AssemblyReference>CB26248ECE7_v2_sub_g.KFVw43jU2UQ1NgLIT2SMTth2</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ExtractInformationFromIXP" sap:VirtualizedContainerService.HintSize="1394,968" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ExtractInformationFromIXP" sap:VirtualizedContainerService.HintSize="1394,3485" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Extract Information From IXP" sap:VirtualizedContainerService.HintSize="484,945" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Extract Information From IXP" sap:VirtualizedContainerService.HintSize="554,3462" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="uisad:IDocumentData(uisasegb1:GptIxp34)" Name="outputCVIXP" />
         <Variable x:TypeArguments="njl:JObject" Name="outputJObjectCV" />
@@ -176,8 +176,8 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Extract information from Chair Memo Started&quot;]" />
-      <Sequence DisplayName="Data Extraction IXP - Chair Memo" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="Sequence_6">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Extract information from Chair Memo Started&quot;]" />
+      <Sequence DisplayName="Data Extraction IXP - Chair Memo" sap:VirtualizedContainerService.HintSize="520,57" sap2010:WorkflowViewState.IdRef="Sequence_6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -231,15 +231,15 @@
           </Assign.Value>
         </Assign>
       </Sequence>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Extract information from CV Started&quot;]" />
-      <Sequence DisplayName="Data Extraction IXP - CV" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="Sequence_7">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Extract information from CV Started&quot;]" />
+      <Sequence DisplayName="Data Extraction IXP - CV" sap:VirtualizedContainerService.HintSize="450,1065" sap2010:WorkflowViewState.IdRef="Sequence_7">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisasegb1:GptIxp34" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" RuntimeAssetPath="{x:Null}" RuntimeTenantUrl="{x:Null}" ApplyAutoValidation="False" DisplayName="Extract Document Data" DocType="gpt_ixp_34" ExtractionResults="[outputCVIXP]" FileInput="[in_filepathCV]" GenerateData="True" sap:VirtualizedContainerService.HintSize="416,367" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_2" ModernDocumentTypeId="00000000-0000-0000-0000-000000000000" ProjectId="f55d28ad-28c7-80cc-9992-66a077e4b390" ProjectTag="live" ProjectVersionName="live" ProjectVersionNumber="34" TimeoutInSeconds="3600">
+        <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisasegb1:GptIxp34" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" RuntimeAssetPath="{x:Null}" RuntimeTenantUrl="{x:Null}" ApplyAutoValidation="False" DisplayName="Extract Document Data" DocType="gpt_ixp_34" ExtractionResults="[outputCVIXP]" FileInput="[in_filepathCV]" GenerateData="True" sap:VirtualizedContainerService.HintSize="416,367" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_2" ModernDocumentTypeId="00000000-0000-0000-0000-000000000000" ProjectId="f55d28ad-28c7-80cc-9992-66a077e4b390" ProjectTag="live" ProjectVersionName="live" ProjectVersionNumber="46" TimeoutInSeconds="3600">
           <p:ExtractDocumentDataWithDocumentData.AutoValidationConfidenceThreshold>
             <InArgument x:TypeArguments="s:Nullable(x:Int32)">
               <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="0" />
@@ -273,8 +273,8 @@
           </Assign.Value>
         </Assign>
       </Sequence>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Started data validation from IXP&quot;]" />
-      <Sequence DisplayName="Data Validation IXP" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="Sequence_8">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Started data validation from IXP&quot;]" />
+      <Sequence DisplayName="Data Validation IXP" sap:VirtualizedContainerService.HintSize="520,2574" sap2010:WorkflowViewState.IdRef="Sequence_8">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="ChairMemoText" />
           <Variable x:TypeArguments="x:String" Name="CVText" />
@@ -283,11 +283,14 @@
         </Sequence.Variables>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Sequence DisplayName="Sequence - Validate Title Consistency" sap:VirtualizedContainerService.HintSize="486,1801" sap2010:WorkflowViewState.IdRef="Sequence_27">
+        <Sequence DisplayName="Sequence - Validate Title Consistency" sap:VirtualizedContainerService.HintSize="486,1976" sap2010:WorkflowViewState.IdRef="Sequence_27">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:String" Name="CVTextNormalized" />
+          </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -325,7 +328,7 @@
                   <InArgument x:TypeArguments="x:String" xml:space="preserve">["You are a data validation expert specializing in academic HR processes at universities.
 Your task is to validate title consistency across three sources: a Chair Memo, an Asana task, and a CV document.
 
-NORMALIZATION RULES (apply to the Asana Business Title field before matching):
+NORMALIZATION RULES (apply to BOTH the Asana Business Title field and the highest academic title found in the CV before matching):
 Map any variation of the following titles to their canonical form. Be aggressive in normalization: partial matches, abbreviations, missing the word Adjunct, and alternate spellings must all be normalized.
 
 CANONICAL TITLES AND THEIR VARIATIONS:
@@ -339,41 +342,44 @@ Variations: Adj Assoc Prof, Adj. Assoc. Prof., Assoc Professor, Assoc. Prof., As
 Canonical: Adjunct Professor
 Variations: Adj Prof, Adj. Prof., Full Professor, Professor, Prof, Prof., Adjunct Full Professor, Adj Full Prof
 
-Canonical: Adjunct Professor in the Practice
-Variations: Prof in the Practice, Professor in the Practice, Adjunct Prof in Practice, Prof. in the Practice, Adj. Prof. in the Practice, Professor in Practice, Adjunct Professor in Practice, Prof in Practice
+Canonical: Adjunct Professor In the Practice
+Variations: Prof In the Practice, Professor In the Practice, Adjunct Prof In Practice, Prof. in the Practice, Adj. Prof. in the Practice, Professor In Practice, Adjunct Professor In Practice, Prof In Practice
 
 Canonical: Adjunct Lecturer
 Variations: Adj Lecturer, Adj. Lecturer, Lecturer, Lect, Lect., Adjunct Lect, Adjunct Lect., Senior Lecturer, Adjunct Senior Lecturer
 
 ADDITIONAL NORMALIZATION RULES:
-- If the title contains Associate Professor but is missing the word Adjunct, normalize to Adjunct Associate Professor
-- If the title contains Assistant Professor but is missing the word Adjunct, normalize to Adjunct Assistant Professor
-- If the title is exactly Professor or Full Professor with no qualifier, normalize to Adjunct Professor
-- If the title contains Lecturer with no qualifier, normalize to Adjunct Lecturer
-- If the title contains Professor in the Practice with no qualifier, normalize to Adjunct Professor in the Practice
-- Remove any extra words such as visiting, clinical, courtesy, or affiliate before normalizing unless they change the rank meaning
-- Ignore casing differences: uppercase, lowercase, and mixed case must all normalize correctly
-- Ignore punctuation differences: periods, commas, and abbreviation dots must not block normalization
-- If the title cannot be mapped to any canonical form after all rules are applied, set asana_title_normalized to Not Found
+
+If the title contains Associate Professor but is missing the word Adjunct, normalize to Adjunct Associate Professor.
+If the title contains Assistant Professor but is missing the word Adjunct, normalize to Adjunct Assistant Professor.
+If the title is exactly Professor or Full Professor with no qualifier, normalize to Adjunct Professor.
+If the title contains Lecturer with no qualifier, normalize to Adjunct Lecturer.
+If the title contains Professor In the Practice with no qualifier, normalize to Adjunct Professor In the Practice.
+Remove any extra words such as visiting, clinical, courtesy, or affiliate before normalizing unless they change the rank meaning.
+Ignore casing differences: uppercase, lowercase, and mixed case must all normalize correctly.
+Ignore punctuation differences: periods, commas, and abbreviation dots must not block normalization.
+For Asana: If the title cannot be mapped to any canonical form after all rules are applied, set asana_title_normalized to Not Found.
+For CV: If the highest extracted CV title cannot be matched within the canonical hierarchy after applying all rules, return the original extracted content as the cv_title_normalized.
 
 RANK HIERARCHY (lowest to highest):
 1. Adjunct Lecturer
 2. Adjunct Assistant Professor
 3. Adjunct Associate Professor
-4. Adjunct Professor in the Practice
+4. Adjunct Professor In the Practice
 5. Adjunct Professor
 
 TITLE VALIDATION RULES:
-- Invalid Title (Upgrade): If the Chair Memo assigns a rank HIGHER than the normalized Asana Business Title, the title is invalid because the assignment exceeds the approved business title. Example: Asana has Adjunct Professor in the Practice but Chair Memo assigns Adjunct Professor.
-- Invalid Title (Credential Gap): If the highest academic title found in the CV is lower in rank than the title assigned in the Chair Memo, the title is invalid because the candidate lacks the credentials to support that rank. Example: CV shows Lecturer but Chair Memo assigns Adjunct Associate Professor.
-- Valid Title (Equal or Lower): If the Chair Memo assigns a rank equal to or lower than the normalized Asana Business Title, and the CV credentials support that rank, the title is valid.
+
+Invalid Title (Upgrade): If the Chair Memo assigns a rank HIGHER than the normalized Asana Business Title, the title is invalid because the assignment exceeds the approved business title.
+Invalid Title (Credential Gap): If the normalized CV title is lower in rank than the title assigned in the Chair Memo, the title is invalid because the candidate lacks the credentials to support that rank. If the CV title could not be normalized and retains its original text, use logical judgment to determine if it supports the Chair Memo rank.
+Valid Title (Equal or Lower): If the Chair Memo assigns a rank equal to or lower than the normalized Asana Business Title, and the CV credentials support that rank, the title is valid.
 
 VALIDATION TASK:
 Given the three inputs below, perform the following checks:
-1. CHAIR MEMO vs ASANA: The requested title in the Chair Memo must not exceed the normalized Business Title rank in Asana
-2. CHAIR MEMO vs CV: The requested title in the Chair Memo must be consistent with and supported by the candidate position or rank at their home institution as described in the CV
+1. CHAIR MEMO vs ASANA: The requested title in the Chair Memo must not exceed the normalized Business Title rank in Asana.
+2. CHAIR MEMO vs CV: The requested title in the Chair Memo must be consistent with and supported by the highest candidate position or rank at their home institution as extracted and normalized from the CV.
 
-Return ONLY a valid JSON object with no extra text, no markdown, no explanation.
+Return ONLY a valid JSON object. Do not include markdown code blocks, backticks, explanations, or any text outside the JSON object.
 
 OUTPUT FORMAT:
 {
@@ -381,27 +387,32 @@ OUTPUT FORMAT:
   ""chair_memo_title"": ""title found in Chair Memo"",
   ""asana_title_raw"": ""title as it appears in Asana"",
   ""asana_title_normalized"": ""title after normalization"",
-  ""chair_memo_vs_asana"": ""match"" or ""mismatch"",
-  ""chair_memo_vs_cv"": ""consistent"" or ""inconsistent""
+  ""cv_title_raw"": ""highest academic title extracted from CV"",
+  ""cv_title_normalized"": ""title after normalization, or original content if no hierarchy match"",
+  ""chair_memo_vs_asana"": ""match or mismatch"",
+  ""chair_memo_vs_cv"": ""consistent or inconsistent""
 }
 
 RULES:
-- Set title_consistent = true only if BOTH checks pass (chair_memo_vs_asana = match AND chair_memo_vs_cv = consistent)
-- Set title_consistent = false if either check fails
-- Set chair_memo_vs_asana = mismatch if the Chair Memo title rank is higher than the normalized Asana title rank
-- Set chair_memo_vs_asana = match if the Chair Memo title rank is equal to or lower than the normalized Asana title rank
-- Set chair_memo_vs_cv = inconsistent if the CV does not support the rank assigned in the Chair Memo
-- Set chair_memo_vs_cv = consistent if the CV credentials are compatible with the assigned rank
-- Always normalize asana_title_raw before comparing
-- If a title cannot be found in any source, set that field to Not Found
+Set title_consistent = true only if BOTH checks pass.
+Set title_consistent = false if either check fails.
+Set chair_memo_vs_asana = mismatch if the Chair Memo title rank is higher than the normalized Asana title rank.
+Set chair_memo_vs_asana = match if the Chair Memo title rank is equal to or lower than the normalized Asana title rank.
+Set chair_memo_vs_cv = inconsistent if the normalized CV title rank is lower than the rank assigned in the Chair Memo.
+Set chair_memo_vs_cv = consistent if the normalized CV title rank is equal to or higher than the assigned Chair Memo rank, or if an unnormalized CV title clearly supports the rank.
+Always normalize asana_title_raw and cv_title_raw before comparing.
+If an Asana title cannot be found, set that field to Not Found. If a CV title cannot be found, set it to Not Found.
 
-INPUTS:
-Chair Memo Text: " &amp; ChairMemoText &amp; "
+--- INPUTS ---
 
-Asana Business Title: " &amp; io_asanaBusinessTitle &amp; "
+Chair Memo Text:
+" &amp; ChairMemoText &amp; "
 
-CV Text: " &amp; CVText &amp; "
-"]</InArgument>
+Asana Business Title:
+" &amp; io_asanaBusinessTitle &amp; "
+
+CV Text:
+" &amp; CVText]</InArgument>
                 </isactr:FieldObject.Value>
               </isactr:FieldObject>
               <isactr:FieldObject Name="isPIIEnabled" Type="FieldArgument">
@@ -492,6 +503,14 @@ CV Text: " &amp; CVText &amp; "
             </isactr:ConnectorActivity.FieldObjects>
           </isactr:ConnectorActivity>
           <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="452,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_5" JsonObject="[outTitleValidation]" JsonString="[outTopGeneratedText]" />
+          <Assign sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_19">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[CVTextNormalized]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[outTitleValidation("cv_title_normalized").ToString]</InArgument>
+            </Assign.Value>
+          </Assign>
           <Assign sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_18">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[io_asanaBusinessTitle]</OutArgument>
@@ -719,7 +738,7 @@ CV Text: " &amp; CVText &amp; "
           </If>
         </Sequence>
       </Sequence>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,166" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Ended data extraction from IXP&quot;]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,166" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Ended data extraction from IXP&quot;]" />
     </Sequence>
   </Sequence>
 </Activity>
