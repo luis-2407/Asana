@@ -163,13 +163,14 @@
       <AssemblyReference>CB26248ECE7_v2_sub_g.KFVw43jU2UQ1NgLIT2SMTth2</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. &#xA;&#xA;in_TransactionItem: Use this argument when using orchestrator.&#xA;&#xA;io_dr_TranactionItem: Wll contain the transaction item when not using orchestrator." DisplayName="Process" sap:VirtualizedContainerService.HintSize="859.3333333333333,902.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. &#xA;&#xA;in_TransactionItem: Use this argument when using orchestrator.&#xA;&#xA;io_dr_TranactionItem: Wll contain the transaction item when not using orchestrator." DisplayName="Process" sap:VirtualizedContainerService.HintSize="1394,1076" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="upr:IResource" Name="filepathChairMemo" />
       <Variable x:TypeArguments="upr:IResource" Name="filepathCV" />
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dictPropertiesCV" />
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dictPropertiesChairMemo" />
       <Variable x:TypeArguments="uiascb:tasks_Retrieve" Name="out_task" />
+      <Variable x:TypeArguments="x:String" Name="asanaFieldNormalized" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -179,7 +180,8 @@
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message - Processing Transaction" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Processing Transaction&quot;]" />
     <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="450,89" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//  Invoke steps of the process" />
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Invoke Workflow File - Download Attachments" sap:VirtualizedContainerService.HintSize="450,182.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Main Flows\DownloadTaskAttachments.xaml">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Name of the person:  &quot; + io_drTransactionItem(&quot;taskName&quot;).ToString]" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Invoke Workflow File - Download Attachments" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Main Flows\DownloadTaskAttachments.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <OutArgument x:TypeArguments="upr:IResource" x:Key="out_filepathChairMemo">[filepathChairMemo]</OutArgument>
         <OutArgument x:TypeArguments="upr:IResource" x:Key="out_filepathCV">[filepathCV]</OutArgument>
@@ -188,22 +190,25 @@
         <InArgument x:TypeArguments="x:String" x:Key="in_taskGID">[io_drTransactionItem("taskGID").ToString]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ExtractInformationFromIXP - Invoke Workflow File (Main Flows\ExtractInformationFromIXP.xaml)" sap:VirtualizedContainerService.HintSize="450,182.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Main Flows\ExtractInformationFromIXP.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ExtractInformationFromIXP - Invoke Workflow File (Main Flows\ExtractInformationFromIXP.xaml)" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Main Flows\ExtractInformationFromIXP.xaml">
       <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_asanaBusinessTitle">[io_drTransactionItem("Business Title").ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_projectedEndDate">[io_drTransactionItem("Projected End Date").ToString]</InArgument>
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="out_dictCV">[dictPropertiesCV]</OutArgument>
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="out_dictChairMemo">[dictPropertiesChairMemo]</OutArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_taskName">[io_drTransactionItem("taskName").ToString]</InArgument>
         <InArgument x:TypeArguments="upr:IResource" x:Key="in_filepathChairMemo">[filepathChairMemo]</InArgument>
         <InArgument x:TypeArguments="upr:IResource" x:Key="in_filepathCV">[filepathCV]</InArgument>
+        <InOutArgument x:TypeArguments="x:String" x:Key="io_asanaBusinessTitle">[asanaFieldNormalized]</InOutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ModifyAdjunctReappointmentLetter - Invoke Workflow File (Main Flows\ModifyAdjunctReappointmentLetter.xaml)" sap:VirtualizedContainerService.HintSize="450,173.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Main Flows\ModifyAdjunctReappointmentLetter.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ModifyAdjunctReappointmentLetter - Invoke Workflow File (Main Flows\ModifyAdjunctReappointmentLetter.xaml)" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Main Flows\ModifyAdjunctReappointmentLetter.xaml">
       <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_adminEmail">lap10@rice.edu</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_taskGID">[io_drTransactionItem("taskGID").ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_downloadFolder">[in_Config("DownloadFolderPath").ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_department">[io_drTransactionItem("Department").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_title">[io_drTransactionItem("Business Title").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_title">[asanaFieldNormalized]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_taskName">[io_drTransactionItem("taskName").ToString]</InArgument>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_dictCV">[dictPropertiesCV]</InArgument>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="in_dictChairMemo">[dictPropertiesChairMemo]</InArgument>

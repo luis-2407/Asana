@@ -150,7 +150,7 @@
       <AssemblyReference>UiPath.IntelligentOCR.StudioWeb.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="TestAsanaActivity" sap:VirtualizedContainerService.HintSize="1394,5086" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="TestAsanaActivity" sap:VirtualizedContainerService.HintSize="1394,5400" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="uiascb:tasks_Retrieve" Name="tasksMetadata" />
     </Sequence.Variables>
@@ -159,7 +159,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap:VirtualizedContainerService.HintSize="450,5214" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap:VirtualizedContainerService.HintSize="484,5377" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="scg:Dictionary(x:Int32, x:String)" Default="[New Dictionary(Of Integer, String) From {&#xA;    {1,&quot;one&quot;},&#xA;    {2,&quot;two&quot;},&#xA;    {3,&quot;three&quot;},&#xA;    {4,&quot;four&quot;},&#xA;    {5,&quot;five&quot;},&#xA;    {6,&quot;six&quot;},&#xA;    {7,&quot;seven&quot;},&#xA;    {8,&quot;eight&quot;},&#xA;    {9,&quot;nine&quot;}&#xA;}]" Name="numberLetter" />
         <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Default="[New Dictionary(Of String,String) From {&#xA;    {&quot;Ready for automation&quot;,&quot;1212913254438530&quot;},&#xA;    {&quot;Ready to review&quot;,&quot;1212913254438531&quot;},&#xA;    {&quot;Letter reviewed&quot;,&quot;1212913254438532&quot;},&#xA;    {&quot;Sent for signature (Adobe Sign)&quot;,&quot;1212913254438533&quot;},&#xA;    {&quot;Letter signed&quot;,&quot;1212913254438534&quot;},&#xA;    {&quot;Error&quot;,&quot;1212913254438535&quot;}&#xA;}]" Name="mapStatus" />
@@ -185,7 +185,7 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <isactr:ConnectorActivity Configuration="H4sIAAAAAAAACnVUYU/bMBD9K5U/Z4GWCUEkPtAAWxmMqi1M2oSQSY7Gq+tk9rkQqv73vTRuB6JTpap+d+d79+65S3GhSOcuLQ1LZciKZCnGJG1WyEdNbVAkv+4jMTCV5y2wFN/lnEQiVC4icaZcpWUdoIl0swYkl1lVsSpNAxbUYQQ6gzPEJnXVZDq2ykxxHtEfryzlImHrKWpZXZWZDNVDyQXSBu6auCjzobRoxQ3dJn8Fejeed/K7VPzQ9HU7aboPPP+Ru1VN13hgmKZ2TWRMdqEyik8zVgvFilw8/nFuuP2Znh+nx+nRQdo7bDs+jAjz0YLivje5pvg9GnV2VcSTu59nl70+TZ/S7mhRL7qfL26P8tdu1Lkj68DipBvvNx/Ue83e0okhz1bqqDP0j1pl36ielDMyJ8ZrHcQlxyJ5ktpB3BG5qjSO/id2K+Vabqi3jm5SsQDYZHPBm9DqfhWJW6OeFOWNfnDUvMKFMNG21jiWJqPt8rCnpQhDoe16LHSFFw1lXFrMAdgr3FN8kk4a2X4jJ2ygDqtKPRYE98AGj79RGza82ftX5qo1DsAvxP16kAvwbWbW6pXyzXWhDimdYOJUZgVBnHLmqzupoSNIrzZ435bPjuyAaR7woVVzaWtQb1wopngeMOdQZjM5pbez9g7eDxtan4YBt/jbmqP4cDvibi/vHP+mota/wDbm+6DK+QTQ+pklYm9dubdU+QrglTRTD/YIkMH5Wr4McRxDOJH09vdxk3R9S3KGt5wWyG5ECl6b0Av3dZmBCP5FVn8Bfrpl2nAEAAA=" ConnectionId="9ede119f-f8e5-4b74-8a4a-20e9c9c83c26" DisplayName="Get Task" sap:VirtualizedContainerService.HintSize="416,185" sap2010:WorkflowViewState.IdRef="ConnectorActivity_4" UiPathActivityTypeId="b2dfb2c6-d4dc-3130-a876-e415dc932d1f">
+      <isactr:ConnectorActivity Configuration="H4sIAAAAAAAACnVUYU/bMBD9K5U/Z4GWCUEkPtAAWxmMqi1M2oSQSY7Gq+tk9rkQqv73vTRuB6JTpap+d+d79+65S3GhSOcuLQ1LZciKZCnGJG1WyEdNbVAkv+4jMTCV5y2wFN/lnEQiVC4icaZcpWUdoIl0swYkl1lVsSpNAxbUYQQ6gzPEJnXVZDq2ykxxHtEfryzlImHrKWpZXZWZDNVDyQXSBu6auCjzobRoxQ3dJn8Fejeed/K7VPzQ9HU7aboPPP+Ru1VN13hgmKZ2TWRMdqEyik8zVgvFilw8/nFuuP2Znh+nx+nRQdo7bDs+jAjz0YLivje5pvg9GnV2VcSTu59nl70+TZ/S7mhRL7qfL26P8tdu1Lkj68DipBvvNx/Ue83e0okhz1bqqDP0j1pl36ielDMyJ8ZrHcQlxyJ5ktpB3BG5qjSO/id2K+Vabqi3jm5SsQDYZHPBm9DqfhWJW6OeFOWNfnDUvMKFMNG21jiWJqPt8rCnpQhDoe16LHSFFw1lXFrMAdgr3FN8kk4a2X4jJ2ygDqtKPRYE98AGj79RGza82ftX5qo1DsAvxP16kAvwbWbW6pXyzXWhDimdYOJUZgVBnHLmqzupoSNIrzZ435bPjuyAaR7woVVzaWtQb1wopngeMOdQZjM5pbez9g7eDxtan4YBt/jbmqP4cDvibi/vHP+mota/wDbm+6DK+QTQ+pklYm9dubdU+QrglTRTD/YIkMH5Wr4McRxDOJH09vdxk3R9S3KGt5wWyG5ECl6b0Av3dZmBCP5FVn8Bfrpl2nAEAAA=" ConnectionId="9ede119f-f8e5-4b74-8a4a-20e9c9c83c26" DisplayName="Get Task" sap:VirtualizedContainerService.HintSize="450,185" sap2010:WorkflowViewState.IdRef="ConnectorActivity_4" UiPathActivityTypeId="b2dfb2c6-d4dc-3130-a876-e415dc932d1f">
         <isactr:ConnectorActivity.FieldObjects>
           <isactr:FieldObject Name="id" Type="FieldArgument">
             <isactr:FieldObject.Value>
@@ -199,9 +199,9 @@
           </isactr:FieldObject>
         </isactr:ConnectorActivity.FieldObjects>
       </isactr:ConnectorActivity>
-      <uwaj:SerializeJson Settings="{x:Null}" DisplayName="Serialize JSON" sap:VirtualizedContainerService.HintSize="416,123" sap2010:WorkflowViewState.IdRef="SerializeJson_3" InputObject="[tasksMetadata.custom_fields]" Result="[outputSerialize]" />
-      <ui:WriteTextFile File="{x:Null}" DisplayName="Write Text File" FileName="Data\Output\taskOutput.json" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Output="[documentOut]" Text="[outputSerialize]" />
-      <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <uwaj:SerializeJson Settings="{x:Null}" DisplayName="Serialize JSON" sap:VirtualizedContainerService.HintSize="450,123" sap2010:WorkflowViewState.IdRef="SerializeJson_3" InputObject="[tasksMetadata.custom_fields]" Result="[outputSerialize]" />
+      <ui:WriteTextFile File="{x:Null}" DisplayName="Write Text File" FileName="Data\Output\taskOutput.json" sap:VirtualizedContainerService.HintSize="450,176" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Output="[documentOut]" Text="[outputSerialize]" />
+      <Assign sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_4">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[request]</OutArgument>
         </Assign.To>
@@ -225,7 +225,7 @@
           <InArgument x:TypeArguments="x:String">["{""data"":{""custom_fields"":{""1212913254438537"":"" TestStatus ""}}}"]</InArgument>
         </Assign.Value>
       </Assign>
-      <isactr:ConnectorHttpActivity Configuration="H4sIAAAAAAAACu1WS2/bMAz+K4OOg5vscTOGAnm4TbZs8Vq3Oww9KDYTq7ElVY+mnpH/Pkq2s3UJtgwodllzcEya/PiRJinX5IxBkemR4IYyDoqENZlyaU2jJ+HXmnyiJZCQlGBykZGAjJmWBa1a9cdOnVTSydooxlcoX8CdZQoyEhplIWgizURKDRMcDYciq8g22OFbVeyBRzyTgnHzBPA50AyU/oEkFreQOuQzoUpqUJOx1DlTVb1rwgQMhZUtgZtWc3rqQ2spuIZjQ99ZUNVTBP5ToIWT90s1Bs1WaF83AAMfrHm3zX3rMGEZuPRsAc3TC1h6j187oNNf08J6U3IeJeRme+O4PIK8zMXmKMip/iLUelmITfQgFWjtM2zqux8unl8m6BRfues4mkVJ5MRBMpp4Gkjk/8n12IZEw7k1B2f7Hw5HQ+G5a5+79u87JRV+aA8dBaCxSZe00HA8sNsSrW+s4J7BJqYKIxk3Crgt26Mt9BMfkCs8oHBUjJE67PeplD2qKae9VJQosf7r3iu0mrSjhP4Di/6KfduNIVAF6gVU7/PFS/9D+0GagnQDhoAFazj2bzU6BMQdyzheJ23CexbI/7M/W8J6i/dTrg3lKTzO4hr/m/hI0FNEWI7TLdQHQFdimaQmP/HJNFdPy7B7Zqo29DngxwFL8cHcb4Zub2Axuupj6ijtahYLr5tLUF3+IwXUgGM9omkO+ErE2spu09U7/VCJjQY1NVC2+lixEjcP8nVrCxdZTNM1XcHPub1565P7Db8DXAIyo3xlEQp14GqewIMZFiJd+0jb77/gqhoiCQAA" ConnectionId="1b792568-f673-4668-8c8a-69f8e85d4395" DisplayName="Asana HTTP Request" sap:VirtualizedContainerService.HintSize="416,498" sap2010:WorkflowViewState.IdRef="ConnectorHttpActivity_3" UiPathActivityTypeId="8e7dad69-7016-3a0b-bad0-1435a7cd7c28">
+      <isactr:ConnectorHttpActivity Configuration="H4sIAAAAAAAACu1WS2/bMAz+K4OOg5vscTOGAnm4TbZs8Vq3Oww9KDYTq7ElVY+mnpH/Pkq2s3UJtgwodllzcEya/PiRJinX5IxBkemR4IYyDoqENZlyaU2jJ+HXmnyiJZCQlGBykZGAjJmWBa1a9cdOnVTSydooxlcoX8CdZQoyEhplIWgizURKDRMcDYciq8g22OFbVeyBRzyTgnHzBPA50AyU/oEkFreQOuQzoUpqUJOx1DlTVb1rwgQMhZUtgZtWc3rqQ2spuIZjQ99ZUNVTBP5ToIWT90s1Bs1WaF83AAMfrHm3zX3rMGEZuPRsAc3TC1h6j187oNNf08J6U3IeJeRme+O4PIK8zMXmKMip/iLUelmITfQgFWjtM2zqux8unl8m6BRfues4mkVJ5MRBMpp4Gkjk/8n12IZEw7k1B2f7Hw5HQ+G5a5+79u87JRV+aA8dBaCxSZe00HA8sNsSrW+s4J7BJqYKIxk3Crgt26Mt9BMfkCs8oHBUjJE67PeplD2qKae9VJQosf7r3iu0mrSjhP4Di/6KfduNIVAF6gVU7/PFS/9D+0GagnQDhoAFazj2bzU6BMQdyzheJ23CexbI/7M/W8J6i/dTrg3lKTzO4hr/m/hI0FNEWI7TLdQHQFdimaQmP/HJNFdPy7B7Zqo29DngxwFL8cHcb4Zub2Axuupj6ijtahYLr5tLUF3+IwXUgGM9omkO+ErE2spu09U7/VCJjQY1NVC2+lixEjcP8nVrCxdZTNM1XcHPub1565P7Db8DXAIyo3xlEQp14GqewIMZFiJd+0jb77/gqhoiCQAA" ConnectionId="1b792568-f673-4668-8c8a-69f8e85d4395" DisplayName="Asana HTTP Request" sap:VirtualizedContainerService.HintSize="450,498" sap2010:WorkflowViewState.IdRef="ConnectorHttpActivity_3" UiPathActivityTypeId="8e7dad69-7016-3a0b-bad0-1435a7cd7c28">
         <isactr:ConnectorHttpActivity.FieldObjects>
           <isactr:FieldObject Name="method" Type="FieldArgument">
             <isactr:FieldObject.Value>
@@ -257,8 +257,8 @@
           </isactr:FieldObject>
         </isactr:ConnectorHttpActivity.FieldObjects>
       </isactr:ConnectorHttpActivity>
-      <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="416,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_3" JsonObject="[outBodyObject]" JsonString="[outBody]" />
-      <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_8">
+      <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="450,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_3" JsonObject="[outBodyObject]" JsonString="[outBody]" />
+      <Assign sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_8">
         <Assign.To>
           <OutArgument x:TypeArguments="njl:JArray">[taskJArray]</OutArgument>
         </Assign.To>
@@ -266,7 +266,7 @@
           <InArgument x:TypeArguments="njl:JArray">[CType(outBodyObject("data"),JArray)]</InArgument>
         </Assign.Value>
       </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_9">
+      <Assign sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_9">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[draftTaskGID]</OutArgument>
         </Assign.To>
@@ -277,7 +277,7 @@
     FirstOrDefault()]</InArgument>
         </Assign.Value>
       </Assign>
-      <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request - Download Files" EnableCookies="True" FileOverwrite="Replace" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[new System.Collections.Generic.Dictionary(Of System.String, System.String) From { { &quot;Content-Type&quot;, &quot;application/json&quot; },{ &quot;Accept&quot;, &quot;application/json&quot; } }]" sap:VirtualizedContainerService.HintSize="416,443" sap2010:WorkflowViewState.IdRef="NetHttpRequest_2" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="PUT" Multiplier="2" OAuthToken="2/1212982367753843/1213153733282738:dedad1ffda66837ab8acbb188d255836" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="[(&quot;https://app.asana.com/api/1.0&quot;+&quot;/tasks/&quot; + &quot;1213128948020719&quot;).Trim]" Result="[outResponse]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="True" SaveResponseAsFile="True" TextPayload="[request]" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+      <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request - Download Files" EnableCookies="True" FileOverwrite="Replace" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[new System.Collections.Generic.Dictionary(Of System.String, System.String) From { { &quot;Content-Type&quot;, &quot;application/json&quot; },{ &quot;Accept&quot;, &quot;application/json&quot; } }]" sap:VirtualizedContainerService.HintSize="450,443" sap2010:WorkflowViewState.IdRef="NetHttpRequest_2" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="PUT" Multiplier="2" OAuthToken="2/1212982367753843/1213153733282738:dedad1ffda66837ab8acbb188d255836" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="[(&quot;https://app.asana.com/api/1.0&quot;+&quot;/tasks/&quot; + &quot;1213128948020719&quot;).Trim]" Result="[outResponse]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="True" SaveResponseAsFile="True" TextPayload="[request]" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
         <uwah:NetHttpRequest.TimeoutInMiliseconds>
           <InArgument x:TypeArguments="s:Nullable(x:Int32)">
             <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
@@ -290,9 +290,9 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uwah:NetHttpRequest>
-      <ui:Matches DisplayName="Find Matching Patterns" FirstMatch="[math]" sap:VirtualizedContainerService.HintSize="416,92" sap2010:WorkflowViewState.IdRef="Matches_1" Input="3 Years" IsBuilderTabModified="False" Pattern="\d+" RegexOption="IgnoreCase, Compiled" />
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Warn" Message="[numberLetter(CInt(math))]" />
-      <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request - Update Assignee" EnableCookies="True" FileOverwrite="Replace" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[new System.Collections.Generic.Dictionary(Of System.String, System.String) From {  }]" sap:VirtualizedContainerService.HintSize="416,277" sap2010:WorkflowViewState.IdRef="NetHttpRequest_3" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="GET" Multiplier="2" OAuthToken="2/1212982367753843/1213153733282738:dedad1ffda66837ab8acbb188d255836" PreferRetryAfterValue="True" RequestBodyType="None" RequestUrl="https://app.asana.com/api/1.0/users/lap10@rice.edu" Result="[outAdminGID]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="True" SaveResponseAsFile="True" TextPayload="[request]" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+      <ui:Matches DisplayName="Find Matching Patterns" FirstMatch="[math]" sap:VirtualizedContainerService.HintSize="450,92" sap2010:WorkflowViewState.IdRef="Matches_1" Input="3 Years" IsBuilderTabModified="False" Pattern="\d+" RegexOption="IgnoreCase, Compiled" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Warn" Message="[numberLetter(CInt(math))]" />
+      <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request - Update Assignee" EnableCookies="True" FileOverwrite="Replace" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[new System.Collections.Generic.Dictionary(Of System.String, System.String) From {  }]" sap:VirtualizedContainerService.HintSize="450,277" sap2010:WorkflowViewState.IdRef="NetHttpRequest_3" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="GET" Multiplier="2" OAuthToken="2/1212982367753843/1213153733282738:dedad1ffda66837ab8acbb188d255836" PreferRetryAfterValue="True" RequestBodyType="None" RequestUrl="https://app.asana.com/api/1.0/users/lap10@rice.edu" Result="[outAdminGID]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="True" SaveResponseAsFile="True" TextPayload="[request]" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
         <uwah:NetHttpRequest.TimeoutInMiliseconds>
           <InArgument x:TypeArguments="s:Nullable(x:Int32)">
             <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
@@ -305,39 +305,47 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </uwah:NetHttpRequest>
-      <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" Headers="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" TextPayload="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xD;&#xA;{&#xD;&#xA;&#x9;New FileFormDataPart(),&#xD;&#xA;&#x9;New BinaryFormDataPart(),&#xD;&#xA;&#x9;New TextFormDataPart()&#xD;&#xA;}]" sap:VirtualizedContainerService.HintSize="416,277" sap2010:WorkflowViewState.IdRef="NetHttpRequest_4" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="GET" Multiplier="2" OAuthToken="2/1212982367753843/1213153733282738:dedad1ffda66837ab8acbb188d255836" PreferRetryAfterValue="True" RequestBodyType="None" RequestUrl="https://app.asana.com/api/1.0/users/lap10@rice.edu" Result="[outAdminGID]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xD;&#xA;{&#xD;&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xD;&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
-        <uwah:NetHttpRequest.TimeoutInMiliseconds>
-          <InArgument x:TypeArguments="s:Nullable(x:Int32)">
-            <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
-          </InArgument>
-        </uwah:NetHttpRequest.TimeoutInMiliseconds>
-      </uwah:NetHttpRequest>
-      <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="416,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_4" JsonObject="[outObjectAdminGID]" JsonString="[outAdminGID.TextContent]" />
-      <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_10">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[adminGID]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[outObjectAdminGID("data")("gid").ToString]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_11">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[request]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String">["{""data"": {""assignee"": """ &amp; adminGID &amp; """}}"]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" Headers="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xD;&#xA;{&#xD;&#xA;&#x9;New FileFormDataPart(),&#xD;&#xA;&#x9;New BinaryFormDataPart(),&#xD;&#xA;&#x9;New TextFormDataPart()&#xD;&#xA;}]" sap:VirtualizedContainerService.HintSize="416,443" sap2010:WorkflowViewState.IdRef="NetHttpRequest_5" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="PUT" Multiplier="2" OAuthToken="2/1212982367753843/1213153733282738:dedad1ffda66837ab8acbb188d255836" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="https://app.asana.com/api/1.0/tasks/1212398270573207" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xD;&#xA;{&#xD;&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xD;&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayload="[request]" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
-        <uwah:NetHttpRequest.TimeoutInMiliseconds>
-          <InArgument x:TypeArguments="s:Nullable(x:Int32)">
-            <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
-          </InArgument>
-        </uwah:NetHttpRequest.TimeoutInMiliseconds>
-      </uwah:NetHttpRequest>
-      <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text" sap:VirtualizedContainerService.HintSize="416,123" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[LocalResource.FromPath(&quot;C:\Users\lap10\Downloads\Auxis-ReFramework_Windows-master (1)\Asana Project\Data\Temp\Huang, Xuelin\Huang, Xuelin 2026 - CV.pdf&quot;)]" Text="[DocumentText]" />
-      <isactr:ConnectorActivity Configuration="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" ConnectionId="6b67d9b5-48d0-4030-96da-b8b26248ece7" DisplayName="Content Generation" sap:VirtualizedContainerService.HintSize="416,429" sap2010:WorkflowViewState.IdRef="ConnectorActivity_5" UiPathActivityTypeId="aba52a00-4c05-318d-8f99-5ad924b2f277">
+      <Sequence DisplayName="Sequence - Update Assignee" sap:VirtualizedContainerService.HintSize="450,1327" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" Headers="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" TextPayload="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xD;&#xA;{&#xD;&#xA;&#x9;New FileFormDataPart(),&#xD;&#xA;&#x9;New BinaryFormDataPart(),&#xD;&#xA;&#x9;New TextFormDataPart()&#xD;&#xA;}]" sap:VirtualizedContainerService.HintSize="416,277" sap2010:WorkflowViewState.IdRef="NetHttpRequest_4" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="GET" Multiplier="2" OAuthToken="2/1212982367753843/1213153733282738:dedad1ffda66837ab8acbb188d255836" PreferRetryAfterValue="True" RequestBodyType="None" RequestUrl="https://app.asana.com/api/1.0/users/lap10@rice.edu" Result="[outAdminGID]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xD;&#xA;{&#xD;&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xD;&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+          <uwah:NetHttpRequest.TimeoutInMiliseconds>
+            <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+              <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
+            </InArgument>
+          </uwah:NetHttpRequest.TimeoutInMiliseconds>
+        </uwah:NetHttpRequest>
+        <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="416,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_4" JsonObject="[outObjectAdminGID]" JsonString="[outAdminGID.TextContent]" />
+        <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_10">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[adminGID]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[outObjectAdminGID("data")("gid").ToString]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_11">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[request]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String" xml:space="preserve">["{" &amp;  "  ""data"": {" &amp; "        "  &amp; "    ""assignee"": """  &amp; adminGID &amp;  """" &amp;  "  }" &amp; "}"]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xD;&#xA;{&#xD;&#xA;&#x9;New FileFormDataPart(),&#xD;&#xA;&#x9;New BinaryFormDataPart(),&#xD;&#xA;&#x9;New TextFormDataPart()&#xD;&#xA;}]" Headers="[new System.Collections.Generic.Dictionary(Of System.String, System.String) From { { &quot;Content-Type&quot;, &quot;application/json&quot; },{ &quot;Accept&quot;, &quot;*/*&quot; } }]" sap:VirtualizedContainerService.HintSize="416,434" sap2010:WorkflowViewState.IdRef="NetHttpRequest_5" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="PUT" Multiplier="2" OAuthToken="2/1212982367753843/1213153733282738:dedad1ffda66837ab8acbb188d255836" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="https://app.asana.com/api/1.0/tasks/1213128948020723" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xD;&#xA;{&#xD;&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xD;&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayload="[request]" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+          <uwah:NetHttpRequest.TimeoutInMiliseconds>
+            <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+              <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
+            </InArgument>
+          </uwah:NetHttpRequest.TimeoutInMiliseconds>
+        </uwah:NetHttpRequest>
+      </Sequence>
+      <uisape:ExtractPDFText FilePassword="{x:Null}" OcrEngine="{x:Null}" ApplyOcr="False" DisplayName="Extract PDF Text" sap:VirtualizedContainerService.HintSize="450,123" sap2010:WorkflowViewState.IdRef="ExtractPDFText_1" PdfFile="[LocalResource.FromPath(&quot;C:\Users\lap10\Downloads\Auxis-ReFramework_Windows-master (1)\Asana Project\Data\Temp\Huang, Xuelin\Huang, Xuelin 2026 - CV.pdf&quot;)]" Text="[DocumentText]" />
+      <isactr:ConnectorActivity Configuration="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" ConnectionId="6b67d9b5-48d0-4030-96da-b8b26248ece7" DisplayName="Content Generation" sap:VirtualizedContainerService.HintSize="450,429" sap2010:WorkflowViewState.IdRef="ConnectorActivity_5" UiPathActivityTypeId="aba52a00-4c05-318d-8f99-5ad924b2f277">
         <isactr:ConnectorActivity.FieldObjects>
           <isactr:FieldObject Name="prompt" Type="FieldArgument">
             <isactr:FieldObject.Value>
@@ -448,8 +456,238 @@ DOCUMENT To ANALYZE:
           </isactr:FieldObject>
         </isactr:ConnectorActivity.FieldObjects>
       </isactr:ConnectorActivity>
-      <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="416,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_5" JsonObject="[outObject]" JsonString="[outTopGenerated]" />
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[outAdminGID]" />
+      <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="450,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_5" JsonObject="[outObject]" JsonString="[outTopGenerated]" />
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+        <ui:CommentOut.Body>
+          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="484,108" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence DisplayName="Sequence - Validate Title Consistency" sap:VirtualizedContainerService.HintSize="450,48" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign DisplayName="Assign - Business title Asana" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_12">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[asanaBusinessTitle]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[in_asanaBusinessTitle]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Assign - Chair Memo Title" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_13">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[ChairMemoText]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[out_dictChairMemo("Title")]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Assign - CV Title" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_14">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[CVText]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[out_dictCV("current_position")]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <isactr:ConnectorActivity Configuration="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" ConnectionId="6b67d9b5-48d0-4030-96da-b8b26248ece7" DisplayName="Content Generation" sap:VirtualizedContainerService.HintSize="452,429" sap2010:WorkflowViewState.IdRef="ConnectorActivity_6" UiPathActivityTypeId="aba52a00-4c05-318d-8f99-5ad924b2f277">
+                <isactr:ConnectorActivity.FieldObjects>
+                  <isactr:FieldObject Name="prompt" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <InArgument x:TypeArguments="x:String" xml:space="preserve">["You are a data validation expert specializing in academic HR processes at universities.
+
+Your task is to validate title consistency across three sources: a Chair Memo, an Asana task, and a CV document.
+
+NORMALIZATION RULES (apply to the Asana Business Title field before matching):
+Map any variation of the following titles to their canonical form:
+- Adjunct Assistant Professor canonical: Adjunct Assistant Professor
+- Adjunct Associate Professor canonical: Adjunct Associate Professor
+- Adjunct Professor canonical: Adjunct Professor
+- Adjunct Professor in the Practice canonical: Adjunct Professor in the Practice
+- Adjunct Lecturer canonical: Adjunct Lecturer
+
+Normalization examples:
+- Adj. Asst. Prof. normalize to Adjunct Assistant Professor
+- Adjunct Assoc. Professor normalize to Adjunct Associate Professor
+- Prof. in the Practice normalize to Adjunct Professor in the Practice
+- Adjunct Lect. normalize to Adjunct Lecturer
+- Any casing variation (uppercase, lowercase, mixed) should be normalized before matching
+
+RANK HIERARCHY (lowest to highest):
+1. Adjunct Lecturer
+2. Adjunct Assistant Professor
+3. Adjunct Associate Professor
+4. Adjunct Professor in the Practice
+5. Adjunct Professor
+
+TITLE VALIDATION RULES:
+- Invalid Title (Upgrade): If the Chair Memo assigns a rank HIGHER than the normalized Asana Business Title, the title is invalid because the assignment exceeds the approved business title. Example: Asana has Adjunct Professor in the Practice but Chair Memo assigns Adjunct Professor.
+- Invalid Title (Credential Gap): If the highest academic title found in the CV is lower in rank than the title assigned in the Chair Memo, the title is invalid because the candidate lacks the credentials to support that rank. Example: CV shows Lecturer but Chair Memo assigns Adjunct Associate Professor.
+- Valid Title (Equal or Lower): If the Chair Memo assigns a rank equal to or lower than the normalized Asana Business Title, and the CV credentials support that rank, the title is valid.
+
+VALIDATION TASK:
+Given the three inputs below, perform the following checks:
+
+1. CHAIR MEMO vs ASANA: The requested title in the Chair Memo must not exceed the normalized Business Title rank in Asana
+2. CHAIR MEMO vs CV: The requested title in the Chair Memo must be consistent with and supported by the candidate position or rank at their home institution as described in the CV
+
+Return ONLY a valid JSON object with no extra text, no markdown, no explanation.
+
+OUTPUT FORMAT:
+{
+  ""title_consistent"": true or false,
+  ""chair_memo_title"": ""title found in Chair Memo"",
+  ""asana_title_raw"": ""title as it appears in Asana"",
+  ""asana_title_normalized"": ""title after normalization"",
+  ""chair_memo_vs_asana"": ""match"" or ""mismatch"",
+  ""chair_memo_vs_cv"": ""consistent"" or ""inconsistent""
+}
+
+RULES:
+- Set title_consistent = true only if BOTH checks pass (chair_memo_vs_asana = match AND chair_memo_vs_cv = consistent)
+- Set title_consistent = false if either check fails
+- Set chair_memo_vs_asana = mismatch if the Chair Memo title rank is higher than the normalized Asana title rank
+- Set chair_memo_vs_asana = match if the Chair Memo title rank is equal to or lower than the normalized Asana title rank
+- Set chair_memo_vs_cv = inconsistent if the CV does not support the rank assigned in the Chair Memo
+- Set chair_memo_vs_cv = consistent if the CV credentials are compatible with the assigned rank
+- Always normalize asana_title_raw before comparing
+- If a title cannot be found in any source, set that field to Not Found
+
+INPUTS:
+Chair Memo Text: " &amp; ChairMemoText &amp; "
+
+Asana Business Title: " &amp; AsanaBusinessTitle &amp; "
+
+CV Text: " &amp; CVText &amp; "
+"]</InArgument>
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="isPIIEnabled" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="isFilterPIIEnabled" Type="FieldArgument" />
+                  <isactr:FieldObject Name="languageCode" Type="FieldArgument" />
+                  <isactr:FieldObject Name="piiEntityCategories_array" Type="FieldArgument" />
+                  <isactr:FieldObject Name="confidenceThreshold" Type="FieldArgument" />
+                  <isactr:FieldObject Name="topK" Type="FieldArgument" />
+                  <isactr:FieldObject Name="contextGrounding" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <InArgument x:TypeArguments="x:String">None</InArgument>
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="_file" Type="FieldArgument" />
+                  <isactr:FieldObject Name="folderKey" Type="FieldArgument" />
+                  <isactr:FieldObject Name="topP" Type="FieldArgument" />
+                  <isactr:FieldObject Name="indexID" Type="FieldArgument" />
+                  <isactr:FieldObject Name="numberOfResults" Type="FieldArgument" />
+                  <isactr:FieldObject Name="top_p" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <InArgument x:TypeArguments="x:Int64">1</InArgument>
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="modelName" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <InArgument x:TypeArguments="x:String">gpt-5.1-2025-11-13</InArgument>
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="instruction" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <InArgument x:TypeArguments="x:String">You are a helpful assistant</InArgument>
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="max_tokens" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <InArgument x:TypeArguments="x:Int64" />
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="temperature" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <InArgument x:TypeArguments="x:Double">0</InArgument>
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="frequency_penalty" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <InArgument x:TypeArguments="x:Int64">0</InArgument>
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="presence_penalty" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <InArgument x:TypeArguments="x:Int64">0</InArgument>
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="n" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <InArgument x:TypeArguments="x:Int64">1</InArgument>
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="_stop" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <InArgument x:TypeArguments="x:String" />
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="out_text" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <OutArgument x:TypeArguments="x:String">[outTopGeneratedText]</OutArgument>
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="out_maskedText" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <OutArgument x:TypeArguments="x:String" />
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="Jit_v2_sub_generateChatCompletion" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <OutArgument x:TypeArguments="uiascb1:v2_sub_generateChatCompletion_Create" />
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="out_contextGroundingCitationsString" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <OutArgument x:TypeArguments="x:String" />
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                </isactr:ConnectorActivity.FieldObjects>
+              </isactr:ConnectorActivity>
+              <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="452,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_6" JsonObject="[outTitleValidation]" JsonString="[outTopGeneratedText]" />
+              <If Condition="[not CBool(outTitleValidation(&quot;title_consistent&quot;))]" DisplayName="If - Validate Title" sap:VirtualizedContainerService.HintSize="452,406" sap2010:WorkflowViewState.IdRef="If_1">
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Throw DisplayName="Throw - BE 7.3 Title Inconsistent" Exception="[new BusinessRuleException (&quot;Please validate the title in the different sources, the title is not matching.&quot;)]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </Sequence>
+        </ui:CommentOut.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:CommentOut>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,166" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[outAdminGID]" />
     </Sequence>
   </Sequence>
 </Activity>

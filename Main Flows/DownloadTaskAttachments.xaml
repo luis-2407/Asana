@@ -149,13 +149,13 @@
       <AssemblyReference>CB26248ECE7_v2_sub_g.KFVw43jU2UQ1NgLIT2SMTth2</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DownloadTaskAttachments" sap:VirtualizedContainerService.HintSize="1394,4214" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DownloadTaskAttachments" sap:VirtualizedContainerService.HintSize="1394,4743" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Download Attachments" sap:VirtualizedContainerService.HintSize="558,4191" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Download Attachments" sap:VirtualizedContainerService.HintSize="558,4554" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="out_ResponseBodyUrl" />
         <Variable x:TypeArguments="njl:JObject" Name="out_jsonObject" />
@@ -171,6 +171,7 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="524,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Download File Logic...&quot;]" />
       <isactr:ConnectorHttpActivity Configuration="H4sIAAAAAAAACu1WS2/bMAz+K4OOg5tsPRpDgTzcJlu2eK3bHYYeFJuJ1diSqkdTz8h/HyXb2boEWwYUu6w5OCZNfvxIk5Rrcs6gyPRIcEMZB0XCmky5tKbRk/BrTT7REkhISjC5yEhAxkzLglat+mOnTirpZG0U4yuUL+HeMgUZCY2yEDSRZiKlhgmOhkORVWQb7PCtKvbAI55Jwbh5BvgcaAZK/0ASiztIHfK5UCU1qMlY6pypqt41YQKGwsqWwE2rOTvzobUUXMOxoe8tqOo5Av8p0MLJ+6Uag2YrtK8bgIEP1rzb5r51mLAMXHq2gObpJSy9x68d0OlvaGG9KbmIEnK7vXVcnkBe5WJzFORUfxFqvSzEJnqUCrT2GTb13Q8Xz68SdIqv3XUczaIkcuIgGU08DSTy/+R6bEOi4dyag7P9D4ejofDStS9d+/edkgo/tIeOAtDYpEtaaDge2G2J1jdW8MBgE1OFkYwbBdyW7dEW+okPyDUeUDgqxkgd9vtUyh7VlNNeKkqUWP9t7w1aTdpRQv+BRX/Fvu3GEKgC9Qqq9/nitf+h/SBNQboBQ8CCNRz7dxodAuKOZRyvkzbhPQvk/9mfLWG9xfsp14byFJ5mcYP/TXwk6CkiLMfpFuoDoCuxTFKTn/hkmqunZdgDM1Ub+gLw44Cl+GDuN0O3N7AYXfUxdZR2NYuF180lqC7/kQJqwLEe0TQHfCVibWW36eqdfqjERoOaGihbfaxYiZsH+bq1hYsspumaruDn3E5PfXK/4XeAS0BmlK8sQqEOXM0TeDTDQqRrH2n7HT48KxEiCQAA" ConnectionId="9ede119f-f8e5-4b74-8a4a-20e9c9c83c26" DisplayName="Asana HTTP Request" sap:VirtualizedContainerService.HintSize="524,498" sap2010:WorkflowViewState.IdRef="ConnectorHttpActivity_1" UiPathActivityTypeId="8e7dad69-7016-3a0b-bad0-1435a7cd7c28">
         <isactr:ConnectorHttpActivity.FieldObjects>
           <isactr:FieldObject Name="method" Type="FieldArgument">
@@ -265,13 +266,13 @@
           </Sequence>
         </If.Else>
       </If>
-      <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each - Attachment Included" sap:VirtualizedContainerService.HintSize="524,2846" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[attachmentsArray]">
+      <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each - Attachment Included" sap:VirtualizedContainerService.HintSize="524,3025" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[attachmentsArray]">
         <ui:ForEach.Body>
           <ActivityAction x:TypeArguments="njl:JToken">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="njl:JToken" Name="currentItem" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="522,2724" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="522,2903" sap2010:WorkflowViewState.IdRef="Sequence_3">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -367,7 +368,7 @@
                   </Sequence>
                 </If.Else>
               </If>
-              <If Condition="[Not (&#xA;    fileName.ToLower().Contains(&quot;cv&quot;) Or&#xA;    fileName.ToLower().Contains(&quot;chair memo&quot;) Or&#xA;    fileName.ToLower().Contains(&quot;chair letter&quot;)&#xA;)]" DisplayName="If - Validate Not Contains CV or Chair Memo" sap:VirtualizedContainerService.HintSize="488,1041" sap2010:WorkflowViewState.IdRef="If_4">
+              <If Condition="[Not (&#xA;    fileName.ToLower().Contains(&quot;cv&quot;) Or&#xA;    fileName.ToLower().Contains(&quot;chair memo&quot;) Or&#xA;    fileName.ToLower().Contains(&quot;chair letter&quot;)&#xA;)]" DisplayName="If - Validate Not Contains CV or Chair Memo" sap:VirtualizedContainerService.HintSize="488,1220" sap2010:WorkflowViewState.IdRef="If_4">
                 <If.Then>
                   <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,241" sap2010:WorkflowViewState.IdRef="Sequence_10">
                     <sap:WorkflowViewStateService.ViewState>
@@ -387,26 +388,34 @@
                   </Sequence>
                 </If.Then>
                 <If.Else>
-                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,666" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,845" sap2010:WorkflowViewState.IdRef="Sequence_11">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <If Condition="[fileName.ToLower.Contains(&quot;cv&quot;)]" DisplayName="If - Validate Chair Memo or CV File" sap:VirtualizedContainerService.HintSize="452,602" sap2010:WorkflowViewState.IdRef="If_5">
+                    <If Condition="[fileName.ToLower.Contains(&quot;cv&quot;)]" DisplayName="If - Validate Chair Memo or CV File" sap:VirtualizedContainerService.HintSize="452,781" sap2010:WorkflowViewState.IdRef="If_5">
                       <If.Then>
-                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,234" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,413" sap2010:WorkflowViewState.IdRef="Sequence_12">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Assign DisplayName="Assign - CV File Name" sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="Assign_4">
+                          <Assign DisplayName="Assign - CV File Name" sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="Assign_4">
                             <Assign.To>
                               <OutArgument x:TypeArguments="upr:IResource">[out_filepathCV]</OutArgument>
                             </Assign.To>
                             <Assign.Value>
                               <InArgument x:TypeArguments="upr:ILocalResource">[LocalResource.FromPath((in_downloadFolder + "\" + in_taskName + "\" + fileName.Split(".")(0) + ".pdf").Trim())]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="Assign_6">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Boolean">[IsPDFAssigned]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Boolean">[True]</InArgument>
                             </Assign.Value>
                           </Assign>
                         </Sequence>
@@ -443,5 +452,6 @@
         </sap:WorkflowViewStateService.ViewState>
       </ui:ForEach>
     </Sequence>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="558,166" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Finished Download File Logic...&quot;]" />
   </Sequence>
 </Activity>
