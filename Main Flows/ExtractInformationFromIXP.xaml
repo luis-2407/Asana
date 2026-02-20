@@ -74,6 +74,7 @@
       <x:String>UiPath.IntegrationService.Activities.Runtime.Activities</x:String>
       <x:String>UiPath.Platform.Activities</x:String>
       <x:String>UiPath.IntegrationService.Activities.SWEntities.CB26248ECE7_v2_sub_generateChatCompletion_Create.Bundle</x:String>
+      <x:String>System.Numerics</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -145,16 +146,22 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>CE9C9C83C26_tasks_Re.3RtzP31kVFE1cl59L11TnfQ3</AssemblyReference>
       <AssemblyReference>CB26248ECE7_v2_sub_g.KFVw43jU2UQ1NgLIT2SMTth2</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ExtractInformationFromIXP" sap:VirtualizedContainerService.HintSize="1394,3485" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ExtractInformationFromIXP" sap:VirtualizedContainerService.HintSize="786,2192" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Extract Information From IXP" sap:VirtualizedContainerService.HintSize="554,3462" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Extract Information From IXP" sap:VirtualizedContainerService.HintSize="554,2504" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
+        <Variable x:TypeArguments="scg:List(x:String)" Name="nullKeys">
+          <Variable.Default>
+            <VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="New List (of String)()" />
+          </Variable.Default>
+        </Variable>
         <Variable x:TypeArguments="uisad:IDocumentData(uisasegb1:GptIxp34)" Name="outputCVIXP" />
         <Variable x:TypeArguments="njl:JObject" Name="outputJObjectCV" />
         <Variable x:TypeArguments="uisad:IDocumentData(uisasegb:GptIxp5)" Name="outputChairMemoIXP" />
@@ -232,7 +239,7 @@
         </Assign>
       </Sequence>
       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Extract information from CV Started&quot;]" />
-      <Sequence DisplayName="Data Extraction IXP - CV" sap:VirtualizedContainerService.HintSize="450,1065" sap2010:WorkflowViewState.IdRef="Sequence_7">
+      <Sequence DisplayName="Data Extraction IXP - CV" sap:VirtualizedContainerService.HintSize="520,57" sap2010:WorkflowViewState.IdRef="Sequence_7">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -274,7 +281,7 @@
         </Assign>
       </Sequence>
       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Started data validation from IXP&quot;]" />
-      <Sequence DisplayName="Data Validation IXP" sap:VirtualizedContainerService.HintSize="520,2574" sap2010:WorkflowViewState.IdRef="Sequence_8">
+      <Sequence DisplayName="Data Validation IXP" sap:VirtualizedContainerService.HintSize="520,1639" sap2010:WorkflowViewState.IdRef="Sequence_8">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="ChairMemoText" />
           <Variable x:TypeArguments="x:String" Name="CVText" />
@@ -287,13 +294,40 @@
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Sequence DisplayName="Sequence - Validate Title Consistency" sap:VirtualizedContainerService.HintSize="486,1976" sap2010:WorkflowViewState.IdRef="Sequence_27">
+        <If Condition="[outputJObjectChairMemo(&quot;Data&quot;)(&quot;ChairMemoDetails&quot;).Count &gt; 1]" DisplayName="If - Validate number of candidates" sap:VirtualizedContainerService.HintSize="486,415" sap2010:WorkflowViewState.IdRef="If_10">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If.Then>
+            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_30">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Throw Exception="[new BusinessRuleException(&quot;Hello, please validate Chair Memo there are more than 1 person included in the file.&quot;)]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_6" />
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_31">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Sequence>
+          </If.Else>
+        </If>
+        <Sequence DisplayName="Sequence - Validate Title Consistency" sap:VirtualizedContainerService.HintSize="486,57" sap2010:WorkflowViewState.IdRef="Sequence_27">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="CVTextNormalized" />
           </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
@@ -541,14 +575,14 @@ CV Text:
             </If.Else>
           </If>
         </Sequence>
-        <Sequence DisplayName="Sequence - Validate All fields are present" sap:VirtualizedContainerService.HintSize="450,458" sap2010:WorkflowViewState.IdRef="Sequence_28">
+        <Sequence DisplayName="Sequence - Validate All fields are present" sap:VirtualizedContainerService.HintSize="486,1027" sap2010:WorkflowViewState.IdRef="Sequence_28">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Assign - Bool value if all fields present" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_7">
+          <Assign DisplayName="Assign - Bool value if all fields present" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_7">
             <Assign.To>
               <OutArgument x:TypeArguments="x:Boolean">[chairMemoFieldsValidation]</OutArgument>
             </Assign.To>
@@ -556,7 +590,7 @@ CV Text:
               <InArgument x:TypeArguments="x:Boolean">[chairMemoDictDetails.All(Function(x) Not String.IsNullOrEmpty(x.Value))]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Assign - Bool Value if all fields present" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_8">
+          <Assign DisplayName="Assign - Bool Value if all fields present" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_8">
             <Assign.To>
               <OutArgument x:TypeArguments="x:Boolean">[cvFieldsValidation]</OutArgument>
             </Assign.To>
@@ -564,21 +598,31 @@ CV Text:
               <InArgument x:TypeArguments="x:Boolean">[cvDictDetails.All(function(x) Not String.IsNullOrEmpty(x.Value))]</InArgument>
             </Assign.Value>
           </Assign>
-          <If Condition="[Not (chairMemoFieldsValidation and cvFieldsValidation)]" DisplayName="If - Some Value is Empty From Extraction" sap:VirtualizedContainerService.HintSize="452,383" sap2010:WorkflowViewState.IdRef="If_1">
+          <If Condition="[Not (chairMemoFieldsValidation and cvFieldsValidation)]" DisplayName="If - Some Value is Empty From Extraction" sap:VirtualizedContainerService.HintSize="452,585" sap2010:WorkflowViewState.IdRef="If_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_9">
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,361" sap2010:WorkflowViewState.IdRef="Sequence_9">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Throw DisplayName="Throw - BE 5 Required Data Not Extracted" Exception="[New BusinessRuleException(&quot;One or more required data elements could not be extracted from the submitted document(s). Please review and update the affected file(s).&quot;)]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                <Assign DisplayName="Assign - Keys From Null Values" sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="Assign_20">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="scg:List(x:String)">[nullKeys]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="scg:List(x:String)" xml:space="preserve">[chairMemoDictDetails.Where(Function(kvp) kvp.Value Is Nothing).
+    Select(Function(kvp) kvp.Key).
+    ToList()]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Throw DisplayName="Throw - BE 5 Required Data Not Extracted" Exception="[New BusinessRuleException(&quot;One or more required data elements&quot; + nullKeys.ToString + &quot;could not be extracted from the submitted document(s). Please review and update the affected file(s).&quot; + in_filepathChairMemo.GetName())]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_1" />
               </Sequence>
             </If.Then>
             <If.Else>

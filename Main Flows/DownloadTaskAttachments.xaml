@@ -160,13 +160,13 @@
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DownloadTaskAttachments" sap:VirtualizedContainerService.HintSize="1394,2980" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DownloadTaskAttachments" sap:VirtualizedContainerService.HintSize="1394,5082" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Download Attachments" sap:VirtualizedContainerService.HintSize="590,2791" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Download Attachments" sap:VirtualizedContainerService.HintSize="590,4893" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="out_ResponseBodyUrl" />
         <Variable x:TypeArguments="njl:JObject" Name="out_jsonObject" />
@@ -176,6 +176,7 @@
         <Variable x:TypeArguments="x:String" Name="fileName" />
         <Variable x:TypeArguments="x:String" Name="outStatus" />
         <Variable x:TypeArguments="x:Boolean" Name="IsPDFAssigned" />
+        <Variable x:TypeArguments="x:String" Name="newFileName" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -277,7 +278,7 @@
           </Sequence>
         </If.Else>
       </If>
-      <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each - Attachment Included" sap:VirtualizedContainerService.HintSize="556,57" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[attachmentsArray]">
+      <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each - Attachment Included" sap:VirtualizedContainerService.HintSize="556,1805" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[attachmentsArray]">
         <ui:ForEach.Body>
           <ActivityAction x:TypeArguments="njl:JToken">
             <ActivityAction.Argument>
@@ -333,7 +334,7 @@
                   </Sequence>
                 </If.Else>
               </If>
-              <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" Headers="{x:Null}" LocalFiles="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" TextPayload="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request - Download Files" EnableCookies="True" FileOverwrite="Replace" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" sap:VirtualizedContainerService.HintSize="452,61" sap2010:WorkflowViewState.IdRef="NetHttpRequest_1" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="GET" Multiplier="2" OAuthToken="2/1212933956445386/1212934002017097:919df421441e7c9b8894f803367cdd47" OutputFileName="[fileName]" OutputFileTargetFolder="[in_downloadFolder+&quot;\&quot;+in_taskName]" PreferRetryAfterValue="True" RequestBodyType="None" RequestUrl="[downloadURL]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="True" SaveResponseAsFile="True" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+              <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" Headers="{x:Null}" LocalFiles="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" TextPayload="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request - Download Files" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" sap:VirtualizedContainerService.HintSize="452,61" sap2010:WorkflowViewState.IdRef="NetHttpRequest_1" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="GET" Multiplier="2" OAuthToken="2/1212933956445386/1212934002017097:919df421441e7c9b8894f803367cdd47" OutputFileName="[fileName]" OutputFileTargetFolder="[in_downloadFolder+&quot;\&quot;+in_taskName]" PreferRetryAfterValue="True" RequestBodyType="None" RequestUrl="[downloadURL]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="True" SaveResponseAsFile="True" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
                 <uwah:NetHttpRequest.TimeoutInMiliseconds>
                   <InArgument x:TypeArguments="s:Nullable(x:Int32)">
                     <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
@@ -384,12 +385,12 @@
         </ui:ForEach.Body>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:ForEach>
-      <ui:ForEachFileX DisplayName="For Each File in Folder" Folder="[in_downloadFolder+&quot;\&quot;+in_taskName]" sap:VirtualizedContainerService.HintSize="556,1563" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+      <ui:ForEachFileX DisplayName="For Each File in Folder" Folder="[in_downloadFolder+&quot;\&quot;+in_taskName]" sap:VirtualizedContainerService.HintSize="556,1917" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
         <ui:ForEachFileX.Body>
           <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
             <ActivityAction.Argument1>
@@ -398,13 +399,13 @@
             <ActivityAction.Argument2>
               <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
             </ActivityAction.Argument2>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="522,1276" sap2010:WorkflowViewState.IdRef="Sequence_14">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="522,1630" sap2010:WorkflowViewState.IdRef="Sequence_14">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <If Condition="[Not (&#xD;&#xA;    CurrentFile.ToString.ToLower().Contains(&quot;cv&quot;) Or&#xD;&#xA;    CurrentFile.ToString.ToLower().Contains(&quot;chair memo&quot;) Or&#xD;&#xA;    CurrentFile.ToString.ToLower().Contains(&quot;chair letter&quot;)&#xD;&#xA;)]" DisplayName="If - Validate Not Contains CV or Chair Memo" sap:VirtualizedContainerService.HintSize="488,1216" sap2010:WorkflowViewState.IdRef="If_4">
+              <If Condition="[Not (&#xD;&#xA;    CurrentFile.ToString.ToLower().Contains(&quot;cv&quot;) Or&#xD;&#xA;    CurrentFile.ToString.ToLower().Contains(&quot;chair memo&quot;) Or&#xD;&#xA;    CurrentFile.ToString.ToLower().Contains(&quot;chair letter&quot;)&#xD;&#xA;)]" DisplayName="If - Validate Not Contains CV or Chair Memo" sap:VirtualizedContainerService.HintSize="488,1570" sap2010:WorkflowViewState.IdRef="If_4">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -430,26 +431,34 @@
                   </Sequence>
                 </If.Then>
                 <If.Else>
-                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,845" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,1199" sap2010:WorkflowViewState.IdRef="Sequence_11">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <If Condition="[CurrentFile.ToString.ToLower.Contains(&quot;cv&quot;)]" DisplayName="If - Validate Chair Memo or CV File" sap:VirtualizedContainerService.HintSize="452,781" sap2010:WorkflowViewState.IdRef="If_5">
+                    <If Condition="[CurrentFile.Name.ToString.ToLower.Contains(&quot;cv&quot;)]" DisplayName="If - Validate Chair Memo or CV File" sap:VirtualizedContainerService.HintSize="452,1135" sap2010:WorkflowViewState.IdRef="If_5">
                       <If.Then>
-                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,413" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,588" sap2010:WorkflowViewState.IdRef="Sequence_12">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="Assign_7">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[newFileName]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[(in_downloadFolder + "\" + in_taskName + "\" + CurrentFile.Name.ToString.Split(".")(0) + ".pdf").Trim()]</InArgument>
+                            </Assign.Value>
+                          </Assign>
                           <Assign DisplayName="Assign - CV File Name" sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="Assign_4">
                             <Assign.To>
                               <OutArgument x:TypeArguments="upr:IResource">[out_filepathCV]</OutArgument>
                             </Assign.To>
                             <Assign.Value>
-                              <InArgument x:TypeArguments="upr:ILocalResource">[LocalResource.FromPath((in_downloadFolder + "\" + in_taskName + "\" + CurrentFile.Name.ToString.Split(".")(0) + ".pdf").Trim())]</InArgument>
+                              <InArgument x:TypeArguments="upr:ILocalResource">[LocalResource.FromPath(newFileName)]</InArgument>
                             </Assign.Value>
                           </Assign>
                           <Assign sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="Assign_6">
@@ -463,18 +472,26 @@
                         </Sequence>
                       </If.Then>
                       <If.Else>
-                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,234" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,413" sap2010:WorkflowViewState.IdRef="Sequence_13">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="Assign_8">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[newFileName]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[(in_downloadFolder + "\" + in_taskName + "\" + CurrentFile.Name.ToString.Split(".")(0) + ".pdf").Trim()]</InArgument>
+                            </Assign.Value>
+                          </Assign>
                           <Assign DisplayName="Assign - Chair Memo File Name" sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="Assign_5">
                             <Assign.To>
                               <OutArgument x:TypeArguments="upr:IResource">[out_filepathChairMemo]</OutArgument>
                             </Assign.To>
                             <Assign.Value>
-                              <InArgument x:TypeArguments="upr:ILocalResource">[LocalResource.FromPath((in_downloadFolder + "\" + in_taskName + "\" + CurrentFile.Name.ToString.Split(".")(0) + ".pdf").Trim())]</InArgument>
+                              <InArgument x:TypeArguments="upr:ILocalResource">[LocalResource.FromPath(newFileName)]</InArgument>
                             </Assign.Value>
                           </Assign>
                         </Sequence>
