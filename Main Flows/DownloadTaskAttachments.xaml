@@ -161,13 +161,13 @@
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DownloadTaskAttachments" sap:VirtualizedContainerService.HintSize="1394,4610" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DownloadTaskAttachments" sap:VirtualizedContainerService.HintSize="1394,4344" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Download Attachments" sap:VirtualizedContainerService.HintSize="590,4421" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Download Attachments" sap:VirtualizedContainerService.HintSize="522,4302" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="out_ResponseBodyUrl" />
         <Variable x:TypeArguments="njl:JObject" Name="out_jsonObject" />
@@ -182,8 +182,8 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="556,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Download File Logic...&quot;]" />
-      <isactr:ConnectorHttpActivity Configuration="H4sIAAAAAAAACu1WS2/bMAz+K4OOg5tsPRpDgTzcJlu2eK3bHYYeFJuJ1diSqkdTz8h/HyXb2boEWwYUu6w5OCZNfvxIk5Rrcs6gyPRIcEMZB0XCmky5tKbRk/BrTT7REkhISjC5yEhAxkzLglat+mOnTirpZG0U4yuUL+HeMgUZCY2yEDSRZiKlhgmOhkORVWQb7PCtKvbAI55Jwbh5BvgcaAZK/0ASiztIHfK5UCU1qMlY6pypqt41YQKGwsqWwE2rOTvzobUUXMOxoe8tqOo5Av8p0MLJ+6Uag2YrtK8bgIEP1rzb5r51mLAMXHq2gObpJSy9x68d0OlvaGG9KbmIEnK7vXVcnkBe5WJzFORUfxFqvSzEJnqUCrT2GTb13Q8Xz68SdIqv3XUczaIkcuIgGU08DSTy/+R6bEOi4dyag7P9D4ejofDStS9d+/edkgo/tIeOAtDYpEtaaDge2G2J1jdW8MBgE1OFkYwbBdyW7dEW+okPyDUeUDgqxkgd9vtUyh7VlNNeKkqUWP9t7w1aTdpRQv+BRX/Fvu3GEKgC9Qqq9/nitf+h/SBNQboBQ8CCNRz7dxodAuKOZRyvkzbhPQvk/9mfLWG9xfsp14byFJ5mcYP/TXwk6CkiLMfpFuoDoCuxTFKTn/hkmqunZdgDM1Ub+gLw44Cl+GDuN0O3N7AYXfUxdZR2NYuF180lqC7/kQJqwLEe0TQHfCVibWW36eqdfqjERoOaGihbfaxYiZsH+bq1hYsspumaruDn3E5PfXK/4XeAS0BmlK8sQqEOXM0TeDTDQqRrH2n7HT48KxEiCQAA" ConnectionId="9ede119f-f8e5-4b74-8a4a-20e9c9c83c26" DisplayName="Asana HTTP Request" sap:VirtualizedContainerService.HintSize="556,498" sap2010:WorkflowViewState.IdRef="ConnectorHttpActivity_1" UiPathActivityTypeId="8e7dad69-7016-3a0b-bad0-1435a7cd7c28">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Download File Logic...&quot;]" />
+      <isactr:ConnectorHttpActivity Configuration="H4sIAAAAAAAACu1WS2/bMAz+K4OOg5tsPRpDgTzcJlu2eK3bHYYeFJuJ1diSqkdTz8h/HyXb2boEWwYUu6w5OCZNfvxIk5Rrcs6gyPRIcEMZB0XCmky5tKbRk/BrTT7REkhISjC5yEhAxkzLglat+mOnTirpZG0U4yuUL+HeMgUZCY2yEDSRZiKlhgmOhkORVWQb7PCtKvbAI55Jwbh5BvgcaAZK/0ASiztIHfK5UCU1qMlY6pypqt41YQKGwsqWwE2rOTvzobUUXMOxoe8tqOo5Av8p0MLJ+6Uag2YrtK8bgIEP1rzb5r51mLAMXHq2gObpJSy9x68d0OlvaGG9KbmIEnK7vXVcnkBe5WJzFORUfxFqvSzEJnqUCrT2GTb13Q8Xz68SdIqv3XUczaIkcuIgGU08DSTy/+R6bEOi4dyag7P9D4ejofDStS9d+/edkgo/tIeOAtDYpEtaaDge2G2J1jdW8MBgE1OFkYwbBdyW7dEW+okPyDUeUDgqxkgd9vtUyh7VlNNeKkqUWP9t7w1aTdpRQv+BRX/Fvu3GEKgC9Qqq9/nitf+h/SBNQboBQ8CCNRz7dxodAuKOZRyvkzbhPQvk/9mfLWG9xfsp14byFJ5mcYP/TXwk6CkiLMfpFuoDoCuxTFKTn/hkmqunZdgDM1Ub+gLw44Cl+GDuN0O3N7AYXfUxdZR2NYuF180lqC7/kQJqwLEe0TQHfCVibWW36eqdfqjERoOaGihbfaxYiZsH+bq1hYsspumaruDn3E5PfXK/4XeAS0BmlK8sQqEOXM0TeDTDQqRrH2n7HT48KxEiCQAA" ConnectionId="9ede119f-f8e5-4b74-8a4a-20e9c9c83c26" DisplayName="Asana HTTP Request" sap:VirtualizedContainerService.HintSize="488,498" sap2010:WorkflowViewState.IdRef="ConnectorHttpActivity_1" UiPathActivityTypeId="8e7dad69-7016-3a0b-bad0-1435a7cd7c28">
         <isactr:ConnectorHttpActivity.FieldObjects>
           <isactr:FieldObject Name="method" Type="FieldArgument">
             <isactr:FieldObject.Value>
@@ -228,7 +228,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </isactr:ConnectorHttpActivity>
-      <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="556,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[out_jsonObject]" JsonString="[out_ResponseBodyUrl]">
+      <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="488,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[out_jsonObject]" JsonString="[out_ResponseBodyUrl]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -236,7 +236,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:DeserializeJson>
-      <Assign DisplayName="Assign - JSON Array Attachments" sap:VirtualizedContainerService.HintSize="556,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign DisplayName="Assign - JSON Array Attachments" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_1">
         <Assign.To>
           <OutArgument x:TypeArguments="njl:JArray">[attachmentsArray]</OutArgument>
         </Assign.To>
@@ -250,7 +250,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <If Condition="[CInt(attachmentsArray.Count) &lt;&gt; 2]" DisplayName="If - Number of attachments are greater than 2" sap:VirtualizedContainerService.HintSize="556,415" sap2010:WorkflowViewState.IdRef="If_1">
+      <If Condition="[CInt(attachmentsArray.Count) &lt;&gt; 2]" DisplayName="If - Number of attachments are greater than 2" sap:VirtualizedContainerService.HintSize="488,415" sap2010:WorkflowViewState.IdRef="If_1">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -277,13 +277,13 @@
           </Sequence>
         </If.Else>
       </If>
-      <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each - Attachment Included" sap:VirtualizedContainerService.HintSize="556,1508" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[attachmentsArray]">
+      <ui:ForEach x:TypeArguments="njl:JToken" CurrentIndex="{x:Null}" DisplayName="For Each - Attachment Included" sap:VirtualizedContainerService.HintSize="488,2582" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[attachmentsArray]">
         <ui:ForEach.Body>
           <ActivityAction x:TypeArguments="njl:JToken">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="njl:JToken" Name="currentItem" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486,1377" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486,2451" sap2010:WorkflowViewState.IdRef="Sequence_3">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -305,10 +305,10 @@
                   <InArgument x:TypeArguments="x:String">[currentItem("download_url").ToString]</InArgument>
                 </Assign.Value>
               </Assign>
-              <If Condition="[not (fileName.ToLower.EndsWith(&quot;.pdf&quot;) or fileName.ToLower.EndsWith(&quot;.docx&quot;))]" DisplayName="If - Validate Filename Extension" sap:VirtualizedContainerService.HintSize="452,61" sap2010:WorkflowViewState.IdRef="If_6">
+              <If Condition="[not (fileName.ToLower.EndsWith(&quot;.pdf&quot;) or fileName.ToLower.EndsWith(&quot;.docx&quot;) or  fileName.ToLower.EndsWith(&quot;.doc&quot;))]" DisplayName="If - Validate Filename Extension" sap:VirtualizedContainerService.HintSize="452,419" sap2010:WorkflowViewState.IdRef="If_6">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
@@ -319,7 +319,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Throw DisplayName="Throw - BE 1.1 Invalid Document Type" Exception="[New BusinessRuleException (&quot;The file format attached is not an expected file format, please validate and upload supported format PDF/Docx&quot;)]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                    <Throw DisplayName="Throw - BE 1.1 Invalid Document Type" Exception="[New BusinessRuleException (&quot;The file format attached is not an expected file format, please validate and upload supported format PDF/Docx/Doc&quot;)]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_2" />
                   </Sequence>
                 </If.Then>
                 <If.Else>
@@ -373,7 +373,8 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </uwah:NetHttpRequest>
-              <If Condition="[not fileName.EndsWith(&quot;.pdf&quot;)]" DisplayName="If - Convert Word to PDF" sap:VirtualizedContainerService.HintSize="452,601" sap2010:WorkflowViewState.IdRef="If_2">
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,179" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Validate if file is PDF&quot;]" />
+              <If Condition="[not fileName.EndsWith(&quot;.pdf&quot;)]" DisplayName="If - Convert Word to PDF" sap:VirtualizedContainerService.HintSize="452,968" sap2010:WorkflowViewState.IdRef="If_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -381,12 +382,13 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <If.Then>
-                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,373" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,731" sap2010:WorkflowViewState.IdRef="Sequence_6">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Transform Docx\Doc file in PDF&quot;]" />
                     <ui:InvokeCode ContinueOnError="{x:Null}" Code="' Variables expected:&#xD;&#xA;' inDocPath (String), inPdfPath (String)&#xD;&#xA;Dim wordApp As New Microsoft.Office.Interop.Word.Application()&#xD;&#xA;wordApp.Visible = False&#xD;&#xA;wordApp.DisplayAlerts = Microsoft.Office.Interop.Word.WdAlertLevel.wdAlertsNone&#xD;&#xA;Dim doc As Microsoft.Office.Interop.Word.Document = Nothing&#xD;&#xA;Try&#xD;&#xA;    doc = wordApp.Documents.Open(FileName:=CType(inDocPath, Object), ReadOnly:=True)&#xD;&#xA;    doc.ExportAsFixedFormat( _&#xD;&#xA;        OutputFileName:=inPdfPath, _&#xD;&#xA;        ExportFormat:=Microsoft.Office.Interop.Word.WdExportFormat.wdExportFormatPDF _&#xD;&#xA;    )&#xD;&#xA;Finally&#xD;&#xA;    If doc IsNot Nothing Then doc.Close(False)&#xD;&#xA;    wordApp.Quit()&#xD;&#xA;End Try" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,201" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
                       <ui:InvokeCode.Arguments>
                         <InArgument x:TypeArguments="x:String" x:Key="inDocPath">
@@ -397,7 +399,8 @@
                         </InArgument>
                       </ui:InvokeCode.Arguments>
                     </ui:InvokeCode>
-                    <ui:DeleteFileX DisplayName="Delete File - Docx File" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[System.IO.Path.Combine(Environment.CurrentDirectory,in_downloadFolder, in_taskName, System.IO.Path.GetFileNameWithoutExtension(fileName) + &quot;.docx&quot;)]" />
+                    <ui:DeleteFileX DisplayName="Delete File - Docx File" sap:VirtualizedContainerService.HintSize="416,117" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[System.IO.Path.Combine(Environment.CurrentDirectory,in_downloadFolder, in_taskName, System.IO.Path.GetFileNameWithoutExtension(fileName) + &quot;.docx&quot;)]" />
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Document transformed to PDF&quot;]" />
                   </Sequence>
                 </If.Then>
                 <If.Else>
@@ -410,6 +413,7 @@
                   </Sequence>
                 </If.Else>
               </If>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,170" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;The document it's in PDF format.&quot;]" />
             </Sequence>
           </ActivityAction>
         </ui:ForEach.Body>
@@ -420,7 +424,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:ForEach>
-      <ui:ForEachFileX DisplayName="For Each File in Folder" Folder="[in_downloadFolder+&quot;\&quot;+in_taskName]" sap:VirtualizedContainerService.HintSize="556,1384" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+      <ui:ForEachFileX DisplayName="For Each File in Folder" Folder="[in_downloadFolder+&quot;\&quot;+in_taskName]" sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
         <ui:ForEachFileX.Body>
           <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
             <ActivityAction.Argument1>
@@ -509,8 +513,15 @@
             </Sequence>
           </ActivityAction>
         </ui:ForEachFileX.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
       </ui:ForEachFileX>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="488,166" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;Identified the CV and Chair Memo.&quot;]" />
     </Sequence>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="590,166" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Finished Download File Logic...&quot;]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="522,166" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Finished Download File Logic...&quot;]" />
   </Sequence>
 </Activity>
