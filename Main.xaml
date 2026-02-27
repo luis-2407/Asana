@@ -78,6 +78,7 @@
       <x:String>System.Collections.Specialized</x:String>
       <x:String>UiPath.Web.Activities.JSON.Models</x:String>
       <x:String>UiPath.Web.Activities</x:String>
+      <x:String>System.Numerics</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -162,9 +163,11 @@
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
       <AssemblyReference>CB26248ECE7_v2_sub_g.KFVw43jU2UQ1NgLIT2SMTth2</AssemblyReference>
       <AssemblyReference>System.Collections.Specialized</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <StateMachine InitialState="{x:Reference __ReferenceID3}" sap2010:Annotation.AnnotationText="[Process title]&#xA;[Process description]&#xA;Auxis ReFramework v13" DisplayName="General Business Process" sap:VirtualizedContainerService.HintSize="1400,738" sap2010:WorkflowViewState.IdRef="StateMachine_1">
+  <StateMachine InitialState="{x:Reference __ReferenceID3}" sap2010:Annotation.AnnotationText="[Process title]&#xA;[Process description]&#xA;Auxis ReFramework v13" DisplayName="General Business Process" sap:VirtualizedContainerService.HintSize="1400,737.6566666666666" sap2010:WorkflowViewState.IdRef="StateMachine_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -356,7 +359,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <Transition.To>
-            <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="Process a single transaction. &#xA;The result of the processing can be: 1) Success, 2) Business Exception, 3) System Exception. &#xA;In the case of a system exception, the transaction can be automatically retried." DisplayName="Process Transaction" sap:VirtualizedContainerService.HintSize="534,7455" sap2010:WorkflowViewState.IdRef="State_3">
+            <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="Process a single transaction. &#xA;The result of the processing can be: 1) Success, 2) Business Exception, 3) System Exception. &#xA;In the case of a system exception, the transaction can be automatically retried." DisplayName="Process Transaction" sap:VirtualizedContainerService.HintSize="209,208" sap2010:WorkflowViewState.IdRef="State_3">
               <State.Entry>
                 <TryCatch DisplayName="Try to process transaction" sap:VirtualizedContainerService.HintSize="488,6957" sap2010:WorkflowViewState.IdRef="TryCatch_9">
                   <sap:WorkflowViewStateService.ViewState>
@@ -1232,7 +1235,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <Transition.To>
-                            <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="End process and close all applications used." DisplayName="End Process" sap:VirtualizedContainerService.HintSize="150,121" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
+                            <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="End process and close all applications used." DisplayName="End Process" sap:VirtualizedContainerService.HintSize="630,4492" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
                               <State.Entry>
                                 <TryCatch DisplayName="Try to close all aplications" sap:VirtualizedContainerService.HintSize="584,4346" sap2010:WorkflowViewState.IdRef="TryCatch_4">
                                   <TryCatch.Try>
@@ -1500,7 +1503,7 @@
                                           <OutArgument x:TypeArguments="x:Boolean">[ErrorThresholdFound]</OutArgument>
                                         </Assign.To>
                                         <Assign.Value>
-                                          <InArgument x:TypeArguments="x:Boolean">[If(String.IsNullOrEmpty(Config("TransactionsErrorThreashold").ToString) Or (CInt(Config("TransactionsErrorThreashold").ToString) = 0),False, if(((dt_Threshold.RowCount/dt_TransactionData.RowCount)*100)&gt;=CInt(Config("TransactionsErrorThreashold").ToString),True,False))]</InArgument>
+                                          <InArgument x:TypeArguments="x:Boolean">[If(String.IsNullOrEmpty(Config("TransactionsErrorThreshold").ToString) Or (CInt(Config("TransactionsErrorThreshold").ToString) = 0),False, if(((dt_Threshold.RowCount/dt_TransactionData.RowCount)*100)&gt;=CInt(Config("TransactionsErrorThreshold").ToString),True,False))]</InArgument>
                                         </Assign.Value>
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
