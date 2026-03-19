@@ -1,5 +1,14 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="ExtractInformationFromIXP" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:p="http://schemas.uipath.com/workflow/activities/intelligentocr" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uiascb="clr-namespace:UiPath.IntegrationService.Activities.SWEntities.CB26248ECE7_v2_sub_generateChatCompletion_Create.Bundle;assembly=CB26248ECE7_v2_sub_g.KFVw43jU2UQ1NgLIT2SMTth2" xmlns:uisad="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uisasegb="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.GptIxp5.Bundle;assembly=ExtendedExtractionRe.HHcfSpC5cJ1HxSM9kPdPr3" xmlns:uisasegb1="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.GptIxp34.Bundle;assembly=ExtendedExtractionRe.aCVbXYJonC14YhLsH6rQf4" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:uwaj="clr-namespace:UiPath.Web.Activities.JSON;assembly=UiPath.Web.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
+    <x:Property Name="io_isInvalidEndDate" Type="InOutArgument(x:Boolean)" />
+    <x:Property Name="io_isInvalidStartDate" Type="InOutArgument(x:Boolean)" />
+    <x:Property Name="io_isInvalidName" Type="InOutArgument(x:Boolean)" />
+    <x:Property Name="io_isInvalidTerm" Type="InOutArgument(x:Boolean)" />
+    <x:Property Name="io_isInvalidTitle" Type="InOutArgument(x:Boolean)" />
+    <x:Property Name="io_isBusinessException" Type="InOutArgument(x:Boolean)" />
+    <x:Property Name="in_taskGID" Type="InArgument(x:String)" />
+    <x:Property Name="in_adminSpecialist" Type="InArgument(x:String)" />
+    <x:Property Name="in_APIKey" Type="InArgument(x:String)" />
     <x:Property Name="in_asanaBusinessTitle" Type="InArgument(x:String)" />
     <x:Property Name="in_projectedEndDate" Type="InArgument(x:String)" />
     <x:Property Name="out_dictCV" Type="OutArgument(scg:Dictionary(x:String, x:String))" />
@@ -37,8 +46,6 @@
       <x:String>UiPath.Core</x:String>
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Windows.Markup</x:String>
-      <x:String>GlobalVariablesNamespace</x:String>
-      <x:String>GlobalConstantsNamespace</x:String>
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>UiPath.Platform.ResourceHandling</x:String>
       <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction</x:String>
@@ -76,6 +83,9 @@
       <x:String>UiPath.IntegrationService.Activities.SWEntities.CB26248ECE7_v2_sub_generateChatCompletion_Create.Bundle</x:String>
       <x:String>System.Numerics</x:String>
       <x:String>System.Globalization</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -148,15 +158,23 @@
       <AssemblyReference>CE9C9C83C26_tasks_Re.3RtzP31kVFE1cl59L11TnfQ3</AssemblyReference>
       <AssemblyReference>CB26248ECE7_v2_sub_g.KFVw43jU2UQ1NgLIT2SMTth2</AssemblyReference>
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ExtractInformationFromIXP" sap:VirtualizedContainerService.HintSize="1030,1047" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence DisplayName="ExtractInformationFromIXP" sap:VirtualizedContainerService.HintSize="1394,7967" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Extract Information From IXP" sap:VirtualizedContainerService.HintSize="554,6103" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Extract Information From IXP" sap:VirtualizedContainerService.HintSize="590,7944" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="scg:List(x:String)" Default="[New List (of String)()]" Name="nullKeys" />
         <Variable x:TypeArguments="uisad:IDocumentData(uisasegb1:GptIxp34)" Name="outputCVIXP" />
@@ -178,17 +196,18 @@
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Extract information from Chair Memo Started&quot;]" />
-      <Sequence DisplayName="Data Extraction IXP - Chair Memo" sap:VirtualizedContainerService.HintSize="520,57" sap2010:WorkflowViewState.IdRef="Sequence_6">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="556,57" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Extract information from Chair Memo Started&quot;]" />
+      <Sequence DisplayName="Data Extraction IXP - Chair Memo" sap:VirtualizedContainerService.HintSize="556,57" sap2010:WorkflowViewState.IdRef="Sequence_6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisasegb:GptIxp5" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" RuntimeAssetPath="{x:Null}" RuntimeTenantUrl="{x:Null}" ApplyAutoValidation="False" DisplayName="Extract Document Data" DocType="gpt_ixp_5" ExtractionResults="[outputChairMemoIXP]" ExtractorName="gpt_ixp_5" FileInput="[in_filepathChairMemo]" GenerateData="True" sap:VirtualizedContainerService.HintSize="452,416" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_4" ModernDocumentTypeId="00000000-0000-0000-0000-000000000000" ModernDocumentTypeName="Default" ProjectId="0e7ec162-3b10-80d5-9aa9-a500b36bf277" ProjectName="Faculty_Reappointments_Automation_Chair_Memo_V3" ProjectTag="live" ProjectVersionName="live" ProjectVersionNumber="5" TimeoutInSeconds="3600">
+        <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisasegb:GptIxp5" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" RuntimeAssetPath="{x:Null}" RuntimeTenantUrl="{x:Null}" ApplyAutoValidation="False" DisplayName="Extract Document Data" DocType="gpt_ixp_5" ExtractionResults="[outputChairMemoIXP]" ExtractorName="gpt_ixp_5" FileInput="[in_filepathChairMemo]" GenerateData="True" sap:VirtualizedContainerService.HintSize="452,57.333333333333336" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_4" ModernDocumentTypeId="00000000-0000-0000-0000-000000000000" ModernDocumentTypeName="Default" ProjectId="0e7ec162-3b10-80d5-9aa9-a500b36bf277" ProjectName="Faculty_Reappointments_Automation_Chair_Memo_V3" ProjectTag="live" ProjectVersionName="live" ProjectVersionNumber="5" TimeoutInSeconds="3600">
           <p:ExtractDocumentDataWithDocumentData.AutoValidationConfidenceThreshold>
             <InArgument x:TypeArguments="s:Nullable(x:Int32)">
               <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="0" />
@@ -198,36 +217,38 @@
             <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
           </p:ExtractDocumentDataWithDocumentData.GptPromptWithVariables>
         </p:ExtractDocumentDataWithDocumentData>
-        <uwaj:SerializeJson Settings="{x:Null}" DisplayName="Serialize JSON - Serialize IXP Chair Memo Output" sap:VirtualizedContainerService.HintSize="452,123" sap2010:WorkflowViewState.IdRef="SerializeJson_2" InputObject="[outputChairMemoIXP]" Result="[outputChairMemoSerialize]" />
-        <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON - Create JSON Chair Memo" sap:VirtualizedContainerService.HintSize="452,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_3" JsonObject="[outputJObjectChairMemo]" JsonString="[outputChairMemoSerialize]" />
-        <If Condition="[outputJObjectChairMemo(&quot;Data&quot;)(&quot;ChairMemoDetails&quot;).Count &gt; 1]" DisplayName="If - Validate number of candidates" sap:VirtualizedContainerService.HintSize="452,415" sap2010:WorkflowViewState.IdRef="If_12">
+        <uwaj:SerializeJson Settings="{x:Null}" DisplayName="Serialize JSON - Serialize IXP Chair Memo Output" sap:VirtualizedContainerService.HintSize="452,57.333333333333336" sap2010:WorkflowViewState.IdRef="SerializeJson_2" InputObject="[outputChairMemoIXP]" Result="[outputChairMemoSerialize]" />
+        <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON - Create JSON Chair Memo" sap:VirtualizedContainerService.HintSize="452,57.333333333333336" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_3" JsonObject="[outputJObjectChairMemo]" JsonString="[outputChairMemoSerialize]" />
+        <If Condition="[outputJObjectChairMemo(&quot;Data&quot;)(&quot;ChairMemoDetails&quot;).Count &gt; 1]" DisplayName="If - Validate number of candidates" sap:VirtualizedContainerService.HintSize="452,350.6666666666667" sap2010:WorkflowViewState.IdRef="If_12">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <If.Then>
-            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_38">
+            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,116" sap2010:WorkflowViewState.IdRef="Sequence_38">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Throw Exception="[new BusinessRuleException(&quot;Please validate Chair Memo there are more than 1 person included in the file.&quot;)]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_8" />
+              <Throw Exception="[new BusinessRuleException(&quot;Please validate Chair Memo there are more than 1 person included in the file.&quot;)]" sap:VirtualizedContainerService.HintSize="416,52" sap2010:WorkflowViewState.IdRef="Throw_8" />
             </Sequence>
           </If.Then>
           <If.Else>
-            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_39">
+            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_39">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </Sequence>
           </If.Else>
         </If>
-        <Assign DisplayName="Assign - Chair Memo Details" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_4">
+        <Assign DisplayName="Assign - Chair Memo Details" sap:VirtualizedContainerService.HintSize="452,57.333333333333336" sap2010:WorkflowViewState.IdRef="Assign_4">
           <Assign.To>
             <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[chairMemoDictDetails]</OutArgument>
           </Assign.To>
@@ -240,7 +261,7 @@
         )]</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign DisplayName="Assign - Chair Memo Details" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_5">
+        <Assign DisplayName="Assign - Chair Memo Details" sap:VirtualizedContainerService.HintSize="452,57.333333333333336" sap2010:WorkflowViewState.IdRef="Assign_5">
           <Assign.To>
             <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[chairMemoDictValidation]</OutArgument>
           </Assign.To>
@@ -253,7 +274,7 @@
         )]</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="Assign_13">
+        <Assign sap:VirtualizedContainerService.HintSize="452,48" sap2010:WorkflowViewState.IdRef="Assign_13">
           <Assign.To>
             <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[out_dictChairMemo]</OutArgument>
           </Assign.To>
@@ -262,15 +283,15 @@
           </Assign.Value>
         </Assign>
       </Sequence>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Extract information from CV Started&quot;]" />
-      <Sequence DisplayName="Data Extraction IXP - CV" sap:VirtualizedContainerService.HintSize="520,57" sap2010:WorkflowViewState.IdRef="Sequence_7">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="556,57" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Extract information from CV Started&quot;]" />
+      <Sequence DisplayName="Data Extraction IXP - CV" sap:VirtualizedContainerService.HintSize="556,57" sap2010:WorkflowViewState.IdRef="Sequence_7">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisasegb1:GptIxp34" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" RuntimeAssetPath="{x:Null}" RuntimeTenantUrl="{x:Null}" ApplyAutoValidation="False" DisplayName="Extract Document Data" DocType="gpt_ixp_34" ExtractionResults="[outputCVIXP]" FileInput="[in_filepathCV]" GenerateData="True" sap:VirtualizedContainerService.HintSize="416,367" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_2" ModernDocumentTypeId="00000000-0000-0000-0000-000000000000" ProjectId="f55d28ad-28c7-80cc-9992-66a077e4b390" ProjectTag="live" ProjectVersionName="live" ProjectVersionNumber="46" TimeoutInSeconds="3600">
+        <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisasegb1:GptIxp34" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" Prompt="{x:Null}" RuntimeAssetPath="{x:Null}" RuntimeTenantUrl="{x:Null}" ApplyAutoValidation="False" DisplayName="Extract Document Data" DocType="gpt_ixp_34" ExtractionResults="[outputCVIXP]" FileInput="[in_filepathCV]" GenerateData="True" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_2" ModernDocumentTypeId="00000000-0000-0000-0000-000000000000" ProjectId="f55d28ad-28c7-80cc-9992-66a077e4b390" ProjectTag="live" ProjectVersionName="live" ProjectVersionNumber="47" TimeoutInSeconds="3600">
           <p:ExtractDocumentDataWithDocumentData.AutoValidationConfidenceThreshold>
             <InArgument x:TypeArguments="s:Nullable(x:Int32)">
               <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="0" />
@@ -280,9 +301,9 @@
             <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
           </p:ExtractDocumentDataWithDocumentData.GptPromptWithVariables>
         </p:ExtractDocumentDataWithDocumentData>
-        <uwaj:SerializeJson Settings="{x:Null}" DisplayName="Serialize JSON - Serialize IXP CV " sap:VirtualizedContainerService.HintSize="416,123" sap2010:WorkflowViewState.IdRef="SerializeJson_3" InputObject="[outputCVIXP]" Result="[outputCVSerialize]" />
-        <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="416,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_4" JsonObject="[outputJObjectCV]" JsonString="[outputCVSerialize]" />
-        <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_6">
+        <uwaj:SerializeJson Settings="{x:Null}" DisplayName="Serialize JSON - Serialize IXP CV " sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="SerializeJson_3" InputObject="[outputCVIXP]" Result="[outputCVSerialize]" />
+        <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_4" JsonObject="[outputJObjectCV]" JsonString="[outputCVSerialize]" />
+        <Assign sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="Assign_6">
           <Assign.To>
             <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[cvDictDetails]</OutArgument>
           </Assign.To>
@@ -295,7 +316,7 @@
         )]</InArgument>
           </Assign.Value>
         </Assign>
-        <Assign sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_14">
+        <Assign sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="Assign_14">
           <Assign.To>
             <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[out_dictCV]</OutArgument>
           </Assign.To>
@@ -304,7 +325,7 @@
           </Assign.Value>
         </Assign>
       </Sequence>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,57" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Started data validation from IXP&quot;]">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="556,57" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Started data validation from IXP&quot;]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -312,7 +333,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:LogMessage>
-      <Sequence DisplayName="Data Validation IXP" sap:VirtualizedContainerService.HintSize="520,5356" sap2010:WorkflowViewState.IdRef="Sequence_8">
+      <Sequence DisplayName="Data Validation IXP" sap:VirtualizedContainerService.HintSize="556,7528" sap2010:WorkflowViewState.IdRef="Sequence_8">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="ChairMemoText" />
           <Variable x:TypeArguments="x:String" Name="CVText" />
@@ -322,20 +343,20 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Sequence DisplayName="Sequence - Validate Title Consistency" sap:VirtualizedContainerService.HintSize="486,1793" sap2010:WorkflowViewState.IdRef="Sequence_27">
+        <Sequence DisplayName="Sequence - Validate Title Consistency" sap:VirtualizedContainerService.HintSize="522,1750" sap2010:WorkflowViewState.IdRef="Sequence_27">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="CVTextNormalized" />
           </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Assign - Business title Asana" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_15">
+          <Assign DisplayName="Assign - Business title Asana" sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="Assign_15">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[io_asanaBusinessTitle]</OutArgument>
             </Assign.To>
@@ -343,7 +364,7 @@
               <InArgument x:TypeArguments="x:String">[in_asanaBusinessTitle]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Assign - Chair Memo Title" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_16">
+          <Assign DisplayName="Assign - Chair Memo Title" sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="Assign_16">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[ChairMemoText]</OutArgument>
             </Assign.To>
@@ -351,7 +372,7 @@
               <InArgument x:TypeArguments="x:String">[out_dictChairMemo("Title")]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Assign - CV Title" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_17">
+          <Assign DisplayName="Assign - CV Title" sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="Assign_17">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[CVText]</OutArgument>
             </Assign.To>
@@ -359,108 +380,107 @@
               <InArgument x:TypeArguments="x:String">[out_dictCV("CurrentPosition")]</InArgument>
             </Assign.Value>
           </Assign>
-          <isactr:ConnectorActivity Configuration="H4sIAAAAAAAACu1de3PbOJL/Kij9c8mWpNjOazZVU1uybMeKbVmjR3I3O6kUTEESI4rU8GFbTuXj3B/3OfaL3a8BkAJISlSc1+yda2snMrvRBLob3Y1GA/xUO3GFN47agR9z1xdh7dWn2kDw0JnxK08oYO3VP9/Xax1/mcTZg0+1Ll+I2qvaIhgLT/6u147caOnxlYZcEIT5GiQiJ3SXsRv4AA1ngk0FXsdj91qwVodJMiwIWeeIxQFLItFkw5kbMe4AxY1XbCwmPPHiiMAx2qsWN248k3/O3OlMRDH7M+EeoQdXkQivxZgFSYyO19ksuBHXIqwzzsbuZCJC4ceaiMN9diVYJDzhxGhyxSNq6OOdkRtmNNAZf8xivMX1p002wLudGX4qKpEkM+MYj7tYotsRUaCuqdZNcGG4WhJnojhEM/w9CML4MhwT2xv7e8QlOca33EsIb7qMG8+b+42DvYPnjf39xv5TtDkPgnmyJDldXn1Ef005RBk8JSEf42mPxzP8+WQq4gsbk9qTRGtjQ3rvP0uRuVNI6xMQ+fhwpTtXexWHiajXjn3SkBG4fAm2hu5YpJBeELla0L3QXfBwVQM5qTotSDPwtUbJJ+eBwzXyb4kAar126be5f82jlF4nuhDxLBj3eIi+xcQtAnyuZ0rY59O++DOBZApaaIMsLQSIaRjbLpyDgmg+MfZHbRJSa99ZfVgKn3vx6o/aK7ZfJ9CC336Ig7nwI3r2fG9PPvXXCMtQRGgqik2XYbBYxvT3H7V3M9eZYVpMue/eST5BjzEDpV55go9J/Zaa38xV+jYhvrJgwvrBVRC7DuuFgSOiiLWSOFgoKo/6vdbjf/xRk290fQw6kaJRr/2vIGE8FJgqrj8JQtWGewxdu4agQ90uFoslzeEkFNRur/lcPQ6WH5ZyPJ9rphp1olN3PBZ+Kr6CAlyAwe6ShySqaqErPhUE3sseF0wOrEpIYwCcYViSWTB0MXPwyBOSMWGmLFv04UW9RopDtiFV0vxYDoMxqX3WWzfqdTpqzoyLfe50YGtizGZqnO/6uxk4gZ7D8CkkRvgTjEOOwCXDrIfVZOzIsJMT7sGQrsdyFQRQGt8ezMu8cstWpuC2TOj8iElwxkyH9GBmC6JzgeNBphUsmUgkxX2bJZ0JrHUsXQFxH4Z5pXkDa42mT3qnHfgGzyO7vuDRnKy6gMzJyvty1mg3cn5+0WQgpwZtEckIuL7jJWM81BMs43UHfiOAA3LgMKK6hJUS4Nfc9WicKQXtEhjrBrHAE+igaw1JYmW+bGI0wnBWslPSyYhxlXh/qRRvzjJ/qqnfmugAjhMU+4kn3cQnaP5EtihX7E7URh/kxNAv6kTvgnA+8YKb41uyepEUoQamxGTfiD4N/v1n+J9cN2A6xP26kTqRL+mFfE7deL+jO3tgms20KnPocX+a8KloIxgpnfspQqkhT4HpzNA2XVlCCtL0VMFkiigqI2MPohUh2N8pqEkWZnTbmoTunHOIuF5LXT+fmANpLWY8dB0TvrDgIb+ywaEFjiKKv4SJEFkIdyK84u5HBAAmzp2Jc5h4U3RCzvwU42pqYQh/Cltiwn0LHkR+rr3VizaPuWfBHW7B74QzM6FW63eINy2opQpHGJoFHlukXwvEH+aboTAmOBRibkAR7RrQY3/q2cQRfhjwwTL/ckx/s30UBznGiNhiHI8QL5jgxAT3RBjZzSfW4E5cP/f+iWvB4T4txk4s7emEduOpzTlI3LHfPrW48zr5iOgqNtVianX/VFyF4sYAzyzen7pwpSbU6ns7DEDbev3M6v1p4hfUdma9vxUuRI79M0t3OlBLG+5a4un448CHo7NRxibKGw4dsGfgx5wCIv62KcwthDN+x+emGOZzCzxbwLoYUMs+nHHf59B4A25p6BliFvvdgQVOQqzbZuwRfmCafHQfm6gWM89W4XR1Z4ItVp7zwIB51lvOscpOMFOsjmApaDWPr3PwaxN+Afsx5RFFiNna1DJRF9wREJZNYzHP01jh/wsTw9Loi8CfBjmNWFj8vCCNh6Ia8LDwDhNq2YNDcNnWlYXFxK5Y2mbWtybMUYKMgQm1Ot8NwhtBmsYeHQbzxb/+2zOF6VsSuRy7ps4E1hh6if8RXseALy2F7YFFlt1YWv3o8WgWm8qwtHjQg8dMpoiTBPoZ8jvX6iZSFof9TejqN8836A3NBn2sUXNqEFpj7yeI3my4pegDL7jmpk+I5nlw3qpEFgMG6IElxch6f8u7yncw+tNqD5edg1vyGdyAaybU4u/gRtCUNuHXudYz1+7ejQkf8oXrGdDYkv1QeJCGCbY0dDjjJmUkjUxgEs7tnsXWuEar6SwxTV1izfDRPESO0WZMYolmFI7NroGWCby7sjx9YsVAb10RU67RmpzXtkNCsg7wxgBLJ89FlmRsoN7NGjOK80rwhyHyLCoDUmgAG/j+K1JlD6uIh6XXj156LV332I+RV0BQL6ZB6Iron397X7YIk1kUR2GtShdiwVJnBvPYlMp3Mvq0EONAW90hOxmElDmZMD+IKeOB5A2SJAZumjQJxbUrYAsrVm2UN88v2yjslom0dLLqB7nInPLzRDiPJ99m4s4QRDK848oK5OTjrnpqumYjW2tgW49NbzIek3gNzPSJuQ5ZIIFkoKi/TePYPzfA9JcZBfdY8S2dXsl7jiCGJ0NXbtmkiPRMPjLwfkM0SCpkoGWPzLEdtliItTjl2wrsA7CvYEUeDt51ToZIy8rkQNpAPpQJA2uVAW+JDC4PTWuunrbxsEi74yOp6Kcp7UPuz6l7LccJEuwIaXyDTya6xtbIRdqtENtaGBJn3fQFHWS8iS/s0VG387hIv9VPUVPMErIJaT6y8Smt3HBbw7QtDbmsZcxvdeuJqyxDiUCGQ37bsZA2d0U2IrVCqhPN2KO3reHjMpryl8QD2gZ6tIjDrps/x3afEkOR0Ih4v5nxKRlkZJOI/HZUSkPDtvWjjVwS5ZOLkhpp0LbW4xA7muF/RAxrb+z+mPrbGh1JYHSuQNvILKC/DrRnCz8uFEo1S9iSR9ESFrOMSk/DtrUn5UEuvsQEtkYQKnL5JWM5FN7UTRbYANYTodD48DjV/J1bs7cHWwgAWEJiR009PK7QVLXWwa4bFjBMz0Pdq0ftbu+Nuag57J8TmvKzG0m1eycl/ejj8cYma7NyxGiuYyPvtf3izJoc9V/bKTzKM1TMsnZr6yzTNPI6XkanStU1qZnA5ucMcUB4DcwyQqcSY6AQNtLZrOLt1mYV142V1wdT1bu0yc4MpWqH1etpp/vYpqwbqnZ2s5L3RAHScR7S1FEScuz9lnV2IHE6KUpJn7H4E7YnKKFzbjqEUiLwUX0sWwht7aOUSvX67ZIJ0u6m+NtpH4+wCXalfXKRzPHoiKCb21YqFyhUKBfIvO4NED8EyI7BhCBGNpsD1jZAdsPM4lS5y+OR7bg3+0xQ3ayfx1tMMBoqfWAD4SQhSShVxsGg+5iCbNqGvuaelOKRRVa1TBuWEidzuEHZh7auH5OhrxrnidLqagme9KskqElp87Blxpz09eTbPGM0Ld8wnVI1YbU75hhPDNtZ0n6zCE/6m0WoG28SY6c7OD62O1ElN01xY0THHqHNv/4nDNiglxvf7jLc0Wme9Cucptq9YUepSmiBF4Oro+MqlVCkVjljVUJou3lKyWwW59HxZnGmrTfOHIvODvxOCeYZXkJtzeoimVMkvtkZ/Sdny0/POkclq47TUeq7qjqodmnUiHP6VkJ1hxGnBCtHfDraNmJs7SA07Un2kfWzF3BwYi3LgHW6GarGLBIb+S428/JyfdTi4xnnYQkXO13VpGrI2TZUXjpnw14Z2aPtKtwJBTZjx+u4pZdcwdbCuqgo6lGvNygje5w2UPgbY6ovoc+uD3Z9hR2ed6KQCyugNemcl5ti3YiC1C0r9vOtQSztGa6KFsl+/7DKGikqJy7qCxDI24mKzlA9z+cq5FZjReff9LZ2XpGoNqdvelUDUJQu1q5oqSVnzpo3vQvtgVK5biXRDkKYTQRV5TQycJFIFor2sQNG685yA9OpSidY1KCq5T7iTS/DKJ9hiox22llosQ6+7ODoTa8yaj9PbsXiKkjCaT4zVIi8AAcVFFtKjkfmi863hpy64X1fG/gN/96vxo/i27GXGudNXkEWF1buqsg5RWQXf3sh81dHRRJdccN+R5RINm377Ov+vnX2mYSq52D396o5aNLr+PKfPorU/aSUmsLQCNuJXWCfDbNIlg7qRW0JwRTrcqJwttPUswHFPBOqDS6hpzA0QpFYj7Ytl0tKwJGrpQ04Jkt+G70EhkHa4CLZ3qnGlagas0zK6eYya2Oz7k74G/StN9TwcnXLqOyicb1dMqYDJLlnjCrJHF5J8ffWbuRkWciuVvOsnyKaeCWkl9ifZUhTmwu/Af1dQNq2LLVaV61mFLldmH082IXZNy4yvxt61zp9a+YzTqv6NuTuDdxAeYgyfFceouhGmWjaItQdRuDU6refDPEfk0fDdymugVpCMV2UFDkzfLd5wTJqnjV3sFWjsypbJQllrNBGJYsIu6dlEefoLG2wycDYVIuettvpXj4upbjF2UqiOpiHziz5CqSwZ0pnfjLaFlGFnOKWURw0d9X5UaXOS2o7yGRQLRMQQhJIDnizfowGo7NtGgIitAC6dscoOF9zbEOg0MmlhkaDdeO07eZUqB57MmXHdLTEEQu5eMO2mUNbZMetEjUidANbIW8YyHb/PhqU+HergKMTST8zkGfB0s34h6qOh4L6v3hVhxP4E7WiGc5AmE6JlZV0sDUeixwEEaVlHQsEhgtsneWR5ekoeSISPhsJdHUoSR5TmawYj+ShF4oVZfnGWJ5PWVdvZIk2s3pjH0OTJ8yAMA6QNFA9Mg+s7DVfPn84r3Kf8ypwQYE/fjix8i0mmHFIsjCxBqsoFgt9DKV0RkUmhiyOClBXcktnVjKy6WmWex1J3C+eUV2f4pwJbzlJUE0AgxPFVLV47+N99uFcgz9xsDwrMGYYLNm8wJBWulNxJeIbgZXavjQaz/ZQGDZMz3Kr45kaMTvhrX4i3KCDFeponD5IDqNEDG1aByBBcs02FxyfFgzQU8MAAeMppTNtRoLI3rc7L2cemP/aw3K1qSBT3Tho7jUmHsq2G3t7+6ALCc/CYOk6TcfjyVg0njaeN5DR8UVMh8mf7b042Gtc77/aq93nqN2GEdzHw5UfcaeHz4KGGhq629h72dj/pfZd7duDWL5SLDsEKDQ/X6MeUB7ALdiKtraIUxPDshuqrX3iLzOkmO2u7yArEq0PzpJVQa0L1olO7hSttDRuxCZCHl+nGtTgJpInxKXhgFnGYpxes0RRakz7VVldmRdMsRlCtOd+cINIb0rnevV54vXZ4El2oURd06WjiGG2DMUfl6FDl1bAesEjHCbOXMTsBkYOFi5wElrrROpGiSuyksnSQ3U5XUcR6t8w7bIua4yYzImxH0EHHalWNUa9prxEo8JpPCs4DWRyaV5nFbXWcxJnlo65hSuhyknXH4tbC0QFYRhohLyzI3Lrq29+lpwYUNAl6kHR7TiOWIKjBIyeuH3dQYpbIQt5eFRfOiKZmtYhg43QuUDrZbn21aEdsWpBZc1oRSl0MIiakkD5BFWkTflqlr14Rm9mz/ewFw0VggiDBWROEvbcBQpoHj3duzh8jMRDsqSlO56ryxiiV6x3dFJnbwaX3TprD97W2dFle1Bnw/8cGhLXnDHl/Q3j6JL5/NXuzFac+/im7b26l4vKKXpdTYWyzmV3Qvzl2Hap6/T/sqy7h7b9LPX5CRryM0X+JcP9TrclPJiaB1PzYGoeTE3O1Hzd9VETZEhFeCZWheDRispPJBo2V+JZIaC0EBU9GRDSKVe6YUhezgQTSdFjukzRUSTdW1cRm7/YeNebelXxsjc1mPSqtzwWNVa+I/G81W8yaYtt9V3ve9tuwn9W6JPzRX+h2Mf20N829PkRbPsJkfbOLPtmYdQPVJ8fqyE/TeRfMMx7RosPpubB1DyYmgdT84WmZtNts9WRIna2eqU7W8vqna09mSfe1xtbcITWvpa6MhLWli4mpZ8oaBoHC8oy2/tYe81fmhUb6S932UiXl0E+7GM97GM9bC/edx9Lhk+yEtQ2CB2dDLMNAgH1teZ6/ylbEZbtJ1QsCX/ZuCSUVEVxSaivX0/XhBrtH9ni99dP2c/PxZWi/03WhlXhq7kS/+qVzd/uFdlu6ELlKuaea5MfMOK/2qr3nsG+7M13YuWln9IaLcdUc71xCVPO4ge9ftDrXTzG+lsABadxwW9loaUCM3UutbQiUyPq8JJ8iWpCjkQXQKWXi69Lx3TYKVEVcWq5wuRMXc7SS+hjAnT4JrtQHvMEtv2JUYGGwgXa1ha3jlAb2uxaHt7V3wOQ+9J4LHfOwQuUk8cobL+iDyvQFcx0rTkBVSM8oSvRZdhLV5+rTqsvcaTDVH2NAtqbB76sgYgCuNIwQCfTu/v1GIzhVVZ7/d2u9nrxbFMlXLG06Etq4dYfRiguHGxYQdKKSWkpICoH9PdPJqimpeqOkEWc7i+kBPOaVPbRlFNVJSepRGwhOOmI8bkUVCjEfE5/UzmvG82x0hiiumWv+XfJV/lcv1aqwhJ2GZRkyWKqEBHduD/G4uYRLCly26iegRLwcAr5Zd17nFaj0JVu8QwSvxGe1xiLCcpoZBGLfJe4xcBALsLSSOurUmhvXRGhDiC46h45+iZAfa2t+rswasS0oAKa1o9u4ngC+j2gHmnOqkoNWaRBN/crPtmLrf3tK62DvV1WWnvfQ68KHxwpFr6kGMzAsCNSe4FKtYNSmPi3yVRHIXitP5KIe4f1qrhJLU72dRyw2A0hP51XzDqX2iG53wH1mHDIayxkbVa6LyLVUV4RMheeOwsCWWITiiUUTyLQteiAopYJpZ5XYNAityKumOkH+6Uz/QcISenM5QRlPtTZgoi0ADDDwzWG/XULRGN0CEzNXD+Pry1oKDDxMZOqbN7BQSUnnn7LAtefs1v/bxCMfYdw+/9m5cWDLCvvcM19PapgZHoa4Qe4gZv080QzgYrbJSx4WOoBdHXudg8Qc2/O+BWKdPW7UMSez4VW2bunP83yl9Q0r2PoWeA6YluMvzb0TrGZGeen8a8+GEJFq9bxCCOETENylWmWAZftU9JlBJ05kdHhFNE6lbyqEG8mlUgClPch0fL0ZU4QofQVAo7Tr2v5WCCkDorf0OkT2Q0iDlK0FJCxwoZebozDygX9rFLQ+99H0PILZ99zS2Ai5FMlG+IiOktnxGF2v5BHz7+UR3+lYxRfeArhpx5k+RYncf5NTrf8PxRLlUOOYBIKBmGAhzB5clVUXOyPlvKEWoYQ6aMfNP9bPf3xOKKbfSqVFllJqL8FSKZBWf50IaDcbXYIQVeiqdWU2RPbgvioBqs4JnLw4nsY0dtGgmq9eNZwo0YUo5XTiIUnsAcbrhoo4+OLRvrxV60MNndJp2RmJIXmDnsYUOUxU+Ilg833/VRwGvkuu8PmMEK4dnch8uMorgH7CpENU0QUGKaI9jdKNyN+9Rig1pfyMFTxq76kSYVOM3Jw9mnL0jhmqAAVtY3pV1nXc1elmtZZePV3O5Gv2/SdTTWCbXqmPv+oO5VPv8ovQ24YSRqVUFpChtM0YXIf3NRzVl4oGcR06YX6GAJDzgphEtKX8ugWKHj0fSOVCdMfpJSPZqpKs+qg1ssfyLA3bvzh+uDVq1TUbYRv60C2JMZF4IFs7WttpUq+YLoe3MilrcgmXao/Vcj6CpmmnrAusnGDd/LibPrZPjx4cfDsl+P28Uv06UOUXH0o79aHNuUsRfMQC1VPNHfBrbMy6s2zk7c3z55+HB2MftvvTs87w4PBxTCeHdTZWzrTFfi/ImKi/6E9jCiSr7/6IqGr0uv6okRkGYZkn38l21qrltyOIqKZDNlI7ILQ8iv1tksmFW8ZpOqUk1oKh28o/cQqzeTCkUzmFJvl1XbrXvHn767HtF3d8emUuyMyiwfgp5oWH9pKAaIpxudjDz2QeaFXNW3I9T/cDcd0dj31JOmOpO5W3d6A3zphTuN4qWwwLc2xaCJ/SWOhRbWM6jIvt2E+tTlKzcfG3j6N6HP6/DAMbrD66mBDQD/XGSCMS39su8edOZ8KkwcHT20mpNfoyClKr2912HpWmpgmlZcHTToyr5ixg2XYnWuXcnNDvUfN2AIrLwdDo7rh+gDfN99A7Dz9nqj8BGSddt56+HMAAVBKH0ugUx4d4i30fQ+09qfEYq2i5DwOvcCZS2Z+/l8u+lXMNn8AAA==" ConnectionId="6b67d9b5-48d0-4030-96da-b8b26248ece7" DisplayName="Content Generation" sap:VirtualizedContainerService.HintSize="416,429" sap2010:WorkflowViewState.IdRef="ConnectorActivity_3" UiPathActivityTypeId="aba52a00-4c05-318d-8f99-5ad924b2f277">
+          <isactr:ConnectorActivity Configuration="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" ConnectionId="6b67d9b5-48d0-4030-96da-b8b26248ece7" DisplayName="Content Generation" sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="ConnectorActivity_3" UiPathActivityTypeId="aba52a00-4c05-318d-8f99-5ad924b2f277">
             <isactr:ConnectorActivity.FieldObjects>
               <isactr:FieldObject Name="prompt" Type="FieldArgument">
                 <isactr:FieldObject.Value>
-                  <InArgument x:TypeArguments="x:String" xml:space="preserve">["You are a data validation expert specializing in academic HR processes at universities.
-Your task is to validate title consistency across three sources: a Chair Memo, an Asana task, and a CV document.
-
-NORMALIZATION RULES (apply to BOTH the Asana Business Title field and the highest academic title found in the CV before matching):
-Map any variation of the following titles to their canonical form. Be aggressive in normalization: partial matches, abbreviations, missing the word Adjunct, and alternate spellings must all be normalized.
-
-CANONICAL TITLES AND THEIR VARIATIONS:
-
-Canonical: Adjunct Assistant Professor
-Variations: Adj Asst Prof, Adj. Asst. Prof., Asst Professor, Asst. Prof., Assistant Prof, Assistant Professor, Adjunct Asst Professor, Adjunct Asst. Prof., Adj Assistant Professor, Adj. Assistant Prof.
-
-Canonical: Adjunct Associate Professor
-Variations: Adj Assoc Prof, Adj. Assoc. Prof., Assoc Professor, Assoc. Prof., Associate Prof, Associate Professor, Adjunct Assoc Professor, Adjunct Assoc. Prof., Adj Associate Professor, Adj. Associate Prof.
-
-Canonical: Adjunct Professor
-Variations: Adj Prof, Adj. Prof., Full Professor, Professor, Prof, Prof., Adjunct Full Professor, Adj Full Prof
-
-Canonical: Adjunct Professor In the Practice
-Variations: Prof In the Practice, Professor In the Practice, Adjunct Prof In Practice, Prof. in the Practice, Adj. Prof. in the Practice, Professor In Practice, Adjunct Professor In Practice, Prof In Practice
-
-Canonical: Adjunct Lecturer
-Variations: Adj Lecturer, Adj. Lecturer, Lecturer, Lect, Lect., Adjunct Lect, Adjunct Lect., Senior Lecturer, Adjunct Senior Lecturer
-
-Canonical: Adjunct Instructor
-Variations: Adj Instructor, Adj. Instructor, Instructor, Instr, Instr., Adjunct Instr, Adjunct Instr.
-
-Canonical: Adjunct Assistant Research Professor
-Variations: Adj Asst Research Prof, Adj. Asst. Research Prof., Assistant Research Professor, Asst Research Prof, Asst. Research Prof., Adjunct Asst Research Professor, Adj Assistant Research Professor, Research Assistant Professor, Asst. Research Professor
-
-ADDITIONAL NORMALIZATION RULES:
-
-If the title contains Associate Professor but is missing the word Adjunct, normalize to Adjunct Associate Professor.
-If the title contains Assistant Professor but is missing the word Adjunct, normalize to Adjunct Assistant Professor.
-If the title is exactly Professor or Full Professor with no qualifier, normalize to Adjunct Professor.
-If the title contains Lecturer with no qualifier, normalize to Adjunct Lecturer.
-If the title contains Professor In the Practice with no qualifier, normalize to Adjunct Professor In the Practice.
-Remove any extra words such as visiting, clinical, courtesy, or affiliate before normalizing unless they change the rank meaning.
-Ignore casing differences: uppercase, lowercase, and mixed case must all normalize correctly.
-Ignore punctuation differences: periods, commas, and abbreviation dots must not block normalization.
-For Asana: If the title cannot be mapped to any canonical form after all rules are applied, set asana_title_normalized to Not Found.
-For CV: If the highest extracted CV title cannot be matched within the canonical hierarchy after applying all rules, return the original extracted content as the cv_title_normalized.
-If the title contains Instructor with no qualifier, normalize to Adjunct Instructor.
-If the title contains Assistant Research Professor but is missing the word Adjunct, normalize to Adjunct Assistant Research Professor.
-
-RANK HIERARCHY (lowest to highest):
-1. Adjunct Instructor
-2. Adjunct Lecturer
-3. Adjunct Assistant Professor
-4. Adjunct Assistant Research Professor
-5. Adjunct Associate Professor
-6. Adjunct Professor In the Practice
-7. Adjunct Professor
-
-TITLE VALIDATION RULES:
-
-Invalid Title (Upgrade): If the Chair Memo assigns a rank HIGHER than the normalized Asana Business Title, the title is invalid because the assignment exceeds the approved business title.
-Invalid Title (Credential Gap): If the normalized CV title is lower in rank than the title assigned in the Chair Memo, the title is invalid because the candidate lacks the credentials to support that rank. If the CV title could not be normalized and retains its original text, use logical judgment to determine if it supports the Chair Memo rank.
-Valid Title (Equal or Lower): If the Chair Memo assigns a rank equal to or lower than the normalized Asana Business Title, and the CV credentials support that rank, the title is valid.
-
-VALIDATION TASK:
-Given the three inputs below, perform the following checks:
-1. CHAIR MEMO vs ASANA: The requested title in the Chair Memo must not exceed the normalized Business Title rank in Asana.
-2. CHAIR MEMO vs CV: The requested title in the Chair Memo must be consistent with and supported by the highest candidate position or rank at their home institution as extracted and normalized from the CV.
-
-Return ONLY a valid JSON object. Do not include markdown code blocks, backticks, explanations, or any text outside the JSON object.
-
-OUTPUT FORMAT:
-{
-  ""title_consistent"": true or false,
-  ""chair_memo_title"": ""title found in Chair Memo"",
-  ""asana_title_raw"": ""title as it appears in Asana"",
-  ""asana_title_normalized"": ""title after normalization"",
-  ""cv_title_raw"": ""highest academic title extracted from CV"",
-  ""cv_title_normalized"": ""title after normalization, or original content if no hierarchy match"",
-  ""chair_memo_vs_asana"": ""match or mismatch"",
-  ""chair_memo_vs_cv"": ""consistent or inconsistent""
-}
-
-RULES:
-Set title_consistent = true only if BOTH checks pass.
-Set title_consistent = false if either check fails.
-Set chair_memo_vs_asana = mismatch if the Chair Memo title rank is higher than the normalized Asana title rank.
-Set chair_memo_vs_asana = match if the Chair Memo title rank is equal to or lower than the normalized Asana title rank.
-Set chair_memo_vs_cv = inconsistent if the normalized CV title rank is lower than the rank assigned in the Chair Memo.
-Set chair_memo_vs_cv = consistent if the normalized CV title rank is equal to or higher than the assigned Chair Memo rank, or if an unnormalized CV title clearly supports the rank.
-Always normalize asana_title_raw and cv_title_raw before comparing.
-If an Asana title cannot be found, set that field to Not Found. If a CV title cannot be found, set it to Not Found.
-
---- INPUTS ---
-
-Chair Memo Text:
-" &amp; ChairMemoText &amp; "
-
-Asana Business Title:
-" &amp; io_asanaBusinessTitle &amp; "
-
-CV Text:
-" &amp; CVText]</InArgument>
+                  <InArgument x:TypeArguments="x:String" xml:space="preserve">["You are a data validation expert specializing in academic HR processes at universities." &amp; vbCrLf &amp;
+"Your task is to validate title consistency across three sources: a Chair Memo, an Asana task, and a CV document." &amp; vbCrLf &amp;
+vbCrLf &amp;
+"--- NORMALIZATION RULES ---" &amp; vbCrLf &amp;
+vbCrLf &amp;
+"Apply to ALL THREE sources (Chair Memo, Asana Business Title, and CV) before performing any comparisons." &amp; vbCrLf &amp;
+"Map any variation of the following titles to their canonical form. Be aggressive in normalization: partial matches, abbreviations, missing the word Adjunct, and alternate spellings must all be normalized." &amp; vbCrLf &amp;
+vbCrLf &amp;
+"CANONICAL TITLES AND THEIR VARIATIONS:" &amp; vbCrLf &amp;
+vbCrLf &amp;
+"Canonical: Adjunct Assistant Professor" &amp; vbCrLf &amp;
+"Variations: Adj Asst Prof, Adj. Asst. Prof., Asst Professor, Asst. Prof., Assistant Prof, Assistant Professor, Adjunct Asst Professor, Adjunct Asst. Prof., Adj Assistant Professor, Adj. Assistant Prof." &amp; vbCrLf &amp;
+vbCrLf &amp;
+"Canonical: Adjunct Associate Professor" &amp; vbCrLf &amp;
+"Variations: Adj Assoc Prof, Adj. Assoc. Prof., Assoc Professor, Assoc. Prof., Associate Prof, Associate Professor, Adjunct Assoc Professor, Adjunct Assoc. Prof., Adj Associate Professor, Adj. Associate Prof." &amp; vbCrLf &amp;
+vbCrLf &amp;
+"Canonical: Adjunct Professor" &amp; vbCrLf &amp;
+"Variations: Adj Prof, Adj. Prof., Full Professor, Professor, Prof, Prof., Adjunct Full Professor, Adj Full Prof" &amp; vbCrLf &amp;
+vbCrLf &amp;
+"Canonical: Adjunct Professor In the Practice" &amp; vbCrLf &amp;
+"Variations: Prof In the Practice, Professor In the Practice, Adjunct Prof In Practice, Prof. in the Practice, Adj. Prof. in the Practice, Professor In Practice, Adjunct Professor In Practice, Prof In Practice" &amp; vbCrLf &amp;
+vbCrLf &amp;
+"Canonical: Adjunct Lecturer" &amp; vbCrLf &amp;
+"Variations: Adj Lecturer, Adj. Lecturer, Lecturer, Lect, Lect., Adjunct Lect, Adjunct Lect., Senior Lecturer, Adjunct Senior Lecturer" &amp; vbCrLf &amp;
+vbCrLf &amp;
+"Canonical: Adjunct Instructor" &amp; vbCrLf &amp;
+"Variations: Adj Instructor, Adj. Instructor, Instructor, Instr, Instr., Adjunct Instr, Adjunct Instr." &amp; vbCrLf &amp;
+vbCrLf &amp;
+"Canonical: Adjunct Assistant Research Professor" &amp; vbCrLf &amp;
+"Variations: Adj Asst Research Prof, Adj. Asst. Research Prof., Assistant Research Professor, Asst Research Prof, Asst. Research Prof., Adjunct Asst Research Professor, Adj Assistant Research Professor, Research Assistant Professor, Asst. Research Professor" &amp; vbCrLf &amp;
+vbCrLf &amp;
+"ADDITIONAL NORMALIZATION RULES:" &amp; vbCrLf &amp;
+vbCrLf &amp;
+"If the title contains Associate Professor but is missing the word Adjunct, normalize to Adjunct Associate Professor." &amp; vbCrLf &amp;
+"If the title contains Assistant Professor but is missing the word Adjunct, normalize to Adjunct Assistant Professor." &amp; vbCrLf &amp;
+"If the title is exactly Professor or Full Professor with no qualifier, normalize to Adjunct Professor." &amp; vbCrLf &amp;
+"If the title contains Lecturer with no qualifier, normalize to Adjunct Lecturer." &amp; vbCrLf &amp;
+"If the title contains Professor In the Practice with no qualifier, normalize to Adjunct Professor In the Practice." &amp; vbCrLf &amp;
+"If the title contains Instructor with no qualifier, normalize to Adjunct Instructor." &amp; vbCrLf &amp;
+"If the title contains Assistant Research Professor but is missing the word Adjunct, normalize to Adjunct Assistant Research Professor." &amp; vbCrLf &amp;
+"Remove any extra words such as visiting, clinical, courtesy, or affiliate before normalizing unless they change the rank meaning." &amp; vbCrLf &amp;
+"Ignore casing differences: uppercase, lowercase, and mixed case must all normalize correctly." &amp; vbCrLf &amp;
+"Ignore punctuation differences: periods, commas, and abbreviation dots must not block normalization." &amp; vbCrLf &amp;
+vbCrLf &amp;
+"NOT FOUND RULES (apply equally to ALL THREE sources):" &amp; vbCrLf &amp;
+vbCrLf &amp;
+"For Chair Memo: If the title cannot be mapped to any canonical form, set chair_memo_title_normalized to Not Found." &amp; vbCrLf &amp;
+"For Asana: If the title cannot be mapped to any canonical form, set asana_title_normalized to Not Found." &amp; vbCrLf &amp;
+"For CV: If the title cannot be mapped to any canonical form, set cv_title_normalized to Not Found." &amp; vbCrLf &amp;
+vbCrLf &amp;
+"--- TITLE VALIDATION RULES ---" &amp; vbCrLf &amp;
+vbCrLf &amp;
+"Do NOT apply any rank hierarchy or upgrade/downgrade logic. Validation is via direct canonical-title matching only." &amp; vbCrLf &amp;
+vbCrLf &amp;
+"CHAIR MEMO vs ASANA:" &amp; vbCrLf &amp;
+"Set chair_memo_vs_asana = match only if chair_memo_title_normalized equals asana_title_normalized." &amp; vbCrLf &amp;
+"Set chair_memo_vs_asana = mismatch if they do not match, or if either normalized value is Not Found." &amp; vbCrLf &amp;
+vbCrLf &amp;
+"CHAIR MEMO vs CV:" &amp; vbCrLf &amp;
+"Set chair_memo_vs_cv = consistent only if chair_memo_title_normalized equals cv_title_normalized." &amp; vbCrLf &amp;
+"Set chair_memo_vs_cv = inconsistent if they do not match, or if cv_title_normalized is Not Found." &amp; vbCrLf &amp;
+vbCrLf &amp;
+"TITLE CONSISTENT (evaluate this LAST, after computing the two fields above):" &amp; vbCrLf &amp;
+"Set title_consistent = true only if chair_memo_vs_asana equals match AND chair_memo_vs_cv equals consistent." &amp; vbCrLf &amp;
+"Set title_consistent = false if chair_memo_vs_asana equals mismatch OR chair_memo_vs_cv equals inconsistent." &amp; vbCrLf &amp;
+vbCrLf &amp;
+"ADDITIONAL RULES:" &amp; vbCrLf &amp;
+"Always normalize all three titles before comparing." &amp; vbCrLf &amp;
+"If a Chair Memo title cannot be found, set chair_memo_title_raw and chair_memo_title_normalized to Not Found." &amp; vbCrLf &amp;
+"If an Asana title cannot be found, set asana_title_raw and asana_title_normalized to Not Found." &amp; vbCrLf &amp;
+"If a CV title cannot be found, set cv_title_raw and cv_title_normalized to Not Found." &amp; vbCrLf &amp;
+vbCrLf &amp;
+"Return ONLY a valid JSON object. Do not include markdown code blocks, backticks, explanations, or any text outside the JSON object." &amp; vbCrLf &amp;
+vbCrLf &amp;
+"Populate the JSON fields in this exact order — title_consistent must be filled LAST:" &amp; vbCrLf &amp;
+"{" &amp; vbCrLf &amp;
+"  ""chair_memo_title_raw"": ""title as it appears in the Chair Memo""," &amp; vbCrLf &amp;
+"  ""chair_memo_title_normalized"": ""title after normalization, or Not Found""," &amp; vbCrLf &amp;
+"  ""asana_title_raw"": ""title as it appears in Asana""," &amp; vbCrLf &amp;
+"  ""asana_title_normalized"": ""title after normalization, or Not Found""," &amp; vbCrLf &amp;
+"  ""cv_title_raw"": ""title as it appears in the CV""," &amp; vbCrLf &amp;
+"  ""cv_title_normalized"": ""title after normalization, or Not Found""," &amp; vbCrLf &amp;
+"  ""chair_memo_vs_asana"": ""match or mismatch""," &amp; vbCrLf &amp;
+"  ""chair_memo_vs_cv"": ""consistent or inconsistent""," &amp; vbCrLf &amp;
+"  ""title_consistent"": true or false" &amp; vbCrLf &amp;
+"}" &amp; vbCrLf &amp;
+vbCrLf &amp;
+"--- INPUTS ---" &amp; vbCrLf &amp;
+vbCrLf &amp;
+"Chair Memo Text:" &amp; vbCrLf &amp;
+ChairMemoText &amp; vbCrLf &amp;
+vbCrLf &amp;
+"Asana Business Title:" &amp; vbCrLf &amp;
+io_asanaBusinessTitle &amp; vbCrLf &amp;
+vbCrLf &amp;
+"CV Text:" &amp; vbCrLf &amp;
+CVText]</InArgument>
                 </isactr:FieldObject.Value>
               </isactr:FieldObject>
               <isactr:FieldObject Name="isPIIEnabled" Type="FieldArgument">
@@ -472,7 +492,11 @@ CV Text:
               <isactr:FieldObject Name="languageCode" Type="FieldArgument" />
               <isactr:FieldObject Name="piiEntityCategories_array" Type="FieldArgument" />
               <isactr:FieldObject Name="confidenceThreshold" Type="FieldArgument" />
-              <isactr:FieldObject Name="topK" Type="FieldArgument" />
+              <isactr:FieldObject Name="topK" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
               <isactr:FieldObject Name="contextGrounding" Type="FieldArgument">
                 <isactr:FieldObject.Value>
                   <InArgument x:TypeArguments="x:String">None</InArgument>
@@ -480,7 +504,11 @@ CV Text:
               </isactr:FieldObject>
               <isactr:FieldObject Name="_file" Type="FieldArgument" />
               <isactr:FieldObject Name="folderKey" Type="FieldArgument" />
-              <isactr:FieldObject Name="topP" Type="FieldArgument" />
+              <isactr:FieldObject Name="topP" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <InArgument x:TypeArguments="x:Double" />
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
               <isactr:FieldObject Name="indexID" Type="FieldArgument" />
               <isactr:FieldObject Name="numberOfResults" Type="FieldArgument" />
               <isactr:FieldObject Name="top_p" Type="FieldArgument">
@@ -490,7 +518,7 @@ CV Text:
               </isactr:FieldObject>
               <isactr:FieldObject Name="modelName" Type="FieldArgument">
                 <isactr:FieldObject.Value>
-                  <InArgument x:TypeArguments="x:String">gpt-5.1-2025-11-13</InArgument>
+                  <InArgument x:TypeArguments="x:String">gpt-5.2-2025-12-11</InArgument>
                 </isactr:FieldObject.Value>
               </isactr:FieldObject>
               <isactr:FieldObject Name="instruction" Type="FieldArgument">
@@ -550,8 +578,8 @@ CV Text:
               </isactr:FieldObject>
             </isactr:ConnectorActivity.FieldObjects>
           </isactr:ConnectorActivity>
-          <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="416,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_5" JsonObject="[outTitleValidation]" JsonString="[outTopGeneratedText]" />
-          <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_19">
+          <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_5" JsonObject="[outTitleValidation]" JsonString="[outTopGeneratedText]" />
+          <Assign sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="Assign_19">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[CVTextNormalized]</OutArgument>
             </Assign.To>
@@ -559,7 +587,7 @@ CV Text:
               <InArgument x:TypeArguments="x:String">[outTitleValidation("cv_title_normalized").ToString]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_18">
+          <Assign sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="Assign_18">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[io_asanaBusinessTitle]</OutArgument>
             </Assign.To>
@@ -567,25 +595,110 @@ CV Text:
               <InArgument x:TypeArguments="x:String">[outTitleValidation("asana_title_normalized").ToString]</InArgument>
             </Assign.Value>
           </Assign>
-          <If Condition="[not CBool(outTitleValidation(&quot;title_consistent&quot;).ToString)]" DisplayName="If - Validate Title" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="If_9">
+          <If Condition="[not CBool(outTitleValidation(&quot;title_consistent&quot;).ToString)]" DisplayName="If - Validate Title" sap:VirtualizedContainerService.HintSize="488,1210.6666666666667" sap2010:WorkflowViewState.IdRef="If_9">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_25">
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,1045.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_25">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Throw DisplayName="Throw - BE 7.3 Title Inconsistent" Exception="[new BusinessRuleException (&quot;Please validate the title in the different sources, the title is not matching.&quot;)]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_5" />
+                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="452,981.3333333333334" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <TryCatch.Try>
+                    <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="450,116" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Throw DisplayName="Throw - BE 7.3 Title Inconsistent" Exception="[new BusinessRuleException (&quot;Please validate the title in the different sources, the title is not matching.&quot;)]" sap:VirtualizedContainerService.HintSize="416,52" sap2010:WorkflowViewState.IdRef="Throw_5" />
+                    </Sequence>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="ui:BusinessRuleException" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                      <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,598" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap:VirtualizedContainerService.HintSize="416,180.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_27">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="ui:BusinessRuleException">[GlobalVariablesNamespace.GlobalVariables.BusinessException]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="ui:BusinessRuleException">[exception]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="AddErrorsToAsana - Invoke Workflow File (Main Flows\AddErrorsToAsana.xaml)" sap:VirtualizedContainerService.HintSize="416,182" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Main Flows\AddErrorsToAsana.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <InOutArgument x:TypeArguments="x:Boolean" x:Key="io_isBusinessException">[io_isBusinessException]</InOutArgument>
+                              <InOutArgument x:TypeArguments="ui:BusinessRuleException" x:Key="io_businessException">[GlobalVariablesNamespace.GlobalVariables.BusinessException]</InOutArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_AdminAssistant">[in_adminSpecialist]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_APIKey">[in_APIKey]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_taskGID">[in_taskGID]</InArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InvokeWorkflowFile>
+                          <Assign sap:VirtualizedContainerService.HintSize="416,171.33333333333334" sap2010:WorkflowViewState.IdRef="Assign_37">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Boolean">[io_isInvalidTitle]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Boolean">[True]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                        </Sequence>
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                  <TryCatch.Finally>
+                    <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="450,94.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </TryCatch.Finally>
+                </TryCatch>
               </Sequence>
             </If.Then>
             <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_26">
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,25.333333333333332" sap2010:WorkflowViewState.IdRef="Sequence_26">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -594,19 +707,19 @@ CV Text:
               </Sequence>
             </If.Else>
           </If>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;Title is consistent accross the sources.&quot;]" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="488,48" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;Title is consistent accross the sources.&quot;]" />
         </Sequence>
-        <Sequence DisplayName="Sequence - Validate All fields are present" sap:VirtualizedContainerService.HintSize="486,490" sap2010:WorkflowViewState.IdRef="Sequence_28">
+        <Sequence DisplayName="Sequence - Validate All fields are present" sap:VirtualizedContainerService.HintSize="522,57" sap2010:WorkflowViewState.IdRef="Sequence_28">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:Boolean" Name="isEmptyValue" />
           </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="Assign - Bool value if all fields present" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_7">
+          <Assign DisplayName="Assign - Bool value if all fields present" sap:VirtualizedContainerService.HintSize="452,57" sap2010:WorkflowViewState.IdRef="Assign_7">
             <Assign.To>
               <OutArgument x:TypeArguments="x:Boolean">[chairMemoFieldsValidation]</OutArgument>
             </Assign.To>
@@ -614,7 +727,7 @@ CV Text:
               <InArgument x:TypeArguments="x:Boolean">[chairMemoDictDetails.All(Function(x) Not String.IsNullOrEmpty(x.Value))]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Assign - Bool Value if all fields present" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_8">
+          <Assign DisplayName="Assign - Bool Value if all fields present" sap:VirtualizedContainerService.HintSize="452,57" sap2010:WorkflowViewState.IdRef="Assign_8">
             <Assign.To>
               <OutArgument x:TypeArguments="x:Boolean">[cvFieldsValidation]</OutArgument>
             </Assign.To>
@@ -622,21 +735,22 @@ CV Text:
               <InArgument x:TypeArguments="x:Boolean">[cvDictDetails.All(function(x) Not String.IsNullOrEmpty(x.Value))]</InArgument>
             </Assign.Value>
           </Assign>
-          <If Condition="[Not (chairMemoFieldsValidation and cvFieldsValidation)]" DisplayName="If - Some Value is Empty From Extraction" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="If_1">
+          <If Condition="[Not (chairMemoFieldsValidation and cvFieldsValidation)]" DisplayName="If - Some Value is Empty From Extraction" sap:VirtualizedContainerService.HintSize="452,401" sap2010:WorkflowViewState.IdRef="If_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,1099" sap2010:WorkflowViewState.IdRef="Sequence_9">
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,177" sap2010:WorkflowViewState.IdRef="Sequence_9">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Assign DisplayName="Assign - Validate Empty Value in Dict" sap:VirtualizedContainerService.HintSize="452,179" sap2010:WorkflowViewState.IdRef="Assign_21">
+                <Assign DisplayName="Assign - Validate Empty Value in Dict" sap:VirtualizedContainerService.HintSize="416,61" sap2010:WorkflowViewState.IdRef="Assign_21">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:Boolean">[isEmptyValue]</OutArgument>
                   </Assign.To>
@@ -644,62 +758,218 @@ CV Text:
                     <InArgument x:TypeArguments="x:Boolean">[chairMemoDictDetails.Values.Any(function(v) String.IsNullOrEmpty(v))]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <If Condition="[isEmptyValue]" DisplayName="If - Validate where is the empty value" sap:VirtualizedContainerService.HintSize="452,856" sap2010:WorkflowViewState.IdRef="If_11">
+                <If Condition="[isEmptyValue]" DisplayName="If - Validate where is the empty value" sap:VirtualizedContainerService.HintSize="488,964" sap2010:WorkflowViewState.IdRef="If_11">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
                   <If.Then>
-                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,361" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,116" sap2010:WorkflowViewState.IdRef="Sequence_36">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Assign DisplayName="Assign - Keys From Null Values" sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="Assign_20">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="scg:List(x:String)">[nullKeys]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="scg:List(x:String)" xml:space="preserve">[chairMemoDictDetails.Where(Function(kvp) kvp.Value = "").
+                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="452,952" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <TryCatch.Try>
+                          <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="450,361" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign DisplayName="Assign - Keys From Null Values" sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="Assign_20">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="scg:List(x:String)">[nullKeys]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="scg:List(x:String)" xml:space="preserve">[chairMemoDictDetails.Where(Function(kvp) kvp.Value = "").
     Select(Function(kvp) kvp.Key).
     ToList()]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Throw DisplayName="Throw - BE 5 Required Data Not Extracted" Exception="[New BusinessRuleException(&quot;One or more required valid data elements could not be extracted from the submitted document(s): &quot; + in_filepathChairMemo.GetName() + &quot; . &quot; + &quot; Missing Elements: &quot;+ String.Join(&quot;, &quot;, nullKeys) + &quot; Please review and update the affected file.&quot; )]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                              </Assign.Value>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Assign>
+                            <Throw DisplayName="Throw - BE 5 Required Data Not Extracted" Exception="[New BusinessRuleException(&quot;One or more required valid data elements could not be extracted from the submitted document(s): &quot; + in_filepathChairMemo.GetName() + &quot; . &quot; + &quot; Missing Elements: &quot;+ String.Join(&quot;, &quot;, nullKeys) + &quot; Please review and update the affected file.&quot; )]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_1">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Throw>
+                          </Sequence>
+                        </TryCatch.Try>
+                        <TryCatch.Catches>
+                          <Catch x:TypeArguments="ui:BusinessRuleException" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                            <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,420" sap2010:WorkflowViewState.IdRef="Sequence_46">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="Assign_30">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="ui:BusinessRuleException">[GlobalVariablesNamespace.GlobalVariables.BusinessException]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="ui:BusinessRuleException">[exception]</InArgument>
+                                  </Assign.Value>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </Assign>
+                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="AddErrorsToAsana - Invoke Workflow File (Main Flows\AddErrorsToAsana.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Main Flows\AddErrorsToAsana.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <InOutArgument x:TypeArguments="x:Boolean" x:Key="io_isBusinessException">[io_isBusinessException]</InOutArgument>
+                                    <InOutArgument x:TypeArguments="ui:BusinessRuleException" x:Key="io_businessException">[GlobalVariablesNamespace.GlobalVariables.BusinessException]</InOutArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_AdminAssistant">[in_adminSpecialist]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_APIKey">[in_APIKey]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_taskGID">[in_taskGID]</InArgument>
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:InvokeWorkflowFile>
+                              </Sequence>
+                            </ActivityAction>
+                          </Catch>
+                        </TryCatch.Catches>
+                        <TryCatch.Finally>
+                          <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="450,25.333333333333332" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Sequence>
+                        </TryCatch.Finally>
+                      </TryCatch>
                     </Sequence>
                   </If.Then>
                   <If.Else>
-                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,361" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,741" sap2010:WorkflowViewState.IdRef="Sequence_37">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Assign DisplayName="Assign - Keys From Null Values" sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="Assign_22">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="scg:List(x:String)">[nullKeys]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="scg:List(x:String)" xml:space="preserve">[cvDictDetails.Where(Function(kvp) kvp.Value = "").
+                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="452,677" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <TryCatch.Try>
+                          <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="450,177" sap2010:WorkflowViewState.IdRef="Sequence_49">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign DisplayName="Assign - Keys From Null Values" sap:VirtualizedContainerService.HintSize="416,61" sap2010:WorkflowViewState.IdRef="Assign_22">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="scg:List(x:String)">[nullKeys]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="scg:List(x:String)" xml:space="preserve">[cvDictDetails.Where(Function(kvp) kvp.Value = "").
     Select(Function(kvp) kvp.Key).
     ToList()]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <Throw DisplayName="Throw - BE 5 Required Data Not Extracted" Exception="[New BusinessRuleException(&quot;One or more required data elements could not be extracted from the submitted document(s): &quot; + in_filepathCV.GetName() +&quot; . &quot; +&quot;Missing Elements: &quot;+ String.Join(&quot;, &quot;, nullKeys) + &quot; Please review and update the affected file.&quot;)]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_7" />
+                              </Assign.Value>
+                            </Assign>
+                            <Throw DisplayName="Throw - BE 5 Required Data Not Extracted" Exception="[New BusinessRuleException(&quot;One or more required data elements could not be extracted from the submitted document(s): &quot; + in_filepathCV.GetName() +&quot; . &quot; +&quot;Missing Elements: &quot;+ String.Join(&quot;, &quot;, nullKeys) + &quot; Please review and update the affected file.&quot;)]" sap:VirtualizedContainerService.HintSize="416,52" sap2010:WorkflowViewState.IdRef="Throw_7" />
+                          </Sequence>
+                        </TryCatch.Try>
+                        <TryCatch.Catches>
+                          <Catch x:TypeArguments="ui:BusinessRuleException" sap2010:WorkflowViewState.IdRef="Catch`1_6">
+                            <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,302" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign sap:VirtualizedContainerService.HintSize="416,61" sap2010:WorkflowViewState.IdRef="Assign_31">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="ui:BusinessRuleException">[GlobalVariablesNamespace.GlobalVariables.BusinessException]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="ui:BusinessRuleException">[exception]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="AddErrorsToAsana - Invoke Workflow File (Main Flows\AddErrorsToAsana.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Main Flows\AddErrorsToAsana.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <InOutArgument x:TypeArguments="x:Boolean" x:Key="io_isBusinessException">[io_isBusinessException]</InOutArgument>
+                                    <InOutArgument x:TypeArguments="ui:BusinessRuleException" x:Key="io_businessException">[GlobalVariablesNamespace.GlobalVariables.BusinessException]</InOutArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_AdminAssistant">[in_adminSpecialist]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_APIKey">[in_APIKey]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="in_taskGID">[in_taskGID]</InArgument>
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:InvokeWorkflowFile>
+                              </Sequence>
+                            </ActivityAction>
+                          </Catch>
+                        </TryCatch.Catches>
+                        <TryCatch.Finally>
+                          <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="450,25" sap2010:WorkflowViewState.IdRef="Sequence_50">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Sequence>
+                        </TryCatch.Finally>
+                      </TryCatch>
                     </Sequence>
                   </If.Else>
                 </If>
               </Sequence>
             </If.Then>
             <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,94" sap2010:WorkflowViewState.IdRef="Sequence_10">
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_10">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </Sequence>
             </If.Else>
           </If>
         </Sequence>
-        <Sequence DisplayName="Sequence - Validate Name, Dates and Term" sap:VirtualizedContainerService.HintSize="486,2981" sap2010:WorkflowViewState.IdRef="Sequence_29">
+        <Sequence DisplayName="Sequence - Validate Name, Dates and Term" sap:VirtualizedContainerService.HintSize="522,5629" sap2010:WorkflowViewState.IdRef="Sequence_29">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:Boolean" Name="isNameValid" />
             <Variable x:TypeArguments="x:String" Name="debugMessage" />
@@ -709,10 +979,10 @@ CV Text:
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ==========================&#xA;' Helper: Normalize&#xA;' ==========================&#xA;Dim NormalizeName As Func(Of String, String) =&#xA;    Function(input As String) As String&#xA;        Dim s As String = If(input, String.Empty).Trim().ToLowerInvariant()&#xA;        s = System.Text.RegularExpressions.Regex.Replace(s, &quot;[^\w\s]&quot;, &quot; &quot;)&#xA;        s = System.Text.RegularExpressions.Regex.Replace(s, &quot;\s+&quot;, &quot; &quot;).Trim()&#xA;        Return s&#xA;    End Function&#xA;&#xA;' ==========================&#xA;' Helper: Tokenize&#xA;' ==========================&#xA;Dim Tokenize As Func(Of String, List(Of String)) =&#xA;    Function(name As String) As List(Of String)&#xA;        If String.IsNullOrWhiteSpace(name) Then&#xA;            Return New List(Of String)()&#xA;        End If&#xA;        Return name.Split(&quot; &quot;c).Where(Function(t) Not String.IsNullOrWhiteSpace(t)).ToList()&#xA;    End Function&#xA;&#xA;' ==========================&#xA;' Helper: Levenshtein distance&#xA;' ==========================&#xA;Dim Levenshtein As Func(Of String, String, Integer) =&#xA;    Function(a As String, b As String) As Integer&#xA;        Dim n As Integer = a.Length&#xA;        Dim m As Integer = b.Length&#xA;        Dim d(n, m) As Integer&#xA;&#xA;        For i As Integer = 0 To n&#xA;            d(i, 0) = i&#xA;        Next&#xA;        For j As Integer = 0 To m&#xA;            d(0, j) = j&#xA;        Next&#xA;&#xA;        For i As Integer = 1 To n&#xA;            For j As Integer = 1 To m&#xA;                Dim cost As Integer = If(a(i - 1) = b(j - 1), 0, 1)&#xA;                Dim del As Integer = d(i - 1, j) + 1&#xA;                Dim ins As Integer = d(i, j - 1) + 1&#xA;                Dim subc As Integer = d(i - 1, j - 1) + cost&#xA;                d(i, j) = Math.Min(Math.Min(del, ins), subc)&#xA;            Next&#xA;        Next&#xA;&#xA;        Return d(n, m)&#xA;    End Function&#xA;&#xA;' ==========================&#xA;' Helper: Similarity 0..1&#xA;' ==========================&#xA;Dim Similarity As Func(Of String, String, Double) =&#xA;    Function(a As String, b As String) As Double&#xA;        Dim aa As String = If(a, String.Empty).Trim().ToLowerInvariant()&#xA;        Dim bb As String = If(b, String.Empty).Trim().ToLowerInvariant()&#xA;&#xA;        If aa = bb Then Return 1.0&#xA;        If aa.Length = 0 OrElse bb.Length = 0 Then Return 0.0&#xA;&#xA;        Dim dist As Integer = Levenshtein(aa, bb)&#xA;        Dim maxLen As Integer = Math.Max(aa.Length, bb.Length)&#xA;        Return 1.0 - (dist / CDbl(maxLen))&#xA;    End Function&#xA;&#xA;' ==========================&#xA;' Compare 2 full names by token best-matches&#xA;' Returns 0..1&#xA;' ==========================&#xA;Dim CompareNames As Func(Of String, String, Double) =&#xA;    Function(nameA As String, nameB As String) As Double&#xA;&#xA;        Dim normA As String = NormalizeName(nameA)&#xA;        Dim normB As String = NormalizeName(nameB)&#xA;&#xA;        Dim tokensA As List(Of String) = Tokenize(normA)&#xA;        Dim tokensB As List(Of String) = Tokenize(normB)&#xA;&#xA;        If tokensA.Count = 0 OrElse tokensB.Count = 0 Then Return 0.0&#xA;&#xA;        Dim totalScore As Double = 0.0&#xA;        Dim matchCount As Integer = 0&#xA;&#xA;        For Each tA As String In tokensA&#xA;            Dim bestMatch As Double = 0.0&#xA;&#xA;            For Each tB As String In tokensB&#xA;                Dim sc As Double = Similarity(tA, tB)&#xA;                If sc &gt; bestMatch Then bestMatch = sc&#xA;            Next&#xA;&#xA;            ' Only count meaningful matches&#xA;            If bestMatch &gt;= 0.8 Then&#xA;                totalScore += bestMatch&#xA;                matchCount += 1&#xA;            End If&#xA;        Next&#xA;&#xA;        If matchCount = 0 Then Return 0.0&#xA;        Return totalScore / CDbl(matchCount)&#xA;    End Function&#xA;&#xA;' ==========================&#xA;' MAIN: pairwise scoring (Double, not Object)&#xA;' ==========================&#xA;Dim scoreCVChair As Double = CompareNames(cvName, chairName)&#xA;Dim scoreCVAsana As Double = CompareNames(cvName, asanaName)&#xA;Dim scoreChairAsana As Double = CompareNames(chairName, asanaName)&#xA;&#xA;Dim threshold As Double = 0.85&#xA;&#xA;Dim passCVChair As Boolean = (scoreCVChair &gt;= threshold)&#xA;Dim passCVAsana As Boolean = (scoreCVAsana &gt;= threshold)&#xA;Dim passChairAsana As Boolean = (scoreChairAsana &gt;= threshold)&#xA;&#xA;Dim passCount As Integer = 0&#xA;If passCVChair Then passCount += 1&#xA;If passCVAsana Then passCount += 1&#xA;If passChairAsana Then passCount += 1&#xA;&#xA;' Majority rule: 2 out of 3&#xA;isValid = (passCount &gt;= 2)&#xA;&#xA;debugMessage =&#xA;    &quot;CV vs Chair: &quot; &amp; Math.Round(scoreCVChair * 100.0, 2).ToString() &amp; &quot;%&quot; &amp; Environment.NewLine &amp;&#xA;    &quot;CV vs Asana: &quot; &amp; Math.Round(scoreCVAsana * 100.0, 2).ToString() &amp; &quot;%&quot; &amp; Environment.NewLine &amp;&#xA;    &quot;Chair vs Asana: &quot; &amp; Math.Round(scoreChairAsana * 100.0, 2).ToString() &amp; &quot;%&quot; &amp; Environment.NewLine &amp;&#xA;    &quot;Passed Comparisons: &quot; &amp; passCount.ToString() &amp; &quot;/3&quot; &amp; Environment.NewLine &amp;&#xA;    &quot;Decision: &quot; &amp; If(isValid, &quot;True&quot;, &quot;False&quot;)" DisplayName="Invoke Code - Fuzzy Name" sap:VirtualizedContainerService.HintSize="452,197" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+          <ui:InvokeCode ContinueOnError="{x:Null}" Code="' ==========================&#xA;' Helper: Normalize&#xA;' ==========================&#xA;Dim NormalizeName As Func(Of String, String) =&#xA;    Function(input As String) As String&#xA;        Dim s As String = If(input, String.Empty).Trim().ToLowerInvariant()&#xA;        s = System.Text.RegularExpressions.Regex.Replace(s, &quot;[^\w\s]&quot;, &quot; &quot;)&#xA;        s = System.Text.RegularExpressions.Regex.Replace(s, &quot;\s+&quot;, &quot; &quot;).Trim()&#xA;        Return s&#xA;    End Function&#xA;&#xA;' ==========================&#xA;' Helper: Tokenize&#xA;' ==========================&#xA;Dim Tokenize As Func(Of String, List(Of String)) =&#xA;    Function(name As String) As List(Of String)&#xA;        If String.IsNullOrWhiteSpace(name) Then&#xA;            Return New List(Of String)()&#xA;        End If&#xA;        Return name.Split(&quot; &quot;c).Where(Function(t) Not String.IsNullOrWhiteSpace(t)).ToList()&#xA;    End Function&#xA;&#xA;' ==========================&#xA;' Helper: Levenshtein distance&#xA;' ==========================&#xA;Dim Levenshtein As Func(Of String, String, Integer) =&#xA;    Function(a As String, b As String) As Integer&#xA;        Dim n As Integer = a.Length&#xA;        Dim m As Integer = b.Length&#xA;        Dim d(n, m) As Integer&#xA;&#xA;        For i As Integer = 0 To n&#xA;            d(i, 0) = i&#xA;        Next&#xA;        For j As Integer = 0 To m&#xA;            d(0, j) = j&#xA;        Next&#xA;&#xA;        For i As Integer = 1 To n&#xA;            For j As Integer = 1 To m&#xA;                Dim cost As Integer = If(a(i - 1) = b(j - 1), 0, 1)&#xA;                Dim del As Integer = d(i - 1, j) + 1&#xA;                Dim ins As Integer = d(i, j - 1) + 1&#xA;                Dim subc As Integer = d(i - 1, j - 1) + cost&#xA;                d(i, j) = Math.Min(Math.Min(del, ins), subc)&#xA;            Next&#xA;        Next&#xA;&#xA;        Return d(n, m)&#xA;    End Function&#xA;&#xA;' ==========================&#xA;' Helper: Similarity 0..1&#xA;' ==========================&#xA;Dim Similarity As Func(Of String, String, Double) =&#xA;    Function(a As String, b As String) As Double&#xA;        Dim aa As String = If(a, String.Empty).Trim().ToLowerInvariant()&#xA;        Dim bb As String = If(b, String.Empty).Trim().ToLowerInvariant()&#xA;&#xA;        If aa = bb Then Return 1.0&#xA;        If aa.Length = 0 OrElse bb.Length = 0 Then Return 0.0&#xA;&#xA;        Dim dist As Integer = Levenshtein(aa, bb)&#xA;        Dim maxLen As Integer = Math.Max(aa.Length, bb.Length)&#xA;        Return 1.0 - (dist / CDbl(maxLen))&#xA;    End Function&#xA;&#xA;' ==========================&#xA;' Compare 2 full names by token best-matches&#xA;' Returns 0..1&#xA;' ==========================&#xA;Dim CompareNames As Func(Of String, String, Double) =&#xA;    Function(nameA As String, nameB As String) As Double&#xA;&#xA;        Dim normA As String = NormalizeName(nameA)&#xA;        Dim normB As String = NormalizeName(nameB)&#xA;&#xA;        Dim tokensA As List(Of String) = Tokenize(normA)&#xA;        Dim tokensB As List(Of String) = Tokenize(normB)&#xA;&#xA;        If tokensA.Count = 0 OrElse tokensB.Count = 0 Then Return 0.0&#xA;&#xA;        Dim totalScore As Double = 0.0&#xA;        Dim matchCount As Integer = 0&#xA;&#xA;        For Each tA As String In tokensA&#xA;            Dim bestMatch As Double = 0.0&#xA;&#xA;            For Each tB As String In tokensB&#xA;                Dim sc As Double = Similarity(tA, tB)&#xA;                If sc &gt; bestMatch Then bestMatch = sc&#xA;            Next&#xA;&#xA;            ' Only count meaningful matches&#xA;            If bestMatch &gt;= 0.8 Then&#xA;                totalScore += bestMatch&#xA;                matchCount += 1&#xA;            End If&#xA;        Next&#xA;&#xA;        If matchCount = 0 Then Return 0.0&#xA;        Return totalScore / CDbl(matchCount)&#xA;    End Function&#xA;&#xA;' ==========================&#xA;' MAIN: pairwise scoring (Double, not Object)&#xA;' ==========================&#xA;Dim scoreCVChair As Double = CompareNames(cvName, chairName)&#xA;Dim scoreCVAsana As Double = CompareNames(cvName, asanaName)&#xA;Dim scoreChairAsana As Double = CompareNames(chairName, asanaName)&#xA;&#xA;Dim threshold As Double = 0.85&#xA;&#xA;Dim passCVChair As Boolean = (scoreCVChair &gt;= threshold)&#xA;Dim passCVAsana As Boolean = (scoreCVAsana &gt;= threshold)&#xA;Dim passChairAsana As Boolean = (scoreChairAsana &gt;= threshold)&#xA;&#xA;Dim passCount As Integer = 0&#xA;If passCVChair Then passCount += 1&#xA;If passCVAsana Then passCount += 1&#xA;If passChairAsana Then passCount += 1&#xA;&#xA;' Majority rule: 2 out of 3&#xA;isValid = (passCount &gt;= 2)&#xA;&#xA;debugMessage =&#xA;    &quot;CV vs Chair: &quot; &amp; Math.Round(scoreCVChair * 100.0, 2).ToString() &amp; &quot;%&quot; &amp; Environment.NewLine &amp;&#xA;    &quot;CV vs Asana: &quot; &amp; Math.Round(scoreCVAsana * 100.0, 2).ToString() &amp; &quot;%&quot; &amp; Environment.NewLine &amp;&#xA;    &quot;Chair vs Asana: &quot; &amp; Math.Round(scoreChairAsana * 100.0, 2).ToString() &amp; &quot;%&quot; &amp; Environment.NewLine &amp;&#xA;    &quot;Passed Comparisons: &quot; &amp; passCount.ToString() &amp; &quot;/3&quot; &amp; Environment.NewLine &amp;&#xA;    &quot;Decision: &quot; &amp; If(isValid, &quot;True&quot;, &quot;False&quot;)" DisplayName="Invoke Code - Fuzzy Name" sap:VirtualizedContainerService.HintSize="488,57.333333333333336" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
             <ui:InvokeCode.Arguments>
               <InArgument x:TypeArguments="x:String" x:Key="cvName">[cvDictDetails("CandidateName")]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="chairName">[chairMemoDictDetails("CandidateSFullName")]</InArgument>
@@ -721,25 +991,112 @@ CV Text:
               <OutArgument x:TypeArguments="x:String" x:Key="debugMessage">[debugMessage]</OutArgument>
             </ui:InvokeCode.Arguments>
           </ui:InvokeCode>
-          <If Condition="[not CBool(isNameValid)]" DisplayName="If - Validate name and last name are the same" sap:VirtualizedContainerService.HintSize="452,415" sap2010:WorkflowViewState.IdRef="If_3">
+          <If Condition="[not CBool(isNameValid)]" DisplayName="If - Validate name and last name are the same" sap:VirtualizedContainerService.HintSize="488,1141" sap2010:WorkflowViewState.IdRef="If_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_12">
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,977" sap2010:WorkflowViewState.IdRef="Sequence_12">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Throw DisplayName="Throw - BE 6 Candidate name matches across sources" Exception="[New BusinessRuleException(&quot;Candidate name mismatch across documents&quot;)]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="452,913" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <TryCatch.Try>
+                    <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="450,116" sap2010:WorkflowViewState.IdRef="Sequence_51">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Throw DisplayName="Throw - BE 6 Candidate name matches across sources" Exception="[New BusinessRuleException(&quot;Candidate name mismatch across documents&quot;)]" sap:VirtualizedContainerService.HintSize="416,52" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                    </Sequence>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="ui:BusinessRuleException" sap2010:WorkflowViewState.IdRef="Catch`1_10">
+                      <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,599" sap2010:WorkflowViewState.IdRef="Sequence_52">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="Assign_33">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="ui:BusinessRuleException">[GlobalVariablesNamespace.GlobalVariables.BusinessException]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="ui:BusinessRuleException">[exception]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="AddErrorsToAsana - Invoke Workflow File (Main Flows\AddErrorsToAsana.xaml)" sap:VirtualizedContainerService.HintSize="416,186" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Main Flows\AddErrorsToAsana.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <InOutArgument x:TypeArguments="x:Boolean" x:Key="io_isBusinessException">[io_isBusinessException]</InOutArgument>
+                              <InOutArgument x:TypeArguments="ui:BusinessRuleException" x:Key="io_businessException">[GlobalVariablesNamespace.GlobalVariables.BusinessException]</InOutArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_AdminAssistant">[in_adminSpecialist]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_APIKey">[in_APIKey]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_taskGID">[in_taskGID]</InArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InvokeWorkflowFile>
+                          <Assign sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="Assign_38">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Boolean">[io_isInvalidName]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Boolean">[True]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                        </Sequence>
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                  <TryCatch.Finally>
+                    <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="450,25" sap2010:WorkflowViewState.IdRef="Sequence_53">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </TryCatch.Finally>
+                </TryCatch>
               </Sequence>
             </If.Then>
             <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_13">
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,25" sap2010:WorkflowViewState.IdRef="Sequence_13">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -748,7 +1105,7 @@ CV Text:
               </Sequence>
             </If.Else>
           </If>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Candidate name matches accross the sources.&quot;]">
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Candidate name matches accross the sources.&quot;]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -756,63 +1113,273 @@ CV Text:
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:LogMessage>
-          <If Condition="[if (CBool(chairMemoDictValidation(&quot;ValidStartDate&quot;)) and CBool(chairMemoDictValidation(&quot;ValidEndDate&quot;)),True,False)]" DisplayName="If - Validate Start Date &amp; End Date" sap:VirtualizedContainerService.HintSize="452,415" sap2010:WorkflowViewState.IdRef="If_7">
+          <If Condition="[if (CBool(chairMemoDictValidation(&quot;ValidStartDate&quot;)) and CBool(chairMemoDictValidation(&quot;ValidEndDate&quot;)),True,False)]" DisplayName="If - Validate Start Date &amp; End Date" sap:VirtualizedContainerService.HintSize="488,1774" sap2010:WorkflowViewState.IdRef="If_7">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_14">
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,413" sap2010:WorkflowViewState.IdRef="Sequence_14">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="452,179" sap2010:WorkflowViewState.IdRef="Assign_42">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Boolean">[io_isInvalidStartDate]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Boolean">[CBool(chairMemoDictValidation("ValidStartDate"))]</InArgument>
+                  </Assign.Value>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Assign>
+                <Assign sap:VirtualizedContainerService.HintSize="452,170" sap2010:WorkflowViewState.IdRef="Assign_43">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Boolean">[io_isInvalidEndDate]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Boolean">[CBool(chairMemoDictValidation("ValidEndDate"))]</InArgument>
+                  </Assign.Value>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Assign>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,1222" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="452,1158" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <TryCatch.Try>
+                    <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_56">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Throw DisplayName="Throw - BE 7.1 Invalid Dates" Exception="[New BusinessRuleException(&quot;Inavlid Start Date or End Date, please verify.&quot;)]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_3">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Throw>
+                    </Sequence>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="ui:BusinessRuleException" sap2010:WorkflowViewState.IdRef="Catch`1_11">
+                      <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,778" sap2010:WorkflowViewState.IdRef="Sequence_55">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="Assign_34">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="ui:BusinessRuleException">[GlobalVariablesNamespace.GlobalVariables.BusinessException]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="ui:BusinessRuleException">[exception]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="AddErrorsToAsana - Invoke Workflow File (Main Flows\AddErrorsToAsana.xaml)" sap:VirtualizedContainerService.HintSize="416,186" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Main Flows\AddErrorsToAsana.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <InOutArgument x:TypeArguments="x:Boolean" x:Key="io_isBusinessException">[io_isBusinessException]</InOutArgument>
+                              <InOutArgument x:TypeArguments="ui:BusinessRuleException" x:Key="io_businessException">[GlobalVariablesNamespace.GlobalVariables.BusinessException]</InOutArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_AdminAssistant">[in_adminSpecialist]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_APIKey">[in_APIKey]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_taskGID">[in_taskGID]</InArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InvokeWorkflowFile>
+                          <Assign sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="Assign_39">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Boolean">[io_isInvalidStartDate]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Boolean">[CBool(chairMemoDictValidation("ValidStartDate"))]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                          <Assign sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="Assign_41">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Boolean">[io_isInvalidEndDate]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Boolean">[CBool(chairMemoDictValidation("ValidEndDate"))]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                        </Sequence>
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                  <TryCatch.Finally>
+                    <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="450,25" sap2010:WorkflowViewState.IdRef="Sequence_57">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </TryCatch.Finally>
+                </TryCatch>
+              </Sequence>
+            </If.Else>
+          </If>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Start Date and End Date validated.&quot;]" />
+          <If Condition="[CBool(chairMemoDictValidation(&quot;AdjunctReappointments&quot;))]" DisplayName="If - Validate Term Adjunct Reappointment" sap:VirtualizedContainerService.HintSize="488,1092" sap2010:WorkflowViewState.IdRef="If_6">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,94" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </Sequence>
             </If.Then>
             <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_15">
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,859" sap2010:WorkflowViewState.IdRef="Sequence_19">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Throw DisplayName="Throw - BE 7.1 Invalid Dates" Exception="[New BusinessRuleException(&quot;Inavlid Start Date or End Date, please verify.&quot;)]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_3" />
+                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="452,795" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <TryCatch.Try>
+                    <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="450,116" sap2010:WorkflowViewState.IdRef="Sequence_58">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Throw DisplayName="Throw - BE 7.2 Invalid Term" Exception="[New BusinessRuleException(&quot;The term is not valid for Adjunct Reappointment.&quot;)]" sap:VirtualizedContainerService.HintSize="416,52" sap2010:WorkflowViewState.IdRef="Throw_4" />
+                    </Sequence>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="ui:BusinessRuleException" sap2010:WorkflowViewState.IdRef="Catch`1_12">
+                      <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,481" sap2010:WorkflowViewState.IdRef="Sequence_59">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap:VirtualizedContainerService.HintSize="416,61" sap2010:WorkflowViewState.IdRef="Assign_35">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="ui:BusinessRuleException">[GlobalVariablesNamespace.GlobalVariables.BusinessException]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="ui:BusinessRuleException">[exception]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="AddErrorsToAsana - Invoke Workflow File (Main Flows\AddErrorsToAsana.xaml)" sap:VirtualizedContainerService.HintSize="416,186" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Main Flows\AddErrorsToAsana.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <InOutArgument x:TypeArguments="x:Boolean" x:Key="io_isBusinessException">[io_isBusinessException]</InOutArgument>
+                              <InOutArgument x:TypeArguments="ui:BusinessRuleException" x:Key="io_businessException">[GlobalVariablesNamespace.GlobalVariables.BusinessException]</InOutArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_AdminAssistant">[in_adminSpecialist]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_APIKey">[in_APIKey]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_taskGID">[in_taskGID]</InArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InvokeWorkflowFile>
+                          <Assign sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="Assign_40">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Boolean">[io_isInvalidTerm]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Boolean">[True]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                        </Sequence>
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                  <TryCatch.Finally>
+                    <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="450,25" sap2010:WorkflowViewState.IdRef="Sequence_60">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </TryCatch.Finally>
+                </TryCatch>
               </Sequence>
             </If.Else>
           </If>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Start Date and End Date validated.&quot;]" />
-          <If Condition="[CBool(chairMemoDictValidation(&quot;AdjunctReappointments&quot;))]" DisplayName="If - Validate Term Adjunct Reappointment" sap:VirtualizedContainerService.HintSize="452,415" sap2010:WorkflowViewState.IdRef="If_6">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_18">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-              </Sequence>
-            </If.Then>
-            <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_19">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <Throw DisplayName="Throw - BE 7.2 Invalid Term" Exception="[New BusinessRuleException(&quot;The term is not valid for Adjunct Reappointment.&quot;)]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_4" />
-              </Sequence>
-            </If.Else>
-          </If>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_7" Message="[&quot;Chair Memo Term validated.&quot;]" />
-          <Assign DisplayName="Assign - Normalized projected end date" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_24">
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="LogMessage_7" Message="[&quot;Chair Memo Term validated.&quot;]" />
+          <Assign DisplayName="Assign - Normalized projected end date" sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="Assign_24">
             <Assign.To>
               <OutArgument x:TypeArguments="s:DateTime">[normalizedProjectedEndDate]</OutArgument>
             </Assign.To>
@@ -820,45 +1387,122 @@ CV Text:
               <InArgument x:TypeArguments="s:DateTime">[DateTime.ParseExact(in_projectedEndDate, {"MM/dd/yyyy HH:mm:ss","MM/dd/yyyy"}, System.Globalization.CultureInfo.InvariantCulture).AddDays(1).Date]</InArgument>
             </Assign.Value>
           </Assign>
-          <Assign DisplayName="Assign - Normalized Start Date" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_25">
+          <Assign DisplayName="Assign - Normalized Start Date" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_25">
             <Assign.To>
               <OutArgument x:TypeArguments="s:DateTime">[normalizedStartDate]</OutArgument>
             </Assign.To>
             <Assign.Value>
               <InArgument x:TypeArguments="s:DateTime">[DateTime.ParseExact(chairMemoDictDetails("ReappointmentStartDate"), {"MM/dd/yyyy HH:mm:ss","MM/dd/yyyy"}, System.Globalization.CultureInfo.InvariantCulture).Date]</InArgument>
             </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
           </Assign>
-          <If Condition="[normalizedProjectedEndDate &lt;&gt; normalizedStartDate]" DisplayName="If - Validate Projected End Date" sap:VirtualizedContainerService.HintSize="452,415" sap2010:WorkflowViewState.IdRef="If_15">
+          <If Condition="[normalizedProjectedEndDate &lt;&gt; normalizedStartDate]" DisplayName="If - Validate Projected End Date" sap:VirtualizedContainerService.HintSize="488,1031" sap2010:WorkflowViewState.IdRef="If_15">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="Sequence_40">
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,798" sap2010:WorkflowViewState.IdRef="Sequence_40">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Throw Exception="[New BusinessRuleException(&quot;The date continuity is not valid, please verify the information.&quot;)]" sap:VirtualizedContainerService.HintSize="416,118" sap2010:WorkflowViewState.IdRef="Throw_9" />
+                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="452,734" sap2010:WorkflowViewState.IdRef="TryCatch_7">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <TryCatch.Try>
+                    <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="450,116" sap2010:WorkflowViewState.IdRef="Sequence_61">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Throw Exception="[New BusinessRuleException(&quot;The date continuity is not valid, please verify the information.&quot;)]" sap:VirtualizedContainerService.HintSize="416,52" sap2010:WorkflowViewState.IdRef="Throw_9" />
+                    </Sequence>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="ui:BusinessRuleException" sap2010:WorkflowViewState.IdRef="Catch`1_14">
+                      <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,420" sap2010:WorkflowViewState.IdRef="Sequence_64">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="Assign_36">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="ui:BusinessRuleException">[GlobalVariablesNamespace.GlobalVariables.BusinessException]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="ui:BusinessRuleException">[exception]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="AddErrorsToAsana - Invoke Workflow File (Main Flows\AddErrorsToAsana.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Main Flows\AddErrorsToAsana.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <InOutArgument x:TypeArguments="x:Boolean" x:Key="io_isBusinessException">[io_isBusinessException]</InOutArgument>
+                              <InOutArgument x:TypeArguments="ui:BusinessRuleException" x:Key="io_businessException">[GlobalVariablesNamespace.GlobalVariables.BusinessException]</InOutArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_AdminAssistant">[in_adminSpecialist]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_APIKey">[in_APIKey]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_taskGID">[in_taskGID]</InArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InvokeWorkflowFile>
+                        </Sequence>
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                  <TryCatch.Finally>
+                    <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="450,25" sap2010:WorkflowViewState.IdRef="Sequence_63">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </TryCatch.Finally>
+                </TryCatch>
               </Sequence>
             </If.Then>
             <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94" sap2010:WorkflowViewState.IdRef="Sequence_41">
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,94" sap2010:WorkflowViewState.IdRef="Sequence_41">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </Sequence>
             </If.Else>
           </If>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Date continuity validated&quot;]" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="488,48" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Date continuity validated&quot;]" />
         </Sequence>
       </Sequence>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,166" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Ended data extraction from IXP&quot;]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="556,48" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Ended data extraction from IXP&quot;]" />
     </Sequence>
   </Sequence>
 </Activity>

@@ -87,44 +87,46 @@
       <AssemblyReference>System.Management.Automation</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="TestItems" sap:VirtualizedContainerService.HintSize="1400,737.6566666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="TestItems" sap:VirtualizedContainerService.HintSize="752,761.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="saveFolder" />
       <Variable x:TypeArguments="x:String" Name="apiResponse" />
       <Variable x:TypeArguments="x:Int32" Name="statusCode" />
       <Variable x:TypeArguments="x:String" Name="response" />
+      <Variable x:TypeArguments="x:String" Name="debugMsg" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="Assign - Save Folder Modified Letter" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Assign - Save Folder Modified Letter" sap:VirtualizedContainerService.HintSize="450,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[saveFolder]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String" xml:space="preserve">[System.IO.Path.Combine("C:\Users\lap10\Downloads\Sokolov- Konstantin  -  July 2024_June 2027 Adjunct Reappointment.docx").Trim()]</InArgument>
+        <InArgument x:TypeArguments="x:String">[System.IO.Path.Combine("C:\Users\lap10\Documents\UiPath\Asana\Data\Temp\Mawlawi, Oussama\Mawlawi,, Oussama 2026 - CV - Copy - Copy.pdf").Trim()]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim url As String = &quot;https://app.asana.com/api/1.0/attachments&quot;&#xD;&#xA;Dim responseText As String = &quot;&quot;&#xD;&#xA;Dim statusCodeValue As Integer = -1&#xD;&#xA;Dim client As New System.Net.Http.HttpClient()&#xD;&#xA;Try&#xD;&#xA;    client.DefaultRequestHeaders.Authorization =&#xD;&#xA;        New System.Net.Http.Headers.AuthenticationHeaderValue(&quot;Bearer&quot;, inPersonalAccessToken)&#xD;&#xA;    Dim form As New System.Net.Http.MultipartFormDataContent()&#xD;&#xA;    &#xD;&#xA;    ' Required: parent (task GID)&#xD;&#xA;    form.Add(New System.Net.Http.StringContent(inTaskGid), &quot;parent&quot;)&#xD;&#xA;    &#xD;&#xA;    ' Required: file (binary)&#xD;&#xA;    Dim bytes As Byte() = System.IO.File.ReadAllBytes(inFilePath)&#xD;&#xA;    Dim fileContent As New System.Net.Http.ByteArrayContent(bytes)&#xD;&#xA;    fileContent.Headers.ContentType =&#xD;&#xA;        New System.Net.Http.Headers.MediaTypeHeaderValue(&quot;application/octet-stream&quot;)&#xD;&#xA;    &#xD;&#xA;    ' Get filename and encode it using RFC 5987 (UTF-8 percent encoding)&#xD;&#xA;    Dim fileName As String = System.IO.Path.GetFileName(inFilePath)&#xD;&#xA;    Dim encodedFileName As String = Uri.EscapeDataString(fileName)&#xD;&#xA;    &#xD;&#xA;    ' ASCII fallback strips the comma, RFC 5987 encoded value preserves it&#xD;&#xA;    Dim asciiFileName As String = fileName.Replace(&quot;,&quot;, &quot;&quot;)&#xD;&#xA;    fileContent.Headers.Add(&quot;Content-Disposition&quot;,&#xD;&#xA;        &quot;form-data; name=&quot;&quot;file&quot;&quot;; filename=&quot;&quot;&quot; &amp; asciiFileName &amp; &quot;&quot;&quot;; filename*=UTF-8''&quot; &amp; encodedFileName)&#xD;&#xA;    &#xD;&#xA;    form.Add(fileContent)&#xD;&#xA;    &#xD;&#xA;    Dim resp As System.Net.Http.HttpResponseMessage = client.PostAsync(url, form).Result&#xD;&#xA;    statusCodeValue = CInt(resp.StatusCode)&#xD;&#xA;    responseText = resp.Content.ReadAsStringAsync().Result&#xD;&#xA;Finally&#xD;&#xA;    client.Dispose()&#xD;&#xA;End Try&#xD;&#xA;outStatusCode = statusCodeValue&#xD;&#xA;outResponse = responseText" DisplayName="Invoke Code - Upload File" sap:VirtualizedContainerService.HintSize="450,188" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Try&#xD;&#xA;    Dim tempFolder As String = System.IO.Path.Combine(System.IO.Path.GetTempPath(), &quot;docx_edit&quot;)&#xD;&#xA;    &#xD;&#xA;    debugMsg = &quot;Step 1: Preparing temp folder&quot;&#xD;&#xA;    If System.IO.Directory.Exists(tempFolder) Then&#xD;&#xA;        System.IO.Directory.Delete(tempFolder, True)&#xD;&#xA;    End If&#xD;&#xA;    System.IO.Directory.CreateDirectory(tempFolder)&#xD;&#xA;    &#xD;&#xA;    debugMsg = &quot;Step 2: Extracting docx&quot;&#xD;&#xA;    System.IO.Compression.ZipFile.ExtractToDirectory(docPath, tempFolder)&#xD;&#xA;    &#xD;&#xA;    debugMsg = &quot;Step 3: Loading document.xml&quot;&#xD;&#xA;    Dim xmlPath As String = System.IO.Path.Combine(tempFolder, &quot;word&quot;, &quot;document.xml&quot;)&#xD;&#xA;    Dim xmlDoc As New System.Xml.XmlDocument()&#xD;&#xA;    xmlDoc.Load(xmlPath)&#xD;&#xA;    &#xD;&#xA;    debugMsg = &quot;Step 4: Setting up namespace manager&quot;&#xD;&#xA;    Dim nsManager As New System.Xml.XmlNamespaceManager(xmlDoc.NameTable)&#xD;&#xA;    nsManager.AddNamespace(&quot;w&quot;, &quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;)&#xD;&#xA;    &#xD;&#xA;    debugMsg = &quot;Step 5: Finding first matching text node&quot;&#xD;&#xA;    Dim allTextNodes As System.Xml.XmlNodeList = xmlDoc.SelectNodes(&quot;//w:t&quot;, nsManager)&#xD;&#xA;    Dim targetRun As System.Xml.XmlNode = Nothing&#xD;&#xA;    &#xD;&#xA;    For Each textNode As System.Xml.XmlNode In allTextNodes&#xD;&#xA;        If textNode.InnerText.Contains(searchText) Then&#xD;&#xA;            targetRun = textNode.ParentNode ' this is the &lt;w:r&gt; run element&#xD;&#xA;            Exit For&#xD;&#xA;        End If&#xD;&#xA;    Next&#xD;&#xA;    &#xD;&#xA;    debugMsg = &quot;Step 6: Checking if text was found&quot;&#xD;&#xA;    If targetRun Is Nothing Then&#xD;&#xA;        debugMsg = &quot;Text not found in document&quot;&#xD;&#xA;        Return&#xD;&#xA;    End If&#xD;&#xA;    &#xD;&#xA;    debugMsg = &quot;Step 7: Looking for existing rPr node&quot;&#xD;&#xA;    Dim rPr As System.Xml.XmlNode = targetRun.SelectSingleNode(&quot;w:rPr&quot;, nsManager)&#xD;&#xA;    &#xD;&#xA;    If rPr Is Nothing Then&#xD;&#xA;        debugMsg = &quot;Step 8: Creating new rPr node&quot;&#xD;&#xA;        rPr = xmlDoc.CreateElement(&quot;w&quot;, &quot;rPr&quot;, &quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;)&#xD;&#xA;        targetRun.InsertBefore(rPr, targetRun.FirstChild)&#xD;&#xA;    End If&#xD;&#xA;    &#xD;&#xA;    debugMsg = &quot;Step 9: Injecting color node&quot;&#xD;&#xA;    Dim colorNode As System.Xml.XmlElement = xmlDoc.CreateElement(&quot;w&quot;, &quot;color&quot;, &quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;)&#xD;&#xA;    colorNode.SetAttribute(&quot;val&quot;, &quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;, &quot;FF0000&quot;)&#xD;&#xA;    rPr.AppendChild(colorNode)&#xD;&#xA;    &#xD;&#xA;    debugMsg = &quot;Step 10: Saving modified XML&quot;&#xD;&#xA;    xmlDoc.Save(xmlPath)&#xD;&#xA;    &#xD;&#xA;    debugMsg = &quot;Step 11: Repackaging docx&quot;&#xD;&#xA;    If System.IO.File.Exists(docPath) Then&#xD;&#xA;        System.IO.File.Delete(docPath)&#xD;&#xA;    End If&#xD;&#xA;    System.IO.Compression.ZipFile.CreateFromDirectory(tempFolder, docPath)&#xD;&#xA;    &#xD;&#xA;    debugMsg = &quot;Step 12: Cleaning up temp folder&quot;&#xD;&#xA;    System.IO.Directory.Delete(tempFolder, True)&#xD;&#xA;    &#xD;&#xA;    debugMsg = &quot;Completed successfully&quot;&#xD;&#xA;&#xD;&#xA;Catch ex As Exception&#xD;&#xA;    debugMsg = &quot;Failed at: &quot; &amp; debugMsg &amp; &quot; | Error: &quot; &amp; ex.Message&#xD;&#xA;End Try" DisplayName="Invoke Code - Upload File" sap:VirtualizedContainerService.HintSize="450,197.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
       <ui:InvokeCode.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="inPersonalAccessToken">
-          <Literal x:TypeArguments="x:String">2/1212982367753843/1213153733282738:dedad1ffda66837ab8acbb188d255836</Literal>
+        <InArgument x:TypeArguments="x:String" x:Key="docPath">
+          <Literal x:TypeArguments="x:String">C:\Users\lap10\Downloads\Adjunct Reappointment - Template.docx</Literal>
         </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="inTaskGid">
-          <Literal x:TypeArguments="x:String">1213128948020719</Literal>
+        <InArgument x:TypeArguments="x:String" x:Key="searchText">
+          <Literal x:TypeArguments="x:String">[Title]</Literal>
         </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="inFilePath">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="saveFolder" />
-        </InArgument>
-        <OutArgument x:TypeArguments="x:Int32" x:Key="outStatusCode">
-          <VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="statusCode" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="outResponse">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="apiResponse" />
+        <OutArgument x:TypeArguments="x:String" x:Key="debugMsg">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="debugMsg" />
         </OutArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim wordApp As New Microsoft.Office.Interop.Word.Application&#xD;&#xA;Dim doc As Microsoft.Office.Interop.Word.Document = Nothing&#xD;&#xA; &#xD;&#xA;Try&#xD;&#xA;    wordApp.Visible = False&#xD;&#xA;    doc = wordApp.Documents.Open(CStr(in_FilePath))&#xD;&#xA; &#xD;&#xA;    Dim findRange As Microsoft.Office.Interop.Word.Range = doc.Content&#xD;&#xA; &#xD;&#xA;    With findRange.Find&#xD;&#xA;        .ClearFormatting()&#xD;&#xA;        .Text = CStr(in_SearchText)&#xD;&#xA;        .Forward = True&#xD;&#xA;        .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindStop&#xD;&#xA;        .Format = False&#xD;&#xA;    End With&#xD;&#xA; &#xD;&#xA;    Do While findRange.Find.Execute()&#xD;&#xA;        findRange.HighlightColorIndex = Microsoft.Office.Interop.Word.WdColorIndex.wdYellow&#xD;&#xA;        findRange.Collapse(Microsoft.Office.Interop.Word.WdCollapseDirection.wdCollapseEnd)&#xD;&#xA;    Loop&#xD;&#xA; &#xD;&#xA;    doc.Save()&#xD;&#xA; &#xD;&#xA;Finally&#xD;&#xA;    If doc IsNot Nothing Then&#xD;&#xA;        doc.Close(False)&#xD;&#xA;    End If&#xD;&#xA; &#xD;&#xA;    If wordApp IsNot Nothing Then&#xD;&#xA;        wordApp.Quit()&#xD;&#xA;    End If&#xD;&#xA;End Try" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="450,197.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_FilePath" />
+        <InArgument x:TypeArguments="x:String" x:Key="in_SearchText" />
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[&quot;Test&quot;]" />
   </Sequence>
 </Activity>

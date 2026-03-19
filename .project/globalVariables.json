@@ -1,0 +1,10 @@
+[
+  {
+    "Constant": false,
+    "Name": "BusinessException",
+    "TypeFullyQualifiedName": "UiPath.Core.BusinessRuleException, UiPath.System.Activities, Version=25.12.2.0, Culture=neutral, PublicKeyToken=null",
+    "UnresolvedTypeFullyQualifiedName": null,
+    "Expression": null,
+    "IsLiteral": false
+  }
+]

@@ -1,5 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ModifyAdjunctReappointmentLetter" this:ModifyAdjunctReappointmentLetter.in_adminEmail="lap10@rice.edu" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:uwah="clr-namespace:UiPath.Web.Activities.Http;assembly=UiPath.Web.Activities" xmlns:uwahm="clr-namespace:UiPath.Web.Activities.Http.Models;assembly=UiPath.Web.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ModifyAdjunctReappointmentLetter" this:ModifyAdjunctReappointmentLetter.in_adminEmail="lap10@rice.edu" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:uasc="clr-namespace:UiPath.Activities.System.Collections;assembly=UiPath.System.Activities" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:uwah="clr-namespace:UiPath.Web.Activities.Http;assembly=UiPath.Web.Activities" xmlns:uwahm="clr-namespace:UiPath.Web.Activities.Http.Models;assembly=UiPath.Web.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
+    <x:Property Name="in_isValidEndDate" Type="InArgument(x:Boolean)" />
+    <x:Property Name="in_isValidStartDate" Type="InArgument(x:Boolean)" />
+    <x:Property Name="in_isInvalidName" Type="InArgument(x:Boolean)" />
+    <x:Property Name="in_isInvalidTerm" Type="InArgument(x:Boolean)" />
+    <x:Property Name="in_isInvalidTitle" Type="InArgument(x:Boolean)" />
+    <x:Property Name="in_isBusinessException" Type="InArgument(x:Boolean)" />
     <x:Property Name="in_asanaAPIKey" Type="InArgument(x:String)" />
     <x:Property Name="in_chairAdmin" Type="InArgument(x:String)" />
     <x:Property Name="in_adminEmail" Type="InArgument(x:String)" />
@@ -81,6 +87,8 @@
       <x:String>System.Dynamic</x:String>
       <x:String>System.Collections.Specialized</x:String>
       <x:String>UiPath.IntegrationService.Activities.SWEntities.CB26248ECE7_v2_sub_generateChatCompletion_Create.Bundle</x:String>
+      <x:String>Microsoft.Office.Interop.Word</x:String>
+      <x:String>UiPath.Activities.System.Collections</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -170,18 +178,37 @@
       <AssemblyReference>System.IO.Packaging</AssemblyReference>
       <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>Microsoft.Office.Interop.Word</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ModifyAdjunctReappointmentLetter" sap:VirtualizedContainerService.HintSize="1394,6072" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ModifyAdjunctReappointmentLetter" sap:VirtualizedContainerService.HintSize="1394,9040" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="scg:List(x:String)" Name="itemsHighlight">
+        <Variable.Default>
+          <VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="New List(Of String)()" />
+        </Variable.Default>
+      </Variable>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Default="[New Dictionary(Of String,String) From {&#xA;    {&quot;Ready for automation&quot;,&quot;1212913254438530&quot;},&#xA;    {&quot;Ready to review&quot;,&quot;1212913254438531&quot;},&#xA;    {&quot;Letter reviewed&quot;,&quot;1212913254438532&quot;},&#xA;    {&quot;Sent for signature (Adobe Sign)&quot;,&quot;1212913254438533&quot;},&#xA;    {&quot;Letter signed&quot;,&quot;1212913254438534&quot;},&#xA;    {&quot;Error&quot;,&quot;1212913254438535&quot;}&#xA;}]" Name="mapStatus" />
+      <Variable x:TypeArguments="njl:JObject" Name="desResponseBodyUrl" />
+      <Variable x:TypeArguments="scg:IEnumerable(njl:JObject)" Name="tasksMetadataStatus" />
+      <Variable x:TypeArguments="uwahm:HttpResponseSummary" Name="ResponseBodyUrl" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="customFieldsAR" />
+      <Variable x:TypeArguments="scg:IEnumerable(njl:JObject)" Name="tasksMetadataObject" />
+      <Variable x:TypeArguments="njl:JArray" Name="tasksMetadata" />
+      <Variable x:TypeArguments="njl:JObject" Name="JObject" />
+      <Variable x:TypeArguments="x:String" Name="debugMessage" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Modify Adjunct Reappointment Letter" sap:VirtualizedContainerService.HintSize="484,6049" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Modify Adjunct Reappointment Letter" sap:VirtualizedContainerService.HintSize="522,9017" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="scg:Dictionary(x:Int32, x:String)" Default="[New Dictionary(Of Integer, String) From {&#xA;    {1,&quot;one&quot;},&#xA;    {2,&quot;two&quot;},&#xA;    {3,&quot;three&quot;},&#xA;    {4,&quot;four&quot;},&#xA;    {5,&quot;five&quot;},&#xA;    {6,&quot;six&quot;},&#xA;    {7,&quot;seven&quot;},&#xA;    {8,&quot;eight&quot;},&#xA;    {9,&quot;nine&quot;}&#xA;}]" Name="numberToLetterDict" />
         <Variable x:TypeArguments="uwahm:HttpResponseSummary" Name="apiOutput" />
@@ -203,112 +230,331 @@
         <Variable x:TypeArguments="x:String" Name="normalizedName" />
         <Variable x:TypeArguments="uwahm:HttpResponseSummary" Name="outAdminGID" />
         <Variable x:TypeArguments="x:String" Name="normalizedNameChair" />
+        <Variable x:TypeArguments="x:String" Name="statusGid" />
+        <Variable x:TypeArguments="x:String" Name="statusGidReadyToReview" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Modify Adjunt Letter&quot;]" />
-      <ucas:DownloadStorageFile TimeoutMS="{x:Null}" Destination="Data\Input\Adjunct Reappointment - Template.docx" DisplayName="Download Storage File" FolderPath="Academic Affairs/Schools/Engineering/Faculty_Reappointments_Automation" sap:VirtualizedContainerService.HintSize="450,167" sap2010:WorkflowViewState.IdRef="DownloadStorageFile_1" Path="Adjunct Reappointment - Template.docx" Result="[result]" StorageBucketName="Templates" />
-      <Assign DisplayName="Assign - Format End Date" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_1">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[endDate]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String" xml:space="preserve">[DateTime.ParseExact(
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Modify Adjunt Letter&quot;]" />
+      <ucas:DownloadStorageFile TimeoutMS="{x:Null}" Destination="Data\Input\Adjunct Reappointment - Template.docx" DisplayName="Download Storage File" FolderPath="Academic Affairs/Schools/Engineering/Faculty_Reappointments_Automation" sap:VirtualizedContainerService.HintSize="488,167" sap2010:WorkflowViewState.IdRef="DownloadStorageFile_1" Path="Adjunct Reappointment - Template.docx" Result="[result]" StorageBucketName="Templates" />
+      <If Condition="[Not String.IsNullOrEmpty(in_dictChairMemo(&quot;ReappointmentEndDate&quot;).ToString)]" DisplayName="If - Validate End Date Not Empty" sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="If_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,416" sap2010:WorkflowViewState.IdRef="Sequence_14">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Assign - Format End Date" sap:VirtualizedContainerService.HintSize="416,180.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[endDate]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[DateTime.ParseExact(
     in_dictChairMemo("ReappointmentEndDate").ToString(),
     "MM/dd/yyyy HH:mm:ss",
     Globalization.CultureInfo.InvariantCulture
 ).ToString("MMMM d, yyyy")]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <Assign DisplayName="Assign - Format End Date" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_10">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[endDateOutput]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String" xml:space="preserve">[DateTime.ParseExact(
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="Assign - Format End Date" sap:VirtualizedContainerService.HintSize="416,171.33333333333334" sap2010:WorkflowViewState.IdRef="Assign_10">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[endDateOutput]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[DateTime.ParseExact(
     in_dictChairMemo("ReappointmentEndDate").ToString(),
     "MM/dd/yyyy HH:mm:ss",
     Globalization.CultureInfo.InvariantCulture
 ).ToString("MMMM yyyy")]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <Assign DisplayName="Assign - Format Start Date" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_2">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[startDate]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String" xml:space="preserve">[DateTime.ParseExact(
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,94.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_15">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </If.Else>
+      </If>
+      <If Condition="[Not String.IsNullOrEmpty( in_dictChairMemo(&quot;ReappointmentStartDate&quot;).ToString)]" DisplayName="If - Validate Start Date is Not Empty" sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="If_2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,408" sap2010:WorkflowViewState.IdRef="Sequence_12">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Assign - Format Start Date" sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[startDate]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[DateTime.ParseExact(
     in_dictChairMemo("ReappointmentStartDate").ToString(),
     "MM/dd/yyyy HH:mm:ss",
     Globalization.CultureInfo.InvariantCulture
 ).ToString("MMMM d, yyyy")]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <Assign DisplayName="Assign - Format Start Date" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_11">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[startDateOutput]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String" xml:space="preserve">[DateTime.ParseExact(
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="Assign - Format Start Date" sap:VirtualizedContainerService.HintSize="416,171.33333333333334" sap2010:WorkflowViewState.IdRef="Assign_11">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[startDateOutput]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[DateTime.ParseExact(
     in_dictChairMemo("ReappointmentStartDate").ToString(),
     "MM/dd/yyyy HH:mm:ss",
     Globalization.CultureInfo.InvariantCulture
 ).ToString("MMMM yyyy")]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <Assign DisplayName="Assign - Save Folder Modified Letter" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_3">
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_13">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </If.Else>
+      </If>
+      <Assign DisplayName="Assign - Save Folder Modified Letter" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_3">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[saveFolder]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String" xml:space="preserve">[System.IO.Path.Combine(Environment.CurrentDirectory,in_downloadFolder, in_taskName, in_taskName + "  -  " + startDateOutput + "_" + endDateOutput + " Adjunct Reappointment.docx").Trim()]</InArgument>
+          <InArgument x:TypeArguments="x:String" xml:space="preserve">[System.IO.Path.Combine(Environment.CurrentDirectory,in_downloadFolder, in_taskName, in_taskName.Replace(", ","_").Trim() + "  -  " + startDateOutput + "_" + endDateOutput + " Adjunct Reappointment.docx").Trim()]</InArgument>
         </Assign.Value>
       </Assign>
-      <Assign DisplayName="Assign - Ready to Review Request" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_4">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[request]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String">["{""data"":{""custom_fields"":{""1212913254438529"":""" &amp; mapStatus("Ready to review") &amp; """}}}"]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <Assign DisplayName="Assign - Link Status" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_5">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[updateStatusLink]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[("https://app.asana.com/api/1.0"+"/tasks/" + in_taskGID).Trim]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <ui:Matches DisplayName="Find Matching Patterns" FirstMatch="[numberMatch]" sap:VirtualizedContainerService.HintSize="450,92" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[in_dictChairMemo(&quot;ReappointmentTerm&quot;).ToString]" IsBuilderTabModified="False" Pattern="\d+" RegexOption="IgnoreCase, Compiled" />
-      <ui:InvokeCode ContinueOnError="{x:Null}" Code="' Arguments expected:&#xA;'   inputName (In, String)&#xA;'   result    (Out, String)&#xA;&#xA;Dim s As String = If(inputName, &quot;&quot;).Trim()&#xA;If s = &quot;&quot; Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;' --- Dictionaries (HashSets) ---&#xA;Dim titles = New System.Collections.Generic.HashSet(Of String)(System.StringComparer.OrdinalIgnoreCase) From {&#xA;    &quot;dr&quot;, &quot;dr.&quot;, &quot;doctor&quot;, &quot;prof&quot;, &quot;prof.&quot;, &quot;professor&quot;, &quot;mr&quot;, &quot;mr.&quot;, &quot;mrs&quot;, &quot;mrs.&quot;, &quot;ms&quot;, &quot;ms.&quot;, &quot;miss&quot;, &quot;sir&quot;,&#xA;    &quot;ing&quot;, &quot;ing.&quot;, &quot;eng&quot;, &quot;eng.&quot;, &quot;lic&quot;, &quot;lic.&quot;, &quot;arq&quot;, &quot;arq.&quot;, &quot;rev&quot;, &quot;rev.&quot;, &quot;fr&quot;, &quot;fr.&quot;&#xA;}&#xA;Dim credentials = New System.Collections.Generic.HashSet(Of String)(System.StringComparer.OrdinalIgnoreCase) From {&#xA;    &quot;phd&quot;, &quot;msc&quot;, &quot;ms&quot;, &quot;ma&quot;, &quot;mba&quot;, &quot;bsc&quot;, &quot;ba&quot;, &quot;bs&quot;, &quot;jd&quot;, &quot;md&quot;, &quot;edd&quot;, &quot;dphil&quot;, &quot;mpp&quot;, &quot;mph&quot;, &quot;mfa&quot;, &quot;llm&quot;,&#xA;    &quot;llb&quot;, &quot;dds&quot;, &quot;dmd&quot;, &quot;do&quot;, &quot;rn&quot;, &quot;bba&quot;, &quot;mpa&quot;, &quot;meng&quot;, &quot;beng&quot;, &quot;mtech&quot;, &quot;btech&quot;,&#xA;    &quot;pmp&quot;, &quot;cpa&quot;, &quot;cfa&quot;, &quot;frs&quot;, &quot;fieee&quot;, &quot;aaas&quot;, &quot;pe&quot;, &quot;cisa&quot;, &quot;cissp&quot;, &quot;cism&quot;, &quot;shrm-scp&quot;, &quot;shrm-cp&quot;, &quot;six-sigma&quot;,&#xA;    &quot;lean&quot;, &quot;itil&quot;, &quot;scrum&quot;, &quot;psm&quot;, &quot;pspo&quot;, &quot;csd&quot;, &quot;sa&quot;, &quot;safe&quot;, &quot;sfpc&quot;, &quot;ceh&quot;, &quot;aws-ssa&quot;, &quot;aws-saa&quot;,&#xA;    &quot;esq&quot;, &quot;esq.&quot;&#xA;}&#xA;Dim suffixes = New System.Collections.Generic.HashSet(Of String)(System.StringComparer.OrdinalIgnoreCase) From {&#xA;    &quot;jr&quot;, &quot;jr.&quot;, &quot;sr&quot;, &quot;sr.&quot;, &quot;ii&quot;, &quot;iii&quot;, &quot;iv&quot;, &quot;v&quot;&#xA;}&#xA;Dim particles = New System.Collections.Generic.HashSet(Of String)(System.StringComparer.OrdinalIgnoreCase) From {&#xA;    &quot;da&quot;, &quot;de&quot;, &quot;del&quot;, &quot;della&quot;, &quot;der&quot;, &quot;di&quot;, &quot;du&quot;, &quot;dos&quot;, &quot;das&quot;, &quot;la&quot;, &quot;le&quot;, &quot;van&quot;, &quot;von&quot;, &quot;zu&quot;, &quot;zur&quot;, &quot;zum&quot;,&#xA;    &quot;ten&quot;, &quot;ter&quot;, &quot;bin&quot;, &quot;ibn&quot;, &quot;al&quot;, &quot;st&quot;, &quot;st.&quot;, &quot;san&quot;, &quot;santa&quot;&#xA;}&#xA;&#xA;' --- Helper lambdas ---&#xA;Dim NormalizeTokenForCompare As System.Func(Of String, String) =&#xA;    Function(token As String)&#xA;        Dim t = If(token, &quot;&quot;).Trim().ToLowerInvariant()&#xA;        If t.EndsWith(&quot;.&quot;) Then t = t.Substring(0, t.Length - 1)&#xA;        Return t&#xA;    End Function&#xA;&#xA;Dim NormalizeCredentialToken As System.Func(Of String, String) =&#xA;    Function(token As String)&#xA;        Dim t = If(token, &quot;&quot;).Trim()&#xA;        t = t.Replace(&quot;.&quot;, &quot;&quot;).Replace(&quot;-&quot;, &quot;&quot;).Replace(&quot;â€™&quot;, &quot;&quot;).Replace(&quot;'&quot;, &quot;&quot;)&#xA;        Return t.ToLowerInvariant()&#xA;    End Function&#xA;&#xA;Dim IsTitleToken As System.Func(Of String, Boolean) =&#xA;    Function(tok As String) titles.Contains(NormalizeTokenForCompare(tok))&#xA;&#xA;Dim IsSuffixToken As System.Func(Of String, Boolean) =&#xA;    Function(tok As String) suffixes.Contains(NormalizeTokenForCompare(tok))&#xA;&#xA;Dim IsParticle As System.Func(Of String, Boolean) =&#xA;    Function(tok As String) particles.Contains(NormalizeTokenForCompare(tok))&#xA;&#xA;Dim WordTokensPreserveDots As System.Func(Of String, System.Collections.Generic.List(Of String)) =&#xA;    Function(text As String)&#xA;        Dim rx = New System.Text.RegularExpressions.Regex(&quot;\p{L}+(?:[â€™'\-]\p{L}+)*\.?&quot;, System.Text.RegularExpressions.RegexOptions.CultureInvariant)&#xA;        Dim m = rx.Match(If(text, &quot;&quot;))&#xA;        Dim list = New System.Collections.Generic.List(Of String)&#xA;        While m.Success&#xA;            list.Add(m.Value)&#xA;            m = m.NextMatch()&#xA;        End While&#xA;        Return list&#xA;    End Function&#xA;&#xA;Dim SplitByComma As System.Func(Of String, System.Collections.Generic.List(Of String)) =&#xA;    Function(text As String)&#xA;        Dim arr = (If(text, &quot;&quot;)).Split(New Char() {&quot;,&quot;c}, StringSplitOptions.RemoveEmptyEntries)&#xA;        Dim list = New System.Collections.Generic.List(Of String)&#xA;        For Each p In arr&#xA;            Dim t = p.Trim()&#xA;            If t.Length &gt; 0 Then list.Add(t)&#xA;        Next&#xA;        Return list&#xA;    End Function&#xA;&#xA;Dim SplitByNonWord As System.Func(Of String, System.Collections.Generic.List(Of String)) =&#xA;    Function(text As String)&#xA;        Dim rx = New System.Text.RegularExpressions.Regex(&quot;[^\p{L}\.]+&quot;, System.Text.RegularExpressions.RegexOptions.CultureInvariant)&#xA;        Dim arr = rx.Split(If(text, &quot;&quot;))&#xA;        Dim list = New System.Collections.Generic.List(Of String)&#xA;        For Each p In arr&#xA;            Dim t = p.Trim()&#xA;            If t.Length &gt; 0 Then list.Add(t)&#xA;        Next&#xA;        Return list&#xA;    End Function&#xA;&#xA;Dim IsCredentialsToken As System.Func(Of String, Boolean) =&#xA;    Function(tok As String) credentials.Contains(NormalizeCredentialToken(tok))&#xA;&#xA;Dim IsCredentialsBlob As System.Func(Of String, Boolean) =&#xA;    Function(seg As String)&#xA;        Dim parts = SplitByNonWord(seg)&#xA;        If parts.Count = 0 Then Return False&#xA;        For Each p In parts&#xA;            If Not IsCredentialsToken(p) Then Return False&#xA;        Next&#xA;        Return True&#xA;    End Function&#xA;&#xA;Dim IsAllCredentials As System.Func(Of System.Collections.Generic.List(Of String), Boolean) =&#xA;    Function(parts As System.Collections.Generic.List(Of String))&#xA;        If parts Is Nothing OrElse parts.Count = 0 Then Return False&#xA;        For Each p In parts&#xA;            If Not IsCredentialsBlob(p) Then Return False&#xA;        Next&#xA;        Return True&#xA;    End Function&#xA;&#xA;' --- Step 1: Remove emails &amp; phones ---&#xA;Dim emailRx = New System.Text.RegularExpressions.Regex(&quot;\b[A-Z0-9._%+\-]+@[A-Z0-9.\-]+\.[A-Z]{2,}\b&quot;, System.Text.RegularExpressions.RegexOptions.IgnoreCase)&#xA;s = emailRx.Replace(s, &quot; &quot;).Trim()&#xA;&#xA;Dim phoneRx = New System.Text.RegularExpressions.Regex(&quot;(?:(?:\+?\d[\s\-\.\(\)]*){7,}\d)&quot;)&#xA;s = phoneRx.Replace(s, &quot; &quot;).Trim()&#xA;&#xA;' --- Step 2: Remove parenthetical credentials ---&#xA;Dim parenRx = New System.Text.RegularExpressions.Regex(&quot;\(([^)]*)\)&quot;)&#xA;s = parenRx.Replace(s, Function(m As System.Text.RegularExpressions.Match)&#xA;    Dim inner = m.Groups(1).Value&#xA;    Dim parts = SplitByNonWord(inner)&#xA;    If IsAllCredentials(parts) Then Return &quot;&quot;&#xA;    Return m.Value&#xA;End Function).Trim()&#xA;&#xA;If s.Length = 0 Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;' --- Local helpers: remove leading titles, trailing credentials, trailing &quot; , credentials&quot; ---&#xA;Dim RemoveLeadingTitles As System.Func(Of String, String) =&#xA;    Function(text As String)&#xA;        Dim toks = WordTokensPreserveDots(text)&#xA;        Dim i As Integer = 0&#xA;        While i &lt; toks.Count AndAlso IsTitleToken(toks(i))&#xA;            i += 1&#xA;        End While&#xA;        Dim kept = toks.GetRange(i, toks.Count - i)&#xA;        Return String.Join(&quot; &quot;, kept)&#xA;    End Function&#xA;&#xA;Dim RemoveTrailingCredentials As System.Func(Of String, String) =&#xA;    Function(text As String)&#xA;        Dim toks = WordTokensPreserveDots(text)&#xA;        Dim i As Integer = toks.Count - 1&#xA;        While i &gt;= 0 AndAlso IsCredentialsToken(toks(i))&#xA;            i -= 1&#xA;        End While&#xA;        If i &lt; 0 Then Return &quot;&quot;&#xA;        Dim kept = toks.GetRange(0, i + 1)&#xA;        Return String.Join(&quot; &quot;, kept)&#xA;    End Function&#xA;&#xA;Dim RemoveTrailingCredentialCommaChunk As System.Func(Of String, String) =&#xA;    Function(text As String)&#xA;        Dim idx = (If(text, &quot;&quot;)).IndexOf(&quot;,&quot;c)&#xA;        If idx &lt; 0 Then Return text&#xA;        Dim left = text.Substring(0, idx).Trim()&#xA;        Dim right = text.Substring(idx + 1).Trim()&#xA;        Dim parts = SplitByComma(right)&#xA;        If IsAllCredentials(parts) Then&#xA;            Return left&#xA;        End If&#xA;        Return text&#xA;    End Function&#xA;&#xA;' --- Main branching: comma vs no comma ---&#xA;Dim firstComma As Integer = s.IndexOf(&quot;,&quot;c)&#xA;If firstComma &gt;= 0 Then&#xA;    Dim left = s.Substring(0, firstComma).Trim()&#xA;    Dim right = s.Substring(firstComma + 1).Trim()&#xA;    Dim rightParts = SplitByComma(right)&#xA;&#xA;    If IsAllCredentials(rightParts) Then&#xA;        ' Treat as western order&#xA;        s = left&#xA;        ' Fall through to western parsing below&#xA;        firstComma = -1&#xA;    Else&#xA;        ' &quot;Last, First [Middle] [, Suffix] [, Credentials]&quot;&#xA;        Dim suffix As String = &quot;&quot;&#xA;        Dim filteredRight As New System.Collections.Generic.List(Of String)&#xA;        For Each part In rightParts&#xA;            Dim p = part.Trim()&#xA;            If p.Length = 0 Then Continue For&#xA;            If IsSuffixToken(p) Then&#xA;                suffix = p&#xA;            ElseIf Not IsCredentialsBlob(p) Then&#xA;                filteredRight.Add(p)&#xA;            End If&#xA;        Next&#xA;&#xA;        Dim firstMiddle As String = If(filteredRight.Count &gt; 0, filteredRight(0).Trim(), &quot;&quot;)&#xA;        left = RemoveLeadingTitles(left)&#xA;        firstMiddle = RemoveLeadingTitles(firstMiddle)&#xA;        left = RemoveTrailingCredentials(left).Trim()&#xA;        firstMiddle = RemoveTrailingCredentials(firstMiddle).Trim()&#xA;&#xA;        If WordTokensPreserveDots(left).Count = 0 OrElse WordTokensPreserveDots(firstMiddle).Count = 0 Then&#xA;            ' Fallback to western parse on original string without obvious credentials&#xA;            s = (left &amp; &quot; &quot; &amp; firstMiddle).Trim()&#xA;            firstComma = -1&#xA;        Else&#xA;            Dim lastWithParticles = left&#xA;            Dim lastWithSuffix = If(suffix = &quot;&quot;, lastWithParticles, lastWithParticles &amp; &quot; &quot; &amp; suffix)&#xA;            result = firstMiddle &amp; &quot; &quot; &amp; lastWithSuffix&#xA;            Return&#xA;        End If&#xA;    End If&#xA;End If&#xA;&#xA;' --- Western order parse: &quot;First [Middle ...] Last [Suffix]&quot; ---&#xA;s = RemoveLeadingTitles(s)&#xA;s = RemoveTrailingCredentials(s)&#xA;s = RemoveTrailingCredentialCommaChunk(s).Trim()&#xA;&#xA;Dim tokens = WordTokensPreserveDots(s)&#xA;If tokens.Count &lt; 2 Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;Dim suffixKeep As String = &quot;&quot;&#xA;If IsSuffixToken(tokens(tokens.Count - 1)) Then&#xA;    suffixKeep = tokens(tokens.Count - 1)&#xA;    tokens.RemoveAt(tokens.Count - 1)&#xA;End If&#xA;If tokens.Count &lt; 2 Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;' Last cluster = last token + backward particles&#xA;Dim lastStartIdx As Integer = tokens.Count - 1&#xA;Dim lastNameParts = New System.Collections.Generic.List(Of String) From { tokens(lastStartIdx) }&#xA;Dim iBack As Integer = lastStartIdx - 1&#xA;While iBack &gt;= 0 AndAlso IsParticle(tokens(iBack))&#xA;    lastNameParts.Insert(0, tokens(iBack))&#xA;    iBack -= 1&#xA;End While&#xA;&#xA;Dim firstMiddleTokens = tokens.GetRange(0, System.Math.Max(0, iBack + 1))&#xA;If firstMiddleTokens.Count = 0 Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;Dim firstMiddleName = String.Join(&quot; &quot;, firstMiddleTokens)&#xA;Dim lastName = String.Join(&quot; &quot;, lastNameParts)&#xA;Dim lastWithSuffixKeep = If(suffixKeep = &quot;&quot;, lastName, lastName &amp; &quot; &quot; &amp; suffixKeep)&#xA;&#xA;result = firstMiddleName &amp; &quot; &quot; &amp; lastWithSuffixKeep" DisplayName="Invoke Code - Normalize Candidate Name" sap:VirtualizedContainerService.HintSize="450,197" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
-        <ui:InvokeCode.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="inputName">[in_dictCV("CandidateName").ToLower]</InArgument>
-          <OutArgument x:TypeArguments="x:String" x:Key="result">[normalizedName]</OutArgument>
-        </ui:InvokeCode.Arguments>
-      </ui:InvokeCode>
-      <ui:InvokeCode ContinueOnError="{x:Null}" Code="' Arguments expected:&#xA;'   inputName (In, String)&#xA;'   result    (Out, String)&#xA;&#xA;Dim s As String = If(inputName, &quot;&quot;).Trim()&#xA;If s = &quot;&quot; Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;' --- Dictionaries (HashSets) ---&#xA;Dim titles = New System.Collections.Generic.HashSet(Of String)(System.StringComparer.OrdinalIgnoreCase) From {&#xA;    &quot;dr&quot;, &quot;dr.&quot;, &quot;doctor&quot;, &quot;prof&quot;, &quot;prof.&quot;, &quot;professor&quot;, &quot;mr&quot;, &quot;mr.&quot;, &quot;mrs&quot;, &quot;mrs.&quot;, &quot;ms&quot;, &quot;ms.&quot;, &quot;miss&quot;, &quot;sir&quot;,&#xA;    &quot;ing&quot;, &quot;ing.&quot;, &quot;eng&quot;, &quot;eng.&quot;, &quot;lic&quot;, &quot;lic.&quot;, &quot;arq&quot;, &quot;arq.&quot;, &quot;rev&quot;, &quot;rev.&quot;, &quot;fr&quot;, &quot;fr.&quot;&#xA;}&#xA;Dim credentials = New System.Collections.Generic.HashSet(Of String)(System.StringComparer.OrdinalIgnoreCase) From {&#xA;    &quot;phd&quot;, &quot;msc&quot;, &quot;ms&quot;, &quot;ma&quot;, &quot;mba&quot;, &quot;bsc&quot;, &quot;ba&quot;, &quot;bs&quot;, &quot;jd&quot;, &quot;md&quot;, &quot;edd&quot;, &quot;dphil&quot;, &quot;mpp&quot;, &quot;mph&quot;, &quot;mfa&quot;, &quot;llm&quot;,&#xA;    &quot;llb&quot;, &quot;dds&quot;, &quot;dmd&quot;, &quot;do&quot;, &quot;rn&quot;, &quot;bba&quot;, &quot;mpa&quot;, &quot;meng&quot;, &quot;beng&quot;, &quot;mtech&quot;, &quot;btech&quot;,&#xA;    &quot;pmp&quot;, &quot;cpa&quot;, &quot;cfa&quot;, &quot;frs&quot;, &quot;fieee&quot;, &quot;aaas&quot;, &quot;pe&quot;, &quot;cisa&quot;, &quot;cissp&quot;, &quot;cism&quot;, &quot;shrm-scp&quot;, &quot;shrm-cp&quot;, &quot;six-sigma&quot;,&#xA;    &quot;lean&quot;, &quot;itil&quot;, &quot;scrum&quot;, &quot;psm&quot;, &quot;pspo&quot;, &quot;csd&quot;, &quot;sa&quot;, &quot;safe&quot;, &quot;sfpc&quot;, &quot;ceh&quot;, &quot;aws-ssa&quot;, &quot;aws-saa&quot;,&#xA;    &quot;esq&quot;, &quot;esq.&quot;&#xA;}&#xA;Dim suffixes = New System.Collections.Generic.HashSet(Of String)(System.StringComparer.OrdinalIgnoreCase) From {&#xA;    &quot;jr&quot;, &quot;jr.&quot;, &quot;sr&quot;, &quot;sr.&quot;, &quot;ii&quot;, &quot;iii&quot;, &quot;iv&quot;, &quot;v&quot;&#xA;}&#xA;Dim particles = New System.Collections.Generic.HashSet(Of String)(System.StringComparer.OrdinalIgnoreCase) From {&#xA;    &quot;da&quot;, &quot;de&quot;, &quot;del&quot;, &quot;della&quot;, &quot;der&quot;, &quot;di&quot;, &quot;du&quot;, &quot;dos&quot;, &quot;das&quot;, &quot;la&quot;, &quot;le&quot;, &quot;van&quot;, &quot;von&quot;, &quot;zu&quot;, &quot;zur&quot;, &quot;zum&quot;,&#xA;    &quot;ten&quot;, &quot;ter&quot;, &quot;bin&quot;, &quot;ibn&quot;, &quot;al&quot;, &quot;st&quot;, &quot;st.&quot;, &quot;san&quot;, &quot;santa&quot;&#xA;}&#xA;&#xA;' --- Helper lambdas ---&#xA;Dim NormalizeTokenForCompare As System.Func(Of String, String) =&#xA;    Function(token As String)&#xA;        Dim t = If(token, &quot;&quot;).Trim().ToLowerInvariant()&#xA;        If t.EndsWith(&quot;.&quot;) Then t = t.Substring(0, t.Length - 1)&#xA;        Return t&#xA;    End Function&#xA;&#xA;Dim NormalizeCredentialToken As System.Func(Of String, String) =&#xA;    Function(token As String)&#xA;        Dim t = If(token, &quot;&quot;).Trim()&#xA;        t = t.Replace(&quot;.&quot;, &quot;&quot;).Replace(&quot;-&quot;, &quot;&quot;).Replace(&quot;â€™&quot;, &quot;&quot;).Replace(&quot;'&quot;, &quot;&quot;)&#xA;        Return t.ToLowerInvariant()&#xA;    End Function&#xA;&#xA;Dim IsTitleToken As System.Func(Of String, Boolean) =&#xA;    Function(tok As String) titles.Contains(NormalizeTokenForCompare(tok))&#xA;&#xA;Dim IsSuffixToken As System.Func(Of String, Boolean) =&#xA;    Function(tok As String) suffixes.Contains(NormalizeTokenForCompare(tok))&#xA;&#xA;Dim IsParticle As System.Func(Of String, Boolean) =&#xA;    Function(tok As String) particles.Contains(NormalizeTokenForCompare(tok))&#xA;&#xA;Dim WordTokensPreserveDots As System.Func(Of String, System.Collections.Generic.List(Of String)) =&#xA;    Function(text As String)&#xA;        Dim rx = New System.Text.RegularExpressions.Regex(&quot;\p{L}+(?:[â€™'\-]\p{L}+)*\.?&quot;, System.Text.RegularExpressions.RegexOptions.CultureInvariant)&#xA;        Dim m = rx.Match(If(text, &quot;&quot;))&#xA;        Dim list = New System.Collections.Generic.List(Of String)&#xA;        While m.Success&#xA;            list.Add(m.Value)&#xA;            m = m.NextMatch()&#xA;        End While&#xA;        Return list&#xA;    End Function&#xA;&#xA;Dim SplitByComma As System.Func(Of String, System.Collections.Generic.List(Of String)) =&#xA;    Function(text As String)&#xA;        Dim arr = (If(text, &quot;&quot;)).Split(New Char() {&quot;,&quot;c}, StringSplitOptions.RemoveEmptyEntries)&#xA;        Dim list = New System.Collections.Generic.List(Of String)&#xA;        For Each p In arr&#xA;            Dim t = p.Trim()&#xA;            If t.Length &gt; 0 Then list.Add(t)&#xA;        Next&#xA;        Return list&#xA;    End Function&#xA;&#xA;Dim SplitByNonWord As System.Func(Of String, System.Collections.Generic.List(Of String)) =&#xA;    Function(text As String)&#xA;        Dim rx = New System.Text.RegularExpressions.Regex(&quot;[^\p{L}\.]+&quot;, System.Text.RegularExpressions.RegexOptions.CultureInvariant)&#xA;        Dim arr = rx.Split(If(text, &quot;&quot;))&#xA;        Dim list = New System.Collections.Generic.List(Of String)&#xA;        For Each p In arr&#xA;            Dim t = p.Trim()&#xA;            If t.Length &gt; 0 Then list.Add(t)&#xA;        Next&#xA;        Return list&#xA;    End Function&#xA;&#xA;Dim IsCredentialsToken As System.Func(Of String, Boolean) =&#xA;    Function(tok As String) credentials.Contains(NormalizeCredentialToken(tok))&#xA;&#xA;Dim IsCredentialsBlob As System.Func(Of String, Boolean) =&#xA;    Function(seg As String)&#xA;        Dim parts = SplitByNonWord(seg)&#xA;        If parts.Count = 0 Then Return False&#xA;        For Each p In parts&#xA;            If Not IsCredentialsToken(p) Then Return False&#xA;        Next&#xA;        Return True&#xA;    End Function&#xA;&#xA;Dim IsAllCredentials As System.Func(Of System.Collections.Generic.List(Of String), Boolean) =&#xA;    Function(parts As System.Collections.Generic.List(Of String))&#xA;        If parts Is Nothing OrElse parts.Count = 0 Then Return False&#xA;        For Each p In parts&#xA;            If Not IsCredentialsBlob(p) Then Return False&#xA;        Next&#xA;        Return True&#xA;    End Function&#xA;&#xA;' --- Step 1: Remove emails &amp; phones ---&#xA;Dim emailRx = New System.Text.RegularExpressions.Regex(&quot;\b[A-Z0-9._%+\-]+@[A-Z0-9.\-]+\.[A-Z]{2,}\b&quot;, System.Text.RegularExpressions.RegexOptions.IgnoreCase)&#xA;s = emailRx.Replace(s, &quot; &quot;).Trim()&#xA;&#xA;Dim phoneRx = New System.Text.RegularExpressions.Regex(&quot;(?:(?:\+?\d[\s\-\.\(\)]*){7,}\d)&quot;)&#xA;s = phoneRx.Replace(s, &quot; &quot;).Trim()&#xA;&#xA;' --- Step 2: Remove parenthetical credentials ---&#xA;Dim parenRx = New System.Text.RegularExpressions.Regex(&quot;\(([^)]*)\)&quot;)&#xA;s = parenRx.Replace(s, Function(m As System.Text.RegularExpressions.Match)&#xA;    Dim inner = m.Groups(1).Value&#xA;    Dim parts = SplitByNonWord(inner)&#xA;    If IsAllCredentials(parts) Then Return &quot;&quot;&#xA;    Return m.Value&#xA;End Function).Trim()&#xA;&#xA;If s.Length = 0 Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;' --- Local helpers: remove leading titles, trailing credentials, trailing &quot; , credentials&quot; ---&#xA;Dim RemoveLeadingTitles As System.Func(Of String, String) =&#xA;    Function(text As String)&#xA;        Dim toks = WordTokensPreserveDots(text)&#xA;        Dim i As Integer = 0&#xA;        While i &lt; toks.Count AndAlso IsTitleToken(toks(i))&#xA;            i += 1&#xA;        End While&#xA;        Dim kept = toks.GetRange(i, toks.Count - i)&#xA;        Return String.Join(&quot; &quot;, kept)&#xA;    End Function&#xA;&#xA;Dim RemoveTrailingCredentials As System.Func(Of String, String) =&#xA;    Function(text As String)&#xA;        Dim toks = WordTokensPreserveDots(text)&#xA;        Dim i As Integer = toks.Count - 1&#xA;        While i &gt;= 0 AndAlso IsCredentialsToken(toks(i))&#xA;            i -= 1&#xA;        End While&#xA;        If i &lt; 0 Then Return &quot;&quot;&#xA;        Dim kept = toks.GetRange(0, i + 1)&#xA;        Return String.Join(&quot; &quot;, kept)&#xA;    End Function&#xA;&#xA;Dim RemoveTrailingCredentialCommaChunk As System.Func(Of String, String) =&#xA;    Function(text As String)&#xA;        Dim idx = (If(text, &quot;&quot;)).IndexOf(&quot;,&quot;c)&#xA;        If idx &lt; 0 Then Return text&#xA;        Dim left = text.Substring(0, idx).Trim()&#xA;        Dim right = text.Substring(idx + 1).Trim()&#xA;        Dim parts = SplitByComma(right)&#xA;        If IsAllCredentials(parts) Then&#xA;            Return left&#xA;        End If&#xA;        Return text&#xA;    End Function&#xA;&#xA;' --- Main branching: comma vs no comma ---&#xA;Dim firstComma As Integer = s.IndexOf(&quot;,&quot;c)&#xA;If firstComma &gt;= 0 Then&#xA;    Dim left = s.Substring(0, firstComma).Trim()&#xA;    Dim right = s.Substring(firstComma + 1).Trim()&#xA;    Dim rightParts = SplitByComma(right)&#xA;&#xA;    If IsAllCredentials(rightParts) Then&#xA;        ' Treat as western order&#xA;        s = left&#xA;        ' Fall through to western parsing below&#xA;        firstComma = -1&#xA;    Else&#xA;        ' &quot;Last, First [Middle] [, Suffix] [, Credentials]&quot;&#xA;        Dim suffix As String = &quot;&quot;&#xA;        Dim filteredRight As New System.Collections.Generic.List(Of String)&#xA;        For Each part In rightParts&#xA;            Dim p = part.Trim()&#xA;            If p.Length = 0 Then Continue For&#xA;            If IsSuffixToken(p) Then&#xA;                suffix = p&#xA;            ElseIf Not IsCredentialsBlob(p) Then&#xA;                filteredRight.Add(p)&#xA;            End If&#xA;        Next&#xA;&#xA;        Dim firstMiddle As String = If(filteredRight.Count &gt; 0, filteredRight(0).Trim(), &quot;&quot;)&#xA;        left = RemoveLeadingTitles(left)&#xA;        firstMiddle = RemoveLeadingTitles(firstMiddle)&#xA;        left = RemoveTrailingCredentials(left).Trim()&#xA;        firstMiddle = RemoveTrailingCredentials(firstMiddle).Trim()&#xA;&#xA;        If WordTokensPreserveDots(left).Count = 0 OrElse WordTokensPreserveDots(firstMiddle).Count = 0 Then&#xA;            ' Fallback to western parse on original string without obvious credentials&#xA;            s = (left &amp; &quot; &quot; &amp; firstMiddle).Trim()&#xA;            firstComma = -1&#xA;        Else&#xA;            Dim lastWithParticles = left&#xA;            Dim lastWithSuffix = If(suffix = &quot;&quot;, lastWithParticles, lastWithParticles &amp; &quot; &quot; &amp; suffix)&#xA;            result = firstMiddle &amp; &quot; &quot; &amp; lastWithSuffix&#xA;            Return&#xA;        End If&#xA;    End If&#xA;End If&#xA;&#xA;' --- Western order parse: &quot;First [Middle ...] Last [Suffix]&quot; ---&#xA;s = RemoveLeadingTitles(s)&#xA;s = RemoveTrailingCredentials(s)&#xA;s = RemoveTrailingCredentialCommaChunk(s).Trim()&#xA;&#xA;Dim tokens = WordTokensPreserveDots(s)&#xA;If tokens.Count &lt; 2 Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;Dim suffixKeep As String = &quot;&quot;&#xA;If IsSuffixToken(tokens(tokens.Count - 1)) Then&#xA;    suffixKeep = tokens(tokens.Count - 1)&#xA;    tokens.RemoveAt(tokens.Count - 1)&#xA;End If&#xA;If tokens.Count &lt; 2 Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;' Last cluster = last token + backward particles&#xA;Dim lastStartIdx As Integer = tokens.Count - 1&#xA;Dim lastNameParts = New System.Collections.Generic.List(Of String) From { tokens(lastStartIdx) }&#xA;Dim iBack As Integer = lastStartIdx - 1&#xA;While iBack &gt;= 0 AndAlso IsParticle(tokens(iBack))&#xA;    lastNameParts.Insert(0, tokens(iBack))&#xA;    iBack -= 1&#xA;End While&#xA;&#xA;Dim firstMiddleTokens = tokens.GetRange(0, System.Math.Max(0, iBack + 1))&#xA;If firstMiddleTokens.Count = 0 Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;Dim firstMiddleName = String.Join(&quot; &quot;, firstMiddleTokens)&#xA;Dim lastName = String.Join(&quot; &quot;, lastNameParts)&#xA;Dim lastWithSuffixKeep = If(suffixKeep = &quot;&quot;, lastName, lastName &amp; &quot; &quot; &amp; suffixKeep)&#xA;&#xA;result = firstMiddleName &amp; &quot; &quot; &amp; lastWithSuffixKeep" DisplayName="Invoke Code - Normalize Chair Name" sap:VirtualizedContainerService.HintSize="450,197" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
+      <Sequence DisplayName="Get Status Gid" sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="Sequence_10">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" Headers="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" TextPayload="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request - Get Task Info" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" sap:VirtualizedContainerService.HintSize="416,281.3333333333333" sap2010:WorkflowViewState.IdRef="NetHttpRequest_7" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="GET" Multiplier="2" OAuthToken="[in_asanaAPIKey]" PreferRetryAfterValue="True" RequestBodyType="None" RequestUrl="[&quot;https://app.asana.com/api/1.0/tasks/&quot; + in_taskGID.ToString]" Result="[ResponseBodyUrl]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+          <uwah:NetHttpRequest.TimeoutInMiliseconds>
+            <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+              <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
+            </InArgument>
+          </uwah:NetHttpRequest.TimeoutInMiliseconds>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </uwah:NetHttpRequest>
+        <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_3" JsonObject="[desResponseBodyUrl]" JsonString="[ResponseBodyUrl.TextContent]" />
+        <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_15">
+          <Assign.To>
+            <OutArgument x:TypeArguments="njl:JObject">[JObject]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="njl:JObject">[Newtonsoft.Json.Linq.JObject.Parse(ResponseBodyUrl.TextContent)]</InArgument>
+          </Assign.Value>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_16">
+          <Assign.To>
+            <OutArgument x:TypeArguments="njl:JArray">[tasksMetadata]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="njl:JArray">[CType(JObject("data")("custom_fields"),Newtonsoft.Json.Linq.JArray)]</InArgument>
+          </Assign.Value>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_17">
+          <Assign.To>
+            <OutArgument x:TypeArguments="scg:IEnumerable(njl:JObject)">[tasksMetadataObject]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="scg:IEnumerable(njl:JObject)">[tasksMetadata.OfType(Of Newtonsoft.Json.Linq.JObject)().Where(function(x) customFieldsAR.Contains(x("name").ToString))]</InArgument>
+          </Assign.Value>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_18">
+          <Assign.To>
+            <OutArgument x:TypeArguments="scg:IEnumerable(njl:JObject)">[tasksMetadataStatus]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="scg:IEnumerable(njl:JObject)">[tasksMetadata.OfType(Of Newtonsoft.Json.Linq.JObject)().Where(function(x) x("name").ToString = "Status")]</InArgument>
+          </Assign.Value>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_19">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[statusGid]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[tasksMetadataStatus(0)("gid").ToString()]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_20">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[statusGidReadyToReview]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[tasksMetadataStatus(0)("enum_options")(1)("gid").ToString()]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign DisplayName="Assign - Error Details Request" sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_14">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[request]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">["{""data"":{""custom_fields"":{""" &amp; statusGid &amp; """:""" &amp; statusGidReadyToReview &amp; """}}}"]</InArgument>
+          </Assign.Value>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Assign>
+        <Assign DisplayName="Assign - Link Status" sap:VirtualizedContainerService.HintSize="416,167.33333333333334" sap2010:WorkflowViewState.IdRef="Assign_5">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[updateStatusLink]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[("https://app.asana.com/api/1.0"+"/tasks/" + in_taskGID).Trim]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </Sequence>
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+        <ui:CommentOut.Body>
+          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_11">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Assign - Ready to Review Request" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_4">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[request]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">["{""data"":{""custom_fields"":{""1212913254438529"":""" &amp; mapStatus("Ready to review") &amp; """}}}"]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </ui:CommentOut.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:CommentOut>
+      <ui:Matches DisplayName="Find Matching Patterns" FirstMatch="[numberMatch]" sap:VirtualizedContainerService.HintSize="488,92" sap2010:WorkflowViewState.IdRef="Matches_1" Input="[in_dictChairMemo(&quot;ReappointmentTerm&quot;).ToString]" IsBuilderTabModified="False" Pattern="\d+" RegexOption="IgnoreCase, Compiled" />
+      <If Condition="[Not String.IsNullOrEmpty(in_dictCV(&quot;CandidateName&quot;).ToString)]" DisplayName="If - Validate Candidate Name Not Empty" sap:VirtualizedContainerService.HintSize="488,629" sap2010:WorkflowViewState.IdRef="If_4">
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,256" sap2010:WorkflowViewState.IdRef="Sequence_16">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:InvokeCode ContinueOnError="{x:Null}" Code="' Arguments expected:&#xA;'   inputName (In, String)&#xA;'   result    (Out, String)&#xA;&#xA;Dim s As String = If(inputName, &quot;&quot;).Trim()&#xA;If s = &quot;&quot; Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;' --- Dictionaries (HashSets) ---&#xA;Dim titles = New System.Collections.Generic.HashSet(Of String)(System.StringComparer.OrdinalIgnoreCase) From {&#xA;    &quot;dr&quot;, &quot;dr.&quot;, &quot;doctor&quot;, &quot;prof&quot;, &quot;prof.&quot;, &quot;professor&quot;, &quot;mr&quot;, &quot;mr.&quot;, &quot;mrs&quot;, &quot;mrs.&quot;, &quot;ms&quot;, &quot;ms.&quot;, &quot;miss&quot;, &quot;sir&quot;,&#xA;    &quot;ing&quot;, &quot;ing.&quot;, &quot;eng&quot;, &quot;eng.&quot;, &quot;lic&quot;, &quot;lic.&quot;, &quot;arq&quot;, &quot;arq.&quot;, &quot;rev&quot;, &quot;rev.&quot;, &quot;fr&quot;, &quot;fr.&quot;&#xA;}&#xA;Dim credentials = New System.Collections.Generic.HashSet(Of String)(System.StringComparer.OrdinalIgnoreCase) From {&#xA;    &quot;phd&quot;, &quot;msc&quot;, &quot;ms&quot;, &quot;ma&quot;, &quot;mba&quot;, &quot;bsc&quot;, &quot;ba&quot;, &quot;bs&quot;, &quot;jd&quot;, &quot;md&quot;, &quot;edd&quot;, &quot;dphil&quot;, &quot;mpp&quot;, &quot;mph&quot;, &quot;mfa&quot;, &quot;llm&quot;,&#xA;    &quot;llb&quot;, &quot;dds&quot;, &quot;dmd&quot;, &quot;do&quot;, &quot;rn&quot;, &quot;bba&quot;, &quot;mpa&quot;, &quot;meng&quot;, &quot;beng&quot;, &quot;mtech&quot;, &quot;btech&quot;,&#xA;    &quot;pmp&quot;, &quot;cpa&quot;, &quot;cfa&quot;, &quot;frs&quot;, &quot;fieee&quot;, &quot;aaas&quot;, &quot;pe&quot;, &quot;cisa&quot;, &quot;cissp&quot;, &quot;cism&quot;, &quot;shrm-scp&quot;, &quot;shrm-cp&quot;, &quot;six-sigma&quot;,&#xA;    &quot;lean&quot;, &quot;itil&quot;, &quot;scrum&quot;, &quot;psm&quot;, &quot;pspo&quot;, &quot;csd&quot;, &quot;sa&quot;, &quot;safe&quot;, &quot;sfpc&quot;, &quot;ceh&quot;, &quot;aws-ssa&quot;, &quot;aws-saa&quot;,&#xA;    &quot;esq&quot;, &quot;esq.&quot;&#xA;}&#xA;Dim suffixes = New System.Collections.Generic.HashSet(Of String)(System.StringComparer.OrdinalIgnoreCase) From {&#xA;    &quot;jr&quot;, &quot;jr.&quot;, &quot;sr&quot;, &quot;sr.&quot;, &quot;ii&quot;, &quot;iii&quot;, &quot;iv&quot;, &quot;v&quot;&#xA;}&#xA;Dim particles = New System.Collections.Generic.HashSet(Of String)(System.StringComparer.OrdinalIgnoreCase) From {&#xA;    &quot;da&quot;, &quot;de&quot;, &quot;del&quot;, &quot;della&quot;, &quot;der&quot;, &quot;di&quot;, &quot;du&quot;, &quot;dos&quot;, &quot;das&quot;, &quot;la&quot;, &quot;le&quot;, &quot;van&quot;, &quot;von&quot;, &quot;zu&quot;, &quot;zur&quot;, &quot;zum&quot;,&#xA;    &quot;ten&quot;, &quot;ter&quot;, &quot;bin&quot;, &quot;ibn&quot;, &quot;al&quot;, &quot;st&quot;, &quot;st.&quot;, &quot;san&quot;, &quot;santa&quot;&#xA;}&#xA;&#xA;' --- Helper lambdas ---&#xA;Dim NormalizeTokenForCompare As System.Func(Of String, String) =&#xA;    Function(token As String)&#xA;        Dim t = If(token, &quot;&quot;).Trim().ToLowerInvariant()&#xA;        If t.EndsWith(&quot;.&quot;) Then t = t.Substring(0, t.Length - 1)&#xA;        Return t&#xA;    End Function&#xA;&#xA;Dim NormalizeCredentialToken As System.Func(Of String, String) =&#xA;    Function(token As String)&#xA;        Dim t = If(token, &quot;&quot;).Trim()&#xA;        t = t.Replace(&quot;.&quot;, &quot;&quot;).Replace(&quot;-&quot;, &quot;&quot;).Replace(&quot;â€™&quot;, &quot;&quot;).Replace(&quot;'&quot;, &quot;&quot;)&#xA;        Return t.ToLowerInvariant()&#xA;    End Function&#xA;&#xA;Dim IsTitleToken As System.Func(Of String, Boolean) =&#xA;    Function(tok As String) titles.Contains(NormalizeTokenForCompare(tok))&#xA;&#xA;Dim IsSuffixToken As System.Func(Of String, Boolean) =&#xA;    Function(tok As String) suffixes.Contains(NormalizeTokenForCompare(tok))&#xA;&#xA;Dim IsParticle As System.Func(Of String, Boolean) =&#xA;    Function(tok As String) particles.Contains(NormalizeTokenForCompare(tok))&#xA;&#xA;Dim WordTokensPreserveDots As System.Func(Of String, System.Collections.Generic.List(Of String)) =&#xA;    Function(text As String)&#xA;        Dim rx = New System.Text.RegularExpressions.Regex(&quot;\p{L}+(?:[â€™'\-]\p{L}+)*\.?&quot;, System.Text.RegularExpressions.RegexOptions.CultureInvariant)&#xA;        Dim m = rx.Match(If(text, &quot;&quot;))&#xA;        Dim list = New System.Collections.Generic.List(Of String)&#xA;        While m.Success&#xA;            list.Add(m.Value)&#xA;            m = m.NextMatch()&#xA;        End While&#xA;        Return list&#xA;    End Function&#xA;&#xA;Dim SplitByComma As System.Func(Of String, System.Collections.Generic.List(Of String)) =&#xA;    Function(text As String)&#xA;        Dim arr = (If(text, &quot;&quot;)).Split(New Char() {&quot;,&quot;c}, StringSplitOptions.RemoveEmptyEntries)&#xA;        Dim list = New System.Collections.Generic.List(Of String)&#xA;        For Each p In arr&#xA;            Dim t = p.Trim()&#xA;            If t.Length &gt; 0 Then list.Add(t)&#xA;        Next&#xA;        Return list&#xA;    End Function&#xA;&#xA;Dim SplitByNonWord As System.Func(Of String, System.Collections.Generic.List(Of String)) =&#xA;    Function(text As String)&#xA;        Dim rx = New System.Text.RegularExpressions.Regex(&quot;[^\p{L}\.]+&quot;, System.Text.RegularExpressions.RegexOptions.CultureInvariant)&#xA;        Dim arr = rx.Split(If(text, &quot;&quot;))&#xA;        Dim list = New System.Collections.Generic.List(Of String)&#xA;        For Each p In arr&#xA;            Dim t = p.Trim()&#xA;            If t.Length &gt; 0 Then list.Add(t)&#xA;        Next&#xA;        Return list&#xA;    End Function&#xA;&#xA;Dim IsCredentialsToken As System.Func(Of String, Boolean) =&#xA;    Function(tok As String) credentials.Contains(NormalizeCredentialToken(tok))&#xA;&#xA;Dim IsCredentialsBlob As System.Func(Of String, Boolean) =&#xA;    Function(seg As String)&#xA;        Dim parts = SplitByNonWord(seg)&#xA;        If parts.Count = 0 Then Return False&#xA;        For Each p In parts&#xA;            If Not IsCredentialsToken(p) Then Return False&#xA;        Next&#xA;        Return True&#xA;    End Function&#xA;&#xA;Dim IsAllCredentials As System.Func(Of System.Collections.Generic.List(Of String), Boolean) =&#xA;    Function(parts As System.Collections.Generic.List(Of String))&#xA;        If parts Is Nothing OrElse parts.Count = 0 Then Return False&#xA;        For Each p In parts&#xA;            If Not IsCredentialsBlob(p) Then Return False&#xA;        Next&#xA;        Return True&#xA;    End Function&#xA;&#xA;' --- Step 1: Remove emails &amp; phones ---&#xA;Dim emailRx = New System.Text.RegularExpressions.Regex(&quot;\b[A-Z0-9._%+\-]+@[A-Z0-9.\-]+\.[A-Z]{2,}\b&quot;, System.Text.RegularExpressions.RegexOptions.IgnoreCase)&#xA;s = emailRx.Replace(s, &quot; &quot;).Trim()&#xA;&#xA;Dim phoneRx = New System.Text.RegularExpressions.Regex(&quot;(?:(?:\+?\d[\s\-\.\(\)]*){7,}\d)&quot;)&#xA;s = phoneRx.Replace(s, &quot; &quot;).Trim()&#xA;&#xA;' --- Step 2: Remove parenthetical credentials ---&#xA;Dim parenRx = New System.Text.RegularExpressions.Regex(&quot;\(([^)]*)\)&quot;)&#xA;s = parenRx.Replace(s, Function(m As System.Text.RegularExpressions.Match)&#xA;    Dim inner = m.Groups(1).Value&#xA;    Dim parts = SplitByNonWord(inner)&#xA;    If IsAllCredentials(parts) Then Return &quot;&quot;&#xA;    Return m.Value&#xA;End Function).Trim()&#xA;&#xA;If s.Length = 0 Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;' --- Local helpers: remove leading titles, trailing credentials, trailing &quot; , credentials&quot; ---&#xA;Dim RemoveLeadingTitles As System.Func(Of String, String) =&#xA;    Function(text As String)&#xA;        Dim toks = WordTokensPreserveDots(text)&#xA;        Dim i As Integer = 0&#xA;        While i &lt; toks.Count AndAlso IsTitleToken(toks(i))&#xA;            i += 1&#xA;        End While&#xA;        Dim kept = toks.GetRange(i, toks.Count - i)&#xA;        Return String.Join(&quot; &quot;, kept)&#xA;    End Function&#xA;&#xA;Dim RemoveTrailingCredentials As System.Func(Of String, String) =&#xA;    Function(text As String)&#xA;        Dim toks = WordTokensPreserveDots(text)&#xA;        Dim i As Integer = toks.Count - 1&#xA;        While i &gt;= 0 AndAlso IsCredentialsToken(toks(i))&#xA;            i -= 1&#xA;        End While&#xA;        If i &lt; 0 Then Return &quot;&quot;&#xA;        Dim kept = toks.GetRange(0, i + 1)&#xA;        Return String.Join(&quot; &quot;, kept)&#xA;    End Function&#xA;&#xA;Dim RemoveTrailingCredentialCommaChunk As System.Func(Of String, String) =&#xA;    Function(text As String)&#xA;        Dim idx = (If(text, &quot;&quot;)).IndexOf(&quot;,&quot;c)&#xA;        If idx &lt; 0 Then Return text&#xA;        Dim left = text.Substring(0, idx).Trim()&#xA;        Dim right = text.Substring(idx + 1).Trim()&#xA;        Dim parts = SplitByComma(right)&#xA;        If IsAllCredentials(parts) Then&#xA;            Return left&#xA;        End If&#xA;        Return text&#xA;    End Function&#xA;&#xA;' --- Main branching: comma vs no comma ---&#xA;Dim firstComma As Integer = s.IndexOf(&quot;,&quot;c)&#xA;If firstComma &gt;= 0 Then&#xA;    Dim left = s.Substring(0, firstComma).Trim()&#xA;    Dim right = s.Substring(firstComma + 1).Trim()&#xA;    Dim rightParts = SplitByComma(right)&#xA;&#xA;    If IsAllCredentials(rightParts) Then&#xA;        ' Treat as western order&#xA;        s = left&#xA;        ' Fall through to western parsing below&#xA;        firstComma = -1&#xA;    Else&#xA;        ' &quot;Last, First [Middle] [, Suffix] [, Credentials]&quot;&#xA;        Dim suffix As String = &quot;&quot;&#xA;        Dim filteredRight As New System.Collections.Generic.List(Of String)&#xA;        For Each part In rightParts&#xA;            Dim p = part.Trim()&#xA;            If p.Length = 0 Then Continue For&#xA;            If IsSuffixToken(p) Then&#xA;                suffix = p&#xA;            ElseIf Not IsCredentialsBlob(p) Then&#xA;                filteredRight.Add(p)&#xA;            End If&#xA;        Next&#xA;&#xA;        Dim firstMiddle As String = If(filteredRight.Count &gt; 0, filteredRight(0).Trim(), &quot;&quot;)&#xA;        left = RemoveLeadingTitles(left)&#xA;        firstMiddle = RemoveLeadingTitles(firstMiddle)&#xA;        left = RemoveTrailingCredentials(left).Trim()&#xA;        firstMiddle = RemoveTrailingCredentials(firstMiddle).Trim()&#xA;&#xA;        If WordTokensPreserveDots(left).Count = 0 OrElse WordTokensPreserveDots(firstMiddle).Count = 0 Then&#xA;            ' Fallback to western parse on original string without obvious credentials&#xA;            s = (left &amp; &quot; &quot; &amp; firstMiddle).Trim()&#xA;            firstComma = -1&#xA;        Else&#xA;            Dim lastWithParticles = left&#xA;            Dim lastWithSuffix = If(suffix = &quot;&quot;, lastWithParticles, lastWithParticles &amp; &quot; &quot; &amp; suffix)&#xA;            result = firstMiddle &amp; &quot; &quot; &amp; lastWithSuffix&#xA;            Return&#xA;        End If&#xA;    End If&#xA;End If&#xA;&#xA;' --- Western order parse: &quot;First [Middle ...] Last [Suffix]&quot; ---&#xA;s = RemoveLeadingTitles(s)&#xA;s = RemoveTrailingCredentials(s)&#xA;s = RemoveTrailingCredentialCommaChunk(s).Trim()&#xA;&#xA;Dim tokens = WordTokensPreserveDots(s)&#xA;If tokens.Count &lt; 2 Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;Dim suffixKeep As String = &quot;&quot;&#xA;If IsSuffixToken(tokens(tokens.Count - 1)) Then&#xA;    suffixKeep = tokens(tokens.Count - 1)&#xA;    tokens.RemoveAt(tokens.Count - 1)&#xA;End If&#xA;If tokens.Count &lt; 2 Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;' Last cluster = last token + backward particles&#xA;Dim lastStartIdx As Integer = tokens.Count - 1&#xA;Dim lastNameParts = New System.Collections.Generic.List(Of String) From { tokens(lastStartIdx) }&#xA;Dim iBack As Integer = lastStartIdx - 1&#xA;While iBack &gt;= 0 AndAlso IsParticle(tokens(iBack))&#xA;    lastNameParts.Insert(0, tokens(iBack))&#xA;    iBack -= 1&#xA;End While&#xA;&#xA;Dim firstMiddleTokens = tokens.GetRange(0, System.Math.Max(0, iBack + 1))&#xA;If firstMiddleTokens.Count = 0 Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;Dim firstMiddleName = String.Join(&quot; &quot;, firstMiddleTokens)&#xA;Dim lastName = String.Join(&quot; &quot;, lastNameParts)&#xA;Dim lastWithSuffixKeep = If(suffixKeep = &quot;&quot;, lastName, lastName &amp; &quot; &quot; &amp; suffixKeep)&#xA;&#xA;result = firstMiddleName &amp; &quot; &quot; &amp; lastWithSuffixKeep" DisplayName="Invoke Code - Normalize Candidate Name" sap:VirtualizedContainerService.HintSize="416,192" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+              <ui:InvokeCode.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="inputName">[in_dictCV("CandidateName").ToLower]</InArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="result">[normalizedName]</OutArgument>
+              </ui:InvokeCode.Arguments>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:InvokeCode>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,234" sap2010:WorkflowViewState.IdRef="Sequence_17">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="Assign_21">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[normalizedName]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[""]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </If.Else>
+      </If>
+      <ui:InvokeCode ContinueOnError="{x:Null}" Code="' Arguments expected:&#xA;'   inputName (In, String)&#xA;'   result    (Out, String)&#xA;&#xA;Dim s As String = If(inputName, &quot;&quot;).Trim()&#xA;If s = &quot;&quot; Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;' --- Dictionaries (HashSets) ---&#xA;Dim titles = New System.Collections.Generic.HashSet(Of String)(System.StringComparer.OrdinalIgnoreCase) From {&#xA;    &quot;dr&quot;, &quot;dr.&quot;, &quot;doctor&quot;, &quot;prof&quot;, &quot;prof.&quot;, &quot;professor&quot;, &quot;mr&quot;, &quot;mr.&quot;, &quot;mrs&quot;, &quot;mrs.&quot;, &quot;ms&quot;, &quot;ms.&quot;, &quot;miss&quot;, &quot;sir&quot;,&#xA;    &quot;ing&quot;, &quot;ing.&quot;, &quot;eng&quot;, &quot;eng.&quot;, &quot;lic&quot;, &quot;lic.&quot;, &quot;arq&quot;, &quot;arq.&quot;, &quot;rev&quot;, &quot;rev.&quot;, &quot;fr&quot;, &quot;fr.&quot;&#xA;}&#xA;Dim credentials = New System.Collections.Generic.HashSet(Of String)(System.StringComparer.OrdinalIgnoreCase) From {&#xA;    &quot;phd&quot;, &quot;msc&quot;, &quot;ms&quot;, &quot;ma&quot;, &quot;mba&quot;, &quot;bsc&quot;, &quot;ba&quot;, &quot;bs&quot;, &quot;jd&quot;, &quot;md&quot;, &quot;edd&quot;, &quot;dphil&quot;, &quot;mpp&quot;, &quot;mph&quot;, &quot;mfa&quot;, &quot;llm&quot;,&#xA;    &quot;llb&quot;, &quot;dds&quot;, &quot;dmd&quot;, &quot;do&quot;, &quot;rn&quot;, &quot;bba&quot;, &quot;mpa&quot;, &quot;meng&quot;, &quot;beng&quot;, &quot;mtech&quot;, &quot;btech&quot;,&#xA;    &quot;pmp&quot;, &quot;cpa&quot;, &quot;cfa&quot;, &quot;frs&quot;, &quot;fieee&quot;, &quot;aaas&quot;, &quot;pe&quot;, &quot;cisa&quot;, &quot;cissp&quot;, &quot;cism&quot;, &quot;shrm-scp&quot;, &quot;shrm-cp&quot;, &quot;six-sigma&quot;,&#xA;    &quot;lean&quot;, &quot;itil&quot;, &quot;scrum&quot;, &quot;psm&quot;, &quot;pspo&quot;, &quot;csd&quot;, &quot;sa&quot;, &quot;safe&quot;, &quot;sfpc&quot;, &quot;ceh&quot;, &quot;aws-ssa&quot;, &quot;aws-saa&quot;,&#xA;    &quot;esq&quot;, &quot;esq.&quot;&#xA;}&#xA;Dim suffixes = New System.Collections.Generic.HashSet(Of String)(System.StringComparer.OrdinalIgnoreCase) From {&#xA;    &quot;jr&quot;, &quot;jr.&quot;, &quot;sr&quot;, &quot;sr.&quot;, &quot;ii&quot;, &quot;iii&quot;, &quot;iv&quot;, &quot;v&quot;&#xA;}&#xA;Dim particles = New System.Collections.Generic.HashSet(Of String)(System.StringComparer.OrdinalIgnoreCase) From {&#xA;    &quot;da&quot;, &quot;de&quot;, &quot;del&quot;, &quot;della&quot;, &quot;der&quot;, &quot;di&quot;, &quot;du&quot;, &quot;dos&quot;, &quot;das&quot;, &quot;la&quot;, &quot;le&quot;, &quot;van&quot;, &quot;von&quot;, &quot;zu&quot;, &quot;zur&quot;, &quot;zum&quot;,&#xA;    &quot;ten&quot;, &quot;ter&quot;, &quot;bin&quot;, &quot;ibn&quot;, &quot;al&quot;, &quot;st&quot;, &quot;st.&quot;, &quot;san&quot;, &quot;santa&quot;&#xA;}&#xA;&#xA;' --- Helper lambdas ---&#xA;Dim NormalizeTokenForCompare As System.Func(Of String, String) =&#xA;    Function(token As String)&#xA;        Dim t = If(token, &quot;&quot;).Trim().ToLowerInvariant()&#xA;        If t.EndsWith(&quot;.&quot;) Then t = t.Substring(0, t.Length - 1)&#xA;        Return t&#xA;    End Function&#xA;&#xA;Dim NormalizeCredentialToken As System.Func(Of String, String) =&#xA;    Function(token As String)&#xA;        Dim t = If(token, &quot;&quot;).Trim()&#xA;        t = t.Replace(&quot;.&quot;, &quot;&quot;).Replace(&quot;-&quot;, &quot;&quot;).Replace(&quot;â€™&quot;, &quot;&quot;).Replace(&quot;'&quot;, &quot;&quot;)&#xA;        Return t.ToLowerInvariant()&#xA;    End Function&#xA;&#xA;Dim IsTitleToken As System.Func(Of String, Boolean) =&#xA;    Function(tok As String) titles.Contains(NormalizeTokenForCompare(tok))&#xA;&#xA;Dim IsSuffixToken As System.Func(Of String, Boolean) =&#xA;    Function(tok As String) suffixes.Contains(NormalizeTokenForCompare(tok))&#xA;&#xA;Dim IsParticle As System.Func(Of String, Boolean) =&#xA;    Function(tok As String) particles.Contains(NormalizeTokenForCompare(tok))&#xA;&#xA;Dim WordTokensPreserveDots As System.Func(Of String, System.Collections.Generic.List(Of String)) =&#xA;    Function(text As String)&#xA;        Dim rx = New System.Text.RegularExpressions.Regex(&quot;\p{L}+(?:[â€™'\-]\p{L}+)*\.?&quot;, System.Text.RegularExpressions.RegexOptions.CultureInvariant)&#xA;        Dim m = rx.Match(If(text, &quot;&quot;))&#xA;        Dim list = New System.Collections.Generic.List(Of String)&#xA;        While m.Success&#xA;            list.Add(m.Value)&#xA;            m = m.NextMatch()&#xA;        End While&#xA;        Return list&#xA;    End Function&#xA;&#xA;Dim SplitByComma As System.Func(Of String, System.Collections.Generic.List(Of String)) =&#xA;    Function(text As String)&#xA;        Dim arr = (If(text, &quot;&quot;)).Split(New Char() {&quot;,&quot;c}, StringSplitOptions.RemoveEmptyEntries)&#xA;        Dim list = New System.Collections.Generic.List(Of String)&#xA;        For Each p In arr&#xA;            Dim t = p.Trim()&#xA;            If t.Length &gt; 0 Then list.Add(t)&#xA;        Next&#xA;        Return list&#xA;    End Function&#xA;&#xA;Dim SplitByNonWord As System.Func(Of String, System.Collections.Generic.List(Of String)) =&#xA;    Function(text As String)&#xA;        Dim rx = New System.Text.RegularExpressions.Regex(&quot;[^\p{L}\.]+&quot;, System.Text.RegularExpressions.RegexOptions.CultureInvariant)&#xA;        Dim arr = rx.Split(If(text, &quot;&quot;))&#xA;        Dim list = New System.Collections.Generic.List(Of String)&#xA;        For Each p In arr&#xA;            Dim t = p.Trim()&#xA;            If t.Length &gt; 0 Then list.Add(t)&#xA;        Next&#xA;        Return list&#xA;    End Function&#xA;&#xA;Dim IsCredentialsToken As System.Func(Of String, Boolean) =&#xA;    Function(tok As String) credentials.Contains(NormalizeCredentialToken(tok))&#xA;&#xA;Dim IsCredentialsBlob As System.Func(Of String, Boolean) =&#xA;    Function(seg As String)&#xA;        Dim parts = SplitByNonWord(seg)&#xA;        If parts.Count = 0 Then Return False&#xA;        For Each p In parts&#xA;            If Not IsCredentialsToken(p) Then Return False&#xA;        Next&#xA;        Return True&#xA;    End Function&#xA;&#xA;Dim IsAllCredentials As System.Func(Of System.Collections.Generic.List(Of String), Boolean) =&#xA;    Function(parts As System.Collections.Generic.List(Of String))&#xA;        If parts Is Nothing OrElse parts.Count = 0 Then Return False&#xA;        For Each p In parts&#xA;            If Not IsCredentialsBlob(p) Then Return False&#xA;        Next&#xA;        Return True&#xA;    End Function&#xA;&#xA;' --- Step 1: Remove emails &amp; phones ---&#xA;Dim emailRx = New System.Text.RegularExpressions.Regex(&quot;\b[A-Z0-9._%+\-]+@[A-Z0-9.\-]+\.[A-Z]{2,}\b&quot;, System.Text.RegularExpressions.RegexOptions.IgnoreCase)&#xA;s = emailRx.Replace(s, &quot; &quot;).Trim()&#xA;&#xA;Dim phoneRx = New System.Text.RegularExpressions.Regex(&quot;(?:(?:\+?\d[\s\-\.\(\)]*){7,}\d)&quot;)&#xA;s = phoneRx.Replace(s, &quot; &quot;).Trim()&#xA;&#xA;' --- Step 2: Remove parenthetical credentials ---&#xA;Dim parenRx = New System.Text.RegularExpressions.Regex(&quot;\(([^)]*)\)&quot;)&#xA;s = parenRx.Replace(s, Function(m As System.Text.RegularExpressions.Match)&#xA;    Dim inner = m.Groups(1).Value&#xA;    Dim parts = SplitByNonWord(inner)&#xA;    If IsAllCredentials(parts) Then Return &quot;&quot;&#xA;    Return m.Value&#xA;End Function).Trim()&#xA;&#xA;If s.Length = 0 Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;' --- Local helpers: remove leading titles, trailing credentials, trailing &quot; , credentials&quot; ---&#xA;Dim RemoveLeadingTitles As System.Func(Of String, String) =&#xA;    Function(text As String)&#xA;        Dim toks = WordTokensPreserveDots(text)&#xA;        Dim i As Integer = 0&#xA;        While i &lt; toks.Count AndAlso IsTitleToken(toks(i))&#xA;            i += 1&#xA;        End While&#xA;        Dim kept = toks.GetRange(i, toks.Count - i)&#xA;        Return String.Join(&quot; &quot;, kept)&#xA;    End Function&#xA;&#xA;Dim RemoveTrailingCredentials As System.Func(Of String, String) =&#xA;    Function(text As String)&#xA;        Dim toks = WordTokensPreserveDots(text)&#xA;        Dim i As Integer = toks.Count - 1&#xA;        While i &gt;= 0 AndAlso IsCredentialsToken(toks(i))&#xA;            i -= 1&#xA;        End While&#xA;        If i &lt; 0 Then Return &quot;&quot;&#xA;        Dim kept = toks.GetRange(0, i + 1)&#xA;        Return String.Join(&quot; &quot;, kept)&#xA;    End Function&#xA;&#xA;Dim RemoveTrailingCredentialCommaChunk As System.Func(Of String, String) =&#xA;    Function(text As String)&#xA;        Dim idx = (If(text, &quot;&quot;)).IndexOf(&quot;,&quot;c)&#xA;        If idx &lt; 0 Then Return text&#xA;        Dim left = text.Substring(0, idx).Trim()&#xA;        Dim right = text.Substring(idx + 1).Trim()&#xA;        Dim parts = SplitByComma(right)&#xA;        If IsAllCredentials(parts) Then&#xA;            Return left&#xA;        End If&#xA;        Return text&#xA;    End Function&#xA;&#xA;' --- Main branching: comma vs no comma ---&#xA;Dim firstComma As Integer = s.IndexOf(&quot;,&quot;c)&#xA;If firstComma &gt;= 0 Then&#xA;    Dim left = s.Substring(0, firstComma).Trim()&#xA;    Dim right = s.Substring(firstComma + 1).Trim()&#xA;    Dim rightParts = SplitByComma(right)&#xA;&#xA;    If IsAllCredentials(rightParts) Then&#xA;        ' Treat as western order&#xA;        s = left&#xA;        ' Fall through to western parsing below&#xA;        firstComma = -1&#xA;    Else&#xA;        ' &quot;Last, First [Middle] [, Suffix] [, Credentials]&quot;&#xA;        Dim suffix As String = &quot;&quot;&#xA;        Dim filteredRight As New System.Collections.Generic.List(Of String)&#xA;        For Each part In rightParts&#xA;            Dim p = part.Trim()&#xA;            If p.Length = 0 Then Continue For&#xA;            If IsSuffixToken(p) Then&#xA;                suffix = p&#xA;            ElseIf Not IsCredentialsBlob(p) Then&#xA;                filteredRight.Add(p)&#xA;            End If&#xA;        Next&#xA;&#xA;        Dim firstMiddle As String = If(filteredRight.Count &gt; 0, filteredRight(0).Trim(), &quot;&quot;)&#xA;        left = RemoveLeadingTitles(left)&#xA;        firstMiddle = RemoveLeadingTitles(firstMiddle)&#xA;        left = RemoveTrailingCredentials(left).Trim()&#xA;        firstMiddle = RemoveTrailingCredentials(firstMiddle).Trim()&#xA;&#xA;        If WordTokensPreserveDots(left).Count = 0 OrElse WordTokensPreserveDots(firstMiddle).Count = 0 Then&#xA;            ' Fallback to western parse on original string without obvious credentials&#xA;            s = (left &amp; &quot; &quot; &amp; firstMiddle).Trim()&#xA;            firstComma = -1&#xA;        Else&#xA;            Dim lastWithParticles = left&#xA;            Dim lastWithSuffix = If(suffix = &quot;&quot;, lastWithParticles, lastWithParticles &amp; &quot; &quot; &amp; suffix)&#xA;            result = firstMiddle &amp; &quot; &quot; &amp; lastWithSuffix&#xA;            Return&#xA;        End If&#xA;    End If&#xA;End If&#xA;&#xA;' --- Western order parse: &quot;First [Middle ...] Last [Suffix]&quot; ---&#xA;s = RemoveLeadingTitles(s)&#xA;s = RemoveTrailingCredentials(s)&#xA;s = RemoveTrailingCredentialCommaChunk(s).Trim()&#xA;&#xA;Dim tokens = WordTokensPreserveDots(s)&#xA;If tokens.Count &lt; 2 Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;Dim suffixKeep As String = &quot;&quot;&#xA;If IsSuffixToken(tokens(tokens.Count - 1)) Then&#xA;    suffixKeep = tokens(tokens.Count - 1)&#xA;    tokens.RemoveAt(tokens.Count - 1)&#xA;End If&#xA;If tokens.Count &lt; 2 Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;' Last cluster = last token + backward particles&#xA;Dim lastStartIdx As Integer = tokens.Count - 1&#xA;Dim lastNameParts = New System.Collections.Generic.List(Of String) From { tokens(lastStartIdx) }&#xA;Dim iBack As Integer = lastStartIdx - 1&#xA;While iBack &gt;= 0 AndAlso IsParticle(tokens(iBack))&#xA;    lastNameParts.Insert(0, tokens(iBack))&#xA;    iBack -= 1&#xA;End While&#xA;&#xA;Dim firstMiddleTokens = tokens.GetRange(0, System.Math.Max(0, iBack + 1))&#xA;If firstMiddleTokens.Count = 0 Then&#xA;    result = &quot;&quot;&#xA;    Return&#xA;End If&#xA;&#xA;Dim firstMiddleName = String.Join(&quot; &quot;, firstMiddleTokens)&#xA;Dim lastName = String.Join(&quot; &quot;, lastNameParts)&#xA;Dim lastWithSuffixKeep = If(suffixKeep = &quot;&quot;, lastName, lastName &amp; &quot; &quot; &amp; suffixKeep)&#xA;&#xA;result = firstMiddleName &amp; &quot; &quot; &amp; lastWithSuffixKeep" DisplayName="Invoke Code - Normalize Chair Name" sap:VirtualizedContainerService.HintSize="488,197" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
         <ui:InvokeCode.Arguments>
           <InArgument x:TypeArguments="x:String" x:Key="inputName">[in_dictChairMemo("Chair").ToString]</InArgument>
           <OutArgument x:TypeArguments="x:String" x:Key="result">[normalizedNameChair]</OutArgument>
         </ui:InvokeCode.Arguments>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
       </ui:InvokeCode>
-      <p:WordApplicationScope SensitivityLabel="{x:Null}" CreateNewFile="False" DisplayName="Word Application Scope" FilePath="[result.LocalPath]" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1" SensitivityOperation="None">
+      <p:WordApplicationScope SensitivityLabel="{x:Null}" CreateNewFile="False" DisplayName="Word Application Scope" FilePath="[result.LocalPath]" sap:VirtualizedContainerService.HintSize="488,5657" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1" SensitivityOperation="None">
         <p:WordApplicationScope.Body>
           <ActivityAction x:TypeArguments="ui:WordDocument">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,2597" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="486,5526" sap2010:WorkflowViewState.IdRef="Sequence_3">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <If Condition="[in_chairAdmin.Contains(normalizedNameChair)]" DisplayName="If - Validate Chair Name" sap:VirtualizedContainerService.HintSize="416,61" sap2010:WorkflowViewState.IdRef="If_1">
+              <If Condition="[in_chairAdmin.Contains(normalizedNameChair)]" DisplayName="If - Validate Chair Name" sap:VirtualizedContainerService.HintSize="452,61" sap2010:WorkflowViewState.IdRef="If_1">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -316,7 +562,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <If.Then>
-                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,277" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,281" sap2010:WorkflowViewState.IdRef="Sequence_8">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -341,28 +587,304 @@
                   </Sequence>
                 </If.Else>
               </If>
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - System Date" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_1" Replace="[DateTime.Now.ToString(&quot;MMMM d, yyyy&quot;)]" ReplaceAll="False" Search="%[Date]" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Full Name" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_2" Replace="[System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(normalizedName)]" ReplaceAll="True" Search="%[Name]" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Email Address" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_3" Replace="[in_dictCV(&quot;CvEmail&quot;)]" ReplaceAll="False" Search="%[Email Address]" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Last Name" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_4" Replace="[in_taskName.Split(&quot;,&quot;c)(0)]" ReplaceAll="False" Search="%[Last Name]" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Chair Name" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_5" Replace="[normalizedNameChair]" ReplaceAll="True" Search="%[Chair]" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Title" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_11" Replace="[in_title.ToString()]" ReplaceAll="False" Search="%[Title]" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Dept" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_7" Replace="[in_department.ToString()]" ReplaceAll="False" Search="%[Dept]" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Term" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_8" Replace="[numberToLetterDict(CInt(numberMatch)) + &quot; &quot; + &quot;years&quot;]" ReplaceAll="False" Search="%[Term]" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Start Date" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_9" Replace="[startDate]" ReplaceAll="False" Search="%[Date]" />
-              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - End Date" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_6" Replace="[endDate]" ReplaceAll="False" Search="%[Date]" />
-              <p:WordSaveAs DisplayName="Save Document As" FilePath="[saveFolder]" sap:VirtualizedContainerService.HintSize="416,216" sap2010:WorkflowViewState.IdRef="WordSaveAs_1" ReplaceExisting="False" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - System Date" sap:VirtualizedContainerService.HintSize="452,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_1" Replace="[DateTime.Now.ToString(&quot;MMMM d, yyyy&quot;)]" ReplaceAll="False" Search="%[Date]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </p:WordReplaceText>
+              <If Condition="[Not String.IsNullOrEmpty(normalizedName) And not in_isInvalidName]" DisplayName="If - Validate Name is Not Empty" sap:VirtualizedContainerService.HintSize="452,658" sap2010:WorkflowViewState.IdRef="If_5">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,281" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Full Name" sap:VirtualizedContainerService.HintSize="416,217" sap2010:WorkflowViewState.IdRef="WordReplaceText_2" Replace="[System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(normalizedName)]" ReplaceAll="True" Search="%[Name]">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </p:WordReplaceText>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,234" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[itemsHighlight]" DisplayName="Append Items to Collection" sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_1">
+                      <uasc:AppendItemToCollection.Items>
+                        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                          <InArgument x:TypeArguments="x:String">%[Name]</InArgument>
+                        </scg:List>
+                      </uasc:AppendItemToCollection.Items>
+                    </uasc:AppendItemToCollection>
+                  </Sequence>
+                </If.Else>
+              </If>
+              <If Condition="[Not String.IsNullOrEmpty(in_dictCV(&quot;CvEmail&quot;))]" DisplayName="If - Validate Email Not Empty" sap:VirtualizedContainerService.HintSize="452,991" sap2010:WorkflowViewState.IdRef="If_6">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,614" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Email Address" sap:VirtualizedContainerService.HintSize="416,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_3" Replace="[in_dictCV(&quot;CvEmail&quot;)]" ReplaceAll="False" Search="%[Email Address]">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </p:WordReplaceText>
+                    <p:WordInsertHyperlink Found="{x:Null}" Address="[in_dictCV(&quot;CvEmail&quot;)]" DisplayName="Add Hyperlink to Document" sap:VirtualizedContainerService.HintSize="416,324" sap2010:WorkflowViewState.IdRef="WordInsertHyperlink_1" InsertRelativeTo="Text" Position="Replace" TextToDisplay="[in_dictCV(&quot;CvEmail&quot;)]" TextToSearchFor="[in_dictCV(&quot;CvEmail&quot;)]" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,234" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[itemsHighlight]" DisplayName="Append Items to Collection" sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_2">
+                      <uasc:AppendItemToCollection.Items>
+                        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                          <InArgument x:TypeArguments="x:String">%[Email Address]</InArgument>
+                        </scg:List>
+                      </uasc:AppendItemToCollection.Items>
+                    </uasc:AppendItemToCollection>
+                  </Sequence>
+                </If.Else>
+              </If>
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Last Name" sap:VirtualizedContainerService.HintSize="452,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_4" Replace="[in_taskName.Split(&quot;,&quot;c)(0)]" ReplaceAll="False" Search="%[Last Name]" />
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Chair Name" sap:VirtualizedContainerService.HintSize="452,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_5" Replace="[normalizedNameChair]" ReplaceAll="True" Search="%[Chair]" />
+              <If Condition="[Not in_isInvalidTitle]" DisplayName="If - Validate Title is Valid" sap:VirtualizedContainerService.HintSize="452,658" sap2010:WorkflowViewState.IdRef="If_11">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,281" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Title" sap:VirtualizedContainerService.HintSize="416,217" sap2010:WorkflowViewState.IdRef="WordReplaceText_11" Replace="[in_title.ToString()]" ReplaceAll="False" Search="%[Title]" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,234" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[itemsHighlight]" DisplayName="Append Items to Collection" sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_3">
+                      <uasc:AppendItemToCollection.Items>
+                        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                          <InArgument x:TypeArguments="x:String">%[Title]</InArgument>
+                        </scg:List>
+                      </uasc:AppendItemToCollection.Items>
+                    </uasc:AppendItemToCollection>
+                  </Sequence>
+                </If.Else>
+              </If>
+              <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Dept" sap:VirtualizedContainerService.HintSize="452,226" sap2010:WorkflowViewState.IdRef="WordReplaceText_7" Replace="[in_department.ToString()]" ReplaceAll="False" Search="%[Dept]" />
+              <If Condition="[Not in_isInvalidTerm]" DisplayName="If - Validate if it is valid term" sap:VirtualizedContainerService.HintSize="452,658" sap2010:WorkflowViewState.IdRef="If_12">
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,281" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Term" sap:VirtualizedContainerService.HintSize="416,217" sap2010:WorkflowViewState.IdRef="WordReplaceText_8" Replace="[numberToLetterDict(CInt(numberMatch)) + &quot; &quot; + &quot;years&quot;]" ReplaceAll="False" Search="%[Term]" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,234" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[itemsHighlight]" DisplayName="Append Items to Collection" sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_4">
+                      <uasc:AppendItemToCollection.Items>
+                        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                          <InArgument x:TypeArguments="x:String">%[Term]</InArgument>
+                        </scg:List>
+                      </uasc:AppendItemToCollection.Items>
+                    </uasc:AppendItemToCollection>
+                  </Sequence>
+                </If.Else>
+              </If>
+              <If Condition="[Not String.IsNullOrEmpty(startDate) and in_isValidStartDate]" DisplayName="If - Validate StartDate is not empty" sap:VirtualizedContainerService.HintSize="452,658" sap2010:WorkflowViewState.IdRef="If_7">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,281" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - Start Date" sap:VirtualizedContainerService.HintSize="416,217" sap2010:WorkflowViewState.IdRef="WordReplaceText_9" Replace="[startDate]" ReplaceAll="False" Search="%[Date]" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,234" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[itemsHighlight]" DisplayName="Append Items to Collection" sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_5">
+                      <uasc:AppendItemToCollection.Items>
+                        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                          <InArgument x:TypeArguments="x:String">%[Date]</InArgument>
+                        </scg:List>
+                      </uasc:AppendItemToCollection.Items>
+                    </uasc:AppendItemToCollection>
+                  </Sequence>
+                </If.Else>
+              </If>
+              <If Condition="[Not String.IsNullOrEmpty(endDate) and in_isValidEndDate]" DisplayName="If - Validate EndDate is not Empty" sap:VirtualizedContainerService.HintSize="452,658" sap2010:WorkflowViewState.IdRef="If_8">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,281" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text - End Date" sap:VirtualizedContainerService.HintSize="416,217" sap2010:WorkflowViewState.IdRef="WordReplaceText_6" Replace="[endDate]" ReplaceAll="False" Search="%[Date]" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,234" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uasc:AppendItemToCollection x:TypeArguments="x:String" Collection="[itemsHighlight]" DisplayName="Append Items to Collection" sap:VirtualizedContainerService.HintSize="416,170" sap2010:WorkflowViewState.IdRef="AppendItemToCollection`1_6">
+                      <uasc:AppendItemToCollection.Items>
+                        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                          <InArgument x:TypeArguments="x:String">%[Date]</InArgument>
+                        </scg:List>
+                      </uasc:AppendItemToCollection.Items>
+                    </uasc:AppendItemToCollection>
+                  </Sequence>
+                </If.Else>
+              </If>
+              <p:WordSaveAs DisplayName="Save Document As" FilePath="[saveFolder]" sap:VirtualizedContainerService.HintSize="452,216" sap2010:WorkflowViewState.IdRef="WordSaveAs_1" ReplaceExisting="False" />
             </Sequence>
           </ActivityAction>
         </p:WordApplicationScope.Body>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </p:WordApplicationScope>
-      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim url As String = &quot;https://app.asana.com/api/1.0/attachments&quot;&#xD;&#xA;Dim responseText As String = &quot;&quot;&#xD;&#xA;Dim statusCodeValue As Integer = -1&#xD;&#xA;Dim client As New System.Net.Http.HttpClient()&#xD;&#xA;&#xD;&#xA;Try&#xD;&#xA;    client.DefaultRequestHeaders.Authorization =&#xD;&#xA;        New System.Net.Http.Headers.AuthenticationHeaderValue(&quot;Bearer&quot;, inPersonalAccessToken)&#xD;&#xA;&#xD;&#xA;    Dim form As New System.Net.Http.MultipartFormDataContent()&#xD;&#xA;&#xD;&#xA;    ' Required: parent (task GID)&#xD;&#xA;    form.Add(New System.Net.Http.StringContent(inTaskGid), &quot;parent&quot;)&#xD;&#xA;&#xD;&#xA;    ' Required: file (binary)&#xD;&#xA;    Dim bytes As Byte() = System.IO.File.ReadAllBytes(inFilePath)&#xD;&#xA;    Dim fileContent As New System.Net.Http.ByteArrayContent(bytes)&#xD;&#xA;&#xD;&#xA;    fileContent.Headers.ContentType =&#xD;&#xA;        New System.Net.Http.Headers.MediaTypeHeaderValue(&quot;application/octet-stream&quot;)&#xD;&#xA;&#xD;&#xA;    ' Agregar el Content-Disposition como string crudo para evitar sanitización de la coma&#xD;&#xA;    Dim fileName As String = System.IO.Path.GetFileName(inFilePath)&#xD;&#xA;    fileContent.Headers.Add(&quot;Content-Disposition&quot;,&#xD;&#xA;        &quot;form-data; name=&quot;&quot;file&quot;&quot;; filename=&quot;&quot;&quot; &amp; fileName &amp; &quot;&quot;&quot;&quot;)&#xD;&#xA;&#xD;&#xA;    form.Add(fileContent)&#xD;&#xA;&#xD;&#xA;    Dim resp As System.Net.Http.HttpResponseMessage = client.PostAsync(url, form).Result&#xD;&#xA;    statusCodeValue = CInt(resp.StatusCode)&#xD;&#xA;    responseText = resp.Content.ReadAsStringAsync().Result&#xD;&#xA;&#xD;&#xA;Finally&#xD;&#xA;    client.Dispose()&#xD;&#xA;End Try&#xD;&#xA;&#xD;&#xA;outStatusCode = statusCodeValue&#xD;&#xA;outResponse = responseText" DisplayName="Invoke Code - Upload File" sap:VirtualizedContainerService.HintSize="450,197" sap2010:WorkflowViewState.IdRef="InvokeCode_4">
+      <If Condition="[itemsHighlight.Count = 1]" DisplayName="If - Validate Number of Arguments to Highlight" sap:VirtualizedContainerService.HintSize="488,841" sap2010:WorkflowViewState.IdRef="If_13">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="486,256" sap2010:WorkflowViewState.IdRef="Sequence_32">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim wordApp As New Microsoft.Office.Interop.Word.Application&#xA;Dim doc As Microsoft.Office.Interop.Word.Document = Nothing&#xA; &#xA;Try&#xA;    wordApp.Visible = False&#xA;    doc = wordApp.Documents.Open(CStr(in_FilePath))&#xA; &#xA;    Dim findRange As Microsoft.Office.Interop.Word.Range = doc.Content&#xA; &#xA;    With findRange.Find&#xA;        .ClearFormatting()&#xA;        .Text = CStr(in_SearchText)&#xA;        .Forward = True&#xA;        .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindStop&#xA;        .Format = False&#xA;    End With&#xA; &#xA;    Do While findRange.Find.Execute()&#xA;        findRange.HighlightColorIndex = Microsoft.Office.Interop.Word.WdColorIndex.wdYellow&#xA;        findRange.Collapse(Microsoft.Office.Interop.Word.WdCollapseDirection.wdCollapseEnd)&#xA;    Loop&#xA; &#xA;    doc.Save()&#xA; &#xA;Finally&#xA;    If doc IsNot Nothing Then&#xA;        doc.Close(False)&#xA;    End If&#xA; &#xA;    If wordApp IsNot Nothing Then&#xA;        wordApp.Quit()&#xA;    End If&#xA;End Try" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="452,192" sap2010:WorkflowViewState.IdRef="InvokeCode_16">
+              <ui:InvokeCode.Arguments>
+                <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">
+                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="saveFolder" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_SearchText">
+                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="itemsHighlight(0)" />
+                </InArgument>
+              </ui:InvokeCode.Arguments>
+            </ui:InvokeCode>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="486,446" sap2010:WorkflowViewState.IdRef="Sequence_33">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each - Item to Highlight" sap:VirtualizedContainerService.HintSize="452,382" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[itemsHighlight]">
+              <ui:ForEach.Body>
+                <ActivityAction x:TypeArguments="x:String">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="450,256" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim wordApp As New Microsoft.Office.Interop.Word.Application&#xA;Dim doc As Microsoft.Office.Interop.Word.Document = Nothing&#xA; &#xA;Try&#xA;    wordApp.Visible = False&#xA;    doc = wordApp.Documents.Open(CStr(in_FilePath))&#xA; &#xA;    Dim findRange As Microsoft.Office.Interop.Word.Range = doc.Content&#xA; &#xA;    With findRange.Find&#xA;        .ClearFormatting()&#xA;        .Text = CStr(in_SearchText)&#xA;        .Forward = True&#xA;        .Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindStop&#xA;        .Format = False&#xA;    End With&#xA; &#xA;    Do While findRange.Find.Execute()&#xA;        findRange.HighlightColorIndex = Microsoft.Office.Interop.Word.WdColorIndex.wdYellow&#xA;        findRange.Collapse(Microsoft.Office.Interop.Word.WdCollapseDirection.wdCollapseEnd)&#xA;    Loop&#xA; &#xA;    doc.Save()&#xA; &#xA;Finally&#xA;    If doc IsNot Nothing Then&#xA;        doc.Close(False)&#xA;    End If&#xA; &#xA;    If wordApp IsNot Nothing Then&#xA;        wordApp.Quit()&#xA;    End If&#xA;End Try" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,192" sap2010:WorkflowViewState.IdRef="InvokeCode_17">
+                      <ui:InvokeCode.Arguments>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">
+                          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="saveFolder" />
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_SearchText">
+                          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="currentText" />
+                        </InArgument>
+                      </ui:InvokeCode.Arguments>
+                    </ui:InvokeCode>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEach.Body>
+            </ui:ForEach>
+          </Sequence>
+        </If.Else>
+      </If>
+      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim url As String = &quot;https://app.asana.com/api/1.0/attachments&quot;&#xA;Dim responseText As String = &quot;&quot;&#xA;Dim statusCodeValue As Integer = -1&#xA;Dim client As New System.Net.Http.HttpClient()&#xA;&#xA;Try&#xA;    client.DefaultRequestHeaders.Authorization =&#xA;        New System.Net.Http.Headers.AuthenticationHeaderValue(&quot;Bearer&quot;, inPersonalAccessToken)&#xA;&#xA;    Dim form As New System.Net.Http.MultipartFormDataContent()&#xA;&#xA;    ' Required: parent (task GID)&#xA;    form.Add(New System.Net.Http.StringContent(inTaskGid), &quot;parent&quot;)&#xA;&#xA;    ' Required: file (binary)&#xA;    Dim bytes As Byte() = System.IO.File.ReadAllBytes(inFilePath)&#xA;    Dim fileContent As New System.Net.Http.ByteArrayContent(bytes)&#xA;&#xA;    fileContent.Headers.ContentType =&#xA;        New System.Net.Http.Headers.MediaTypeHeaderValue(&quot;application/octet-stream&quot;)&#xA;&#xA;    ' Agregar el Content-Disposition como string crudo para evitar sanitización de la coma&#xA;    Dim fileName As String = System.IO.Path.GetFileName(inFilePath)&#xA;    fileContent.Headers.Add(&quot;Content-Disposition&quot;,&#xA;        &quot;form-data; name=&quot;&quot;file&quot;&quot;; filename=&quot;&quot;&quot; &amp; fileName &amp; &quot;&quot;&quot;&quot;)&#xA;&#xA;    form.Add(fileContent)&#xA;&#xA;    Dim resp As System.Net.Http.HttpResponseMessage = client.PostAsync(url, form).Result&#xA;    statusCodeValue = CInt(resp.StatusCode)&#xA;    responseText = resp.Content.ReadAsStringAsync().Result&#xA;&#xA;Finally&#xA;    client.Dispose()&#xA;End Try&#xA;&#xA;outStatusCode = statusCodeValue&#xA;outResponse = responseText" DisplayName="Invoke Code - Upload File" sap:VirtualizedContainerService.HintSize="488,197" sap2010:WorkflowViewState.IdRef="InvokeCode_4">
         <ui:InvokeCode.Arguments>
           <InArgument x:TypeArguments="x:String" x:Key="inPersonalAccessToken">2/1212982367753843/1213153733282738:dedad1ffda66837ab8acbb188d255836</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="inTaskGid">[in_taskGID]</InArgument>
@@ -371,144 +893,170 @@
           <OutArgument x:TypeArguments="x:String" x:Key="outResponse">[apiResponse]</OutArgument>
         </ui:InvokeCode.Arguments>
       </ui:InvokeCode>
-      <Sequence DisplayName="Sequence - Update Task Status" sap:VirtualizedContainerService.HintSize="450,2166" sap2010:WorkflowViewState.IdRef="Sequence_5">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request - Update Ready to Review" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[new System.Collections.Generic.Dictionary(Of System.String, System.String) From { { &quot;Content-Type&quot;, &quot;application/json&quot; },{ &quot;Accept&quot;, &quot;application/json&quot; } }]" sap:VirtualizedContainerService.HintSize="416,443" sap2010:WorkflowViewState.IdRef="NetHttpRequest_1" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="PUT" Multiplier="2" OAuthToken="[in_asanaAPIKey]" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="[updateStatusLink]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayload="[request]" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
-          <uwah:NetHttpRequest.TimeoutInMiliseconds>
-            <InArgument x:TypeArguments="s:Nullable(x:Int32)">
-              <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
-            </InArgument>
-          </uwah:NetHttpRequest.TimeoutInMiliseconds>
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-        </uwah:NetHttpRequest>
-        <isactr:ConnectorHttpActivity Configuration="H4sIAAAAAAAACu1WS2/bMAz+K4OOg5vscTOGAnm4TbZs8Vq3Oww9KDYTq7ElVY+mnpH/Pkq2s3UJtgwodllzcEya/PiRJinX5IxBkemR4IYyDoqENZlyaU2jJ+HXmnyiJZCQlGBykZGAjJmWBa1a9cdOnVTSydooxlcoX8CdZQoyEhplIWgizURKDRMcDYciq8g22OFbVeyBRzyTgnHzBPA50AyU/oEkFreQOuQzoUpqUJOx1DlTVb1rwgQMhZUtgZtWc3rqQ2spuIZjQ99ZUNVTBP5ToIWT90s1Bs1WaF83AAMfrHm3zX3rMGEZuPRsAc3TC1h6j187oNNf08J6U3IeJeRme+O4PIK8zMXmKMip/iLUelmITfQgFWjtM2zqux8unl8m6BRfues4mkVJ5MRBMpp4Gkjk/8n12IZEw7k1B2f7Hw5HQ+G5a5+79u87JRV+aA8dBaCxSZe00HA8sNsSrW+s4J7BJqYKIxk3Crgt26Mt9BMfkCs8oHBUjJE67PeplD2qKae9VJQosf7r3iu0mrSjhP4Di/6KfduNIVAF6gVU7/PFS/9D+0GagnQDhoAFazj2bzU6BMQdyzheJ23CexbI/7M/W8J6i/dTrg3lKTzO4hr/m/hI0FNEWI7TLdQHQFdimaQmP/HJNFdPy7B7Zqo29DngxwFL8cHcb4Zub2Axuupj6ijtahYLr5tLUF3+IwXUgGM9omkO+ErE2spu09U7/VCJjQY1NVC2+lixEjcP8nVrCxdZTNM1XcHPub1565P7Db8DXAIyo3xlEQp14GqewIMZFiJd+0jb77/gqhoiCQAA" ConnectionId="1b792568-f673-4668-8c8a-69f8e85d4395" DisplayName="Asana HTTP Request" sap:VirtualizedContainerService.HintSize="416,498" sap2010:WorkflowViewState.IdRef="ConnectorHttpActivity_2" UiPathActivityTypeId="8e7dad69-7016-3a0b-bad0-1435a7cd7c28">
-          <isactr:ConnectorHttpActivity.FieldObjects>
-            <isactr:FieldObject Name="method" Type="FieldArgument">
-              <isactr:FieldObject.Value>
-                <InArgument x:TypeArguments="x:String">GET</InArgument>
-              </isactr:FieldObject.Value>
-            </isactr:FieldObject>
-            <isactr:FieldObject Name="url" Type="FieldArgument">
-              <isactr:FieldObject.Value>
-                <InArgument x:TypeArguments="x:String">["/tasks/"+in_taskGID+"/subtasks"]</InArgument>
-              </isactr:FieldObject.Value>
-            </isactr:FieldObject>
-            <isactr:FieldObject Name="headers" Type="FieldArgument" />
-            <isactr:FieldObject Name="query" Type="FieldArgument" />
-            <isactr:FieldObject Name="body" Type="FieldArgument" />
-            <isactr:FieldObject Name="out_headers" Type="FieldArgument">
-              <isactr:FieldObject.Value>
-                <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" />
-              </isactr:FieldObject.Value>
-            </isactr:FieldObject>
-            <isactr:FieldObject Name="out_body" Type="FieldArgument">
-              <isactr:FieldObject.Value>
-                <OutArgument x:TypeArguments="x:String">[outSubtask]</OutArgument>
-              </isactr:FieldObject.Value>
-            </isactr:FieldObject>
-            <isactr:FieldObject Name="out_code" Type="FieldArgument">
-              <isactr:FieldObject.Value>
-                <OutArgument x:TypeArguments="x:Int32" />
-              </isactr:FieldObject.Value>
-            </isactr:FieldObject>
-          </isactr:ConnectorHttpActivity.FieldObjects>
-        </isactr:ConnectorHttpActivity>
-        <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="416,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[outSubtaskObject]" JsonString="[outSubtask]" />
-        <Assign DisplayName="Assign - Create JArray" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_6">
-          <Assign.To>
-            <OutArgument x:TypeArguments="njl:JArray">[taskJArray]</OutArgument>
-          </Assign.To>
-          <Assign.Value>
-            <InArgument x:TypeArguments="njl:JArray">[CType(outSubtaskObject("data"),JArray)]</InArgument>
-          </Assign.Value>
-        </Assign>
-        <Assign DisplayName="Assign - Subtask GID" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_7">
-          <Assign.To>
-            <OutArgument x:TypeArguments="x:String">[draftTaskGID]</OutArgument>
-          </Assign.To>
-          <Assign.Value>
-            <InArgument x:TypeArguments="x:String" xml:space="preserve">[taskJarray.
+      <If Condition="[Not in_isBusinessException]" DisplayName="If - Validate Business Exception is false" sap:VirtualizedContainerService.HintSize="488,410" sap2010:WorkflowViewState.IdRef="If_9">
+        <If.Then>
+          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484,177" sap2010:WorkflowViewState.IdRef="Sequence_26">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence DisplayName="Sequence - Update Task Status" sap:VirtualizedContainerService.HintSize="450,61" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request - Update Ready to Review" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[new System.Collections.Generic.Dictionary(Of System.String, System.String) From { { &quot;Content-Type&quot;, &quot;application/json&quot; },{ &quot;Accept&quot;, &quot;application/json&quot; } }]" sap:VirtualizedContainerService.HintSize="416,450" sap2010:WorkflowViewState.IdRef="NetHttpRequest_1" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="PUT" Multiplier="2" OAuthToken="[in_asanaAPIKey]" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="[updateStatusLink]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayload="[request]" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+                <uwah:NetHttpRequest.TimeoutInMiliseconds>
+                  <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+                    <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
+                  </InArgument>
+                </uwah:NetHttpRequest.TimeoutInMiliseconds>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uwah:NetHttpRequest>
+              <isactr:ConnectorHttpActivity Configuration="H4sIAAAAAAAACu1WS2/bMAz+K4OOg5vscTOGAnm4TbZs8Vq3Oww9KDYTq7ElVY+mnpH/Pkq2s3UJtgwodllzcEya/PiRJinX5IxBkemR4IYyDoqENZlyaU2jJ+HXmnyiJZCQlGBykZGAjJmWBa1a9cdOnVTSydooxlcoX8CdZQoyEhplIWgizURKDRMcDYciq8g22OFbVeyBRzyTgnHzBPA50AyU/oEkFreQOuQzoUpqUJOx1DlTVb1rwgQMhZUtgZtWc3rqQ2spuIZjQ99ZUNVTBP5ToIWT90s1Bs1WaF83AAMfrHm3zX3rMGEZuPRsAc3TC1h6j187oNNf08J6U3IeJeRme+O4PIK8zMXmKMip/iLUelmITfQgFWjtM2zqux8unl8m6BRfues4mkVJ5MRBMpp4Gkjk/8n12IZEw7k1B2f7Hw5HQ+G5a5+79u87JRV+aA8dBaCxSZe00HA8sNsSrW+s4J7BJqYKIxk3Crgt26Mt9BMfkCs8oHBUjJE67PeplD2qKae9VJQosf7r3iu0mrSjhP4Di/6KfduNIVAF6gVU7/PFS/9D+0GagnQDhoAFazj2bzU6BMQdyzheJ23CexbI/7M/W8J6i/dTrg3lKTzO4hr/m/hI0FNEWI7TLdQHQFdimaQmP/HJNFdPy7B7Zqo29DngxwFL8cHcb4Zub2Axuupj6ijtahYLr5tLUF3+IwXUgGM9omkO+ErE2spu09U7/VCJjQY1NVC2+lixEjcP8nVrCxdZTNM1XcHPub1565P7Db8DXAIyo3xlEQp14GqewIMZFiJd+0jb77/gqhoiCQAA" ConnectionId="1b792568-f673-4668-8c8a-69f8e85d4395" DisplayName="Asana HTTP Request" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="ConnectorHttpActivity_2" UiPathActivityTypeId="8e7dad69-7016-3a0b-bad0-1435a7cd7c28">
+                <isactr:ConnectorHttpActivity.FieldObjects>
+                  <isactr:FieldObject Name="method" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <InArgument x:TypeArguments="x:String">GET</InArgument>
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="url" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <InArgument x:TypeArguments="x:String">["/tasks/"+in_taskGID+"/subtasks"]</InArgument>
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="headers" Type="FieldArgument" />
+                  <isactr:FieldObject Name="query" Type="FieldArgument" />
+                  <isactr:FieldObject Name="body" Type="FieldArgument" />
+                  <isactr:FieldObject Name="out_headers" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" />
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="out_body" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <OutArgument x:TypeArguments="x:String">[outSubtask]</OutArgument>
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                  <isactr:FieldObject Name="out_code" Type="FieldArgument">
+                    <isactr:FieldObject.Value>
+                      <OutArgument x:TypeArguments="x:Int32" />
+                    </isactr:FieldObject.Value>
+                  </isactr:FieldObject>
+                </isactr:ConnectorHttpActivity.FieldObjects>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </isactr:ConnectorHttpActivity>
+              <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[outSubtaskObject]" JsonString="[outSubtask]" />
+              <Assign DisplayName="Assign - Create JArray" sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_6">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="njl:JArray">[taskJArray]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="njl:JArray">[CType(outSubtaskObject("data"),JArray)]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Assign - Subtask GID" sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_7">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[draftTaskGID]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String" xml:space="preserve">[taskJarray.
     Where(Function(t) t("name").ToString = "Dean’s Office drafts appointment letter").
     Select(Function(t) t("gid").ToString).
     FirstOrDefault()]</InArgument>
-          </Assign.Value>
-        </Assign>
-        <Assign DisplayName="Assign - Ready to Review Request" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_9">
-          <Assign.To>
-            <OutArgument x:TypeArguments="x:String">[request]</OutArgument>
-          </Assign.To>
-          <Assign.Value>
-            <InArgument x:TypeArguments="x:String">["{""data"":{""completed"":true}}"]</InArgument>
-          </Assign.Value>
-        </Assign>
-        <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request - Update Subtask" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[new System.Collections.Generic.Dictionary(Of System.String, System.String) From { { &quot;Content-Type&quot;, &quot;application/json&quot; },{ &quot;Accept&quot;, &quot;application/json&quot; } }]" sap:VirtualizedContainerService.HintSize="416,434" sap2010:WorkflowViewState.IdRef="NetHttpRequest_2" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="PUT" Multiplier="2" OAuthToken="[in_asanaAPIKey]" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="[(&quot;https://app.asana.com/api/1.0&quot;+&quot;/tasks/&quot; + draftTaskGID).Trim]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayload="[request]" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
-          <uwah:NetHttpRequest.TimeoutInMiliseconds>
-            <InArgument x:TypeArguments="s:Nullable(x:Int32)">
-              <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
-            </InArgument>
-          </uwah:NetHttpRequest.TimeoutInMiliseconds>
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-        </uwah:NetHttpRequest>
-      </Sequence>
-      <Sequence DisplayName="Sequence - Update Assignee" sap:VirtualizedContainerService.HintSize="450,1327" sap2010:WorkflowViewState.IdRef="Sequence_7">
-        <Sequence.Variables>
-          <Variable x:TypeArguments="njl:JObject" Name="outObjectAdminGID" />
-          <Variable x:TypeArguments="x:String" Name="adminGID" />
-        </Sequence.Variables>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" Headers="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" TextPayload="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" sap:VirtualizedContainerService.HintSize="416,277" sap2010:WorkflowViewState.IdRef="NetHttpRequest_5" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="GET" Multiplier="2" OAuthToken="[in_asanaAPIKey]" PreferRetryAfterValue="True" RequestBodyType="None" RequestUrl="[&quot;https://app.asana.com/api/1.0/users/&quot; + in_adminEmail]" Result="[outAdminGID]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
-          <uwah:NetHttpRequest.TimeoutInMiliseconds>
-            <InArgument x:TypeArguments="s:Nullable(x:Int32)">
-              <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
-            </InArgument>
-          </uwah:NetHttpRequest.TimeoutInMiliseconds>
-        </uwah:NetHttpRequest>
-        <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="416,174" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_2" JsonObject="[outObjectAdminGID]" JsonString="[outAdminGID.TextContent]" />
-        <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_12">
-          <Assign.To>
-            <OutArgument x:TypeArguments="x:String">[adminGID]</OutArgument>
-          </Assign.To>
-          <Assign.Value>
-            <InArgument x:TypeArguments="x:String">[outObjectAdminGID("data")("gid").ToString]</InArgument>
-          </Assign.Value>
-        </Assign>
-        <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_13">
-          <Assign.To>
-            <OutArgument x:TypeArguments="x:String">[request]</OutArgument>
-          </Assign.To>
-          <Assign.Value>
-            <InArgument x:TypeArguments="x:String" xml:space="preserve">["{" &amp;  "  ""data"": {" &amp; "        "  &amp; "    ""assignee"": """  &amp; adminGID &amp;  """" &amp;  "  }" &amp; "}"]</InArgument>
-          </Assign.Value>
-        </Assign>
-        <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[new System.Collections.Generic.Dictionary(Of System.String, System.String) From { { &quot;Content-Type&quot;, &quot;application/json&quot; },{ &quot;Accept&quot;, &quot;*/*&quot; } }]" sap:VirtualizedContainerService.HintSize="416,434" sap2010:WorkflowViewState.IdRef="NetHttpRequest_6" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="PUT" Multiplier="2" OAuthToken="[in_asanaAPIKey]" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="[&quot;https://app.asana.com/api/1.0/tasks/&quot; + in_taskGID]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayload="[request]" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
-          <uwah:NetHttpRequest.TimeoutInMiliseconds>
-            <InArgument x:TypeArguments="s:Nullable(x:Int32)">
-              <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
-            </InArgument>
-          </uwah:NetHttpRequest.TimeoutInMiliseconds>
-        </uwah:NetHttpRequest>
-      </Sequence>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,166" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Ended Modify Adjunt Letter&quot;]" />
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Assign - Ready to Review Request" sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_9">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[request]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">["{""data"":{""completed"":true}}"]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request - Update Subtask" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[new System.Collections.Generic.Dictionary(Of System.String, System.String) From { { &quot;Content-Type&quot;, &quot;application/json&quot; },{ &quot;Accept&quot;, &quot;application/json&quot; } }]" sap:VirtualizedContainerService.HintSize="416,440.6666666666667" sap2010:WorkflowViewState.IdRef="NetHttpRequest_2" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="PUT" Multiplier="2" OAuthToken="[in_asanaAPIKey]" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="[(&quot;https://app.asana.com/api/1.0&quot;+&quot;/tasks/&quot; + draftTaskGID).Trim]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayload="[request]" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+                <uwah:NetHttpRequest.TimeoutInMiliseconds>
+                  <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+                    <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
+                  </InArgument>
+                </uwah:NetHttpRequest.TimeoutInMiliseconds>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uwah:NetHttpRequest>
+            </Sequence>
+            <Sequence DisplayName="Sequence - Update Assignee" sap:VirtualizedContainerService.HintSize="450,52" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="njl:JObject" Name="outObjectAdminGID" />
+                <Variable x:TypeArguments="x:String" Name="adminGID" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" Headers="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" TextPayload="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" sap:VirtualizedContainerService.HintSize="416,281.3333333333333" sap2010:WorkflowViewState.IdRef="NetHttpRequest_5" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="GET" Multiplier="2" OAuthToken="[in_asanaAPIKey]" PreferRetryAfterValue="True" RequestBodyType="None" RequestUrl="[&quot;https://app.asana.com/api/1.0/users/&quot; + in_adminEmail]" Result="[outAdminGID]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+                <uwah:NetHttpRequest.TimeoutInMiliseconds>
+                  <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+                    <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
+                  </InArgument>
+                </uwah:NetHttpRequest.TimeoutInMiliseconds>
+              </uwah:NetHttpRequest>
+              <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" Settings="{x:Null}" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="416,176" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_2" JsonObject="[outObjectAdminGID]" JsonString="[outAdminGID.TextContent]" />
+              <Assign sap:VirtualizedContainerService.HintSize="416,176.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_12">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[adminGID]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[outObjectAdminGID("data")("gid").ToString]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_13">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[request]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String" xml:space="preserve">["{" &amp;  "  ""data"": {" &amp; "        "  &amp; "    ""assignee"": """  &amp; adminGID &amp;  """" &amp;  "  }" &amp; "}"]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BasicAuthSecurePassword="{x:Null}" BasicAuthUsername="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" LocalFiles="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" Parameters="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" AuthenticationType="OAuthToken" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" Headers="[new System.Collections.Generic.Dictionary(Of System.String, System.String) From { { &quot;Content-Type&quot;, &quot;application/json&quot; },{ &quot;Accept&quot;, &quot;*/*&quot; } }]" sap:VirtualizedContainerService.HintSize="416,434" sap2010:WorkflowViewState.IdRef="NetHttpRequest_6" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="PUT" Multiplier="2" OAuthToken="[in_asanaAPIKey]" PreferRetryAfterValue="True" RequestBodyType="Text" RequestUrl="[&quot;https://app.asana.com/api/1.0/tasks/&quot; + in_taskGID]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayload="[request]" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+                <uwah:NetHttpRequest.TimeoutInMiliseconds>
+                  <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+                    <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
+                  </InArgument>
+                </uwah:NetHttpRequest.TimeoutInMiliseconds>
+              </uwah:NetHttpRequest>
+            </Sequence>
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484,94" sap2010:WorkflowViewState.IdRef="Sequence_27">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </If.Else>
+      </If>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="488,166" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Ended Modify Adjunt Letter&quot;]" />
     </Sequence>
   </Sequence>
 </Activity>

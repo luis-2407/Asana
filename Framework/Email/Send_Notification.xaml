@@ -126,7 +126,7 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Send an email based on the Notifications spreadsheet.&#xA;&#xA;Precondition: Pass the required arguments (NotificationID, NotificationDt, UserOffice365)&#xA;Post action: Sends an email.&#xA;This workflow is protected under the US Copyright Office and is intended for the solely usage of Auxis LLC.&#xA;Usage of this workflow without written approval is not permitted.         " DisplayName="Misc_SendNotification" sap:VirtualizedContainerService.HintSize="2306,3534" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Send an email based on the Notifications spreadsheet.&#xA;&#xA;Precondition: Pass the required arguments (NotificationID, NotificationDt, UserOffice365)&#xA;Post action: Sends an email.&#xA;This workflow is protected under the US Copyright Office and is intended for the solely usage of Auxis LLC.&#xA;Usage of this workflow without written approval is not permitted.         " DisplayName="Misc_SendNotification" sap:VirtualizedContainerService.HintSize="520,3044" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredNotifications" />
     </Sequence.Variables>
@@ -137,22 +137,22 @@
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message - Misc_SendNotification Started" sap:VirtualizedContainerService.HintSize="520,175" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Misc_SendNotification Started&quot;]" />
-    <Sequence DisplayName="Validate arguments" sap:VirtualizedContainerService.HintSize="520,1988" sap2010:WorkflowViewState.IdRef="Sequence_13">
+    <ui:LogMessage DisplayName="Log Message - Misc_SendNotification Started" sap:VirtualizedContainerService.HintSize="520,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Misc_SendNotification Started&quot;]" />
+    <Sequence DisplayName="Validate arguments" sap:VirtualizedContainerService.HintSize="520,1988.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_13">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="Validate Notifications" sap:VirtualizedContainerService.HintSize="486,429" sap2010:WorkflowViewState.IdRef="Sequence_11">
+      <Sequence DisplayName="Validate Notifications" sap:VirtualizedContainerService.HintSize="486,429.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_11">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <If Condition="[in_dt_Notifications Is Nothing]" DisplayName="If Notifications is empty" sap:VirtualizedContainerService.HintSize="452,337" sap2010:WorkflowViewState.IdRef="If_11">
+        <If Condition="[in_dt_Notifications Is Nothing]" DisplayName="If Notifications is empty" sap:VirtualizedContainerService.HintSize="452,337.3333333333333" sap2010:WorkflowViewState.IdRef="If_11">
           <If.Then>
             <Throw DisplayName="Throw - Missing dt_Notifications" Exception="[new BusinessRuleException(&quot;The dt_Notifications argument is empty.&quot;)]" sap:VirtualizedContainerService.HintSize="450,91" sap2010:WorkflowViewState.IdRef="Throw_3" />
           </If.Then>
@@ -246,7 +246,7 @@
         </If>
       </Sequence>
     </Sequence>
-    <Sequence DisplayName="Prepare email" sap:VirtualizedContainerService.HintSize="520,1105" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Prepare email" sap:VirtualizedContainerService.HintSize="556.6666666666666,1240.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="MessageTo" />
         <Variable x:TypeArguments="x:String" Name="MessageCC" />
@@ -260,7 +260,7 @@
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence sap2010:Annotation.AnnotationText="Mail recipient." DisplayName="To" sap:VirtualizedContainerService.HintSize="452,88" sap2010:WorkflowViewState.IdRef="Sequence_4">
+      <Sequence sap2010:Annotation.AnnotationText="Mail recipient." DisplayName="To" sap:VirtualizedContainerService.HintSize="522.6666666666666,88" sap2010:WorkflowViewState.IdRef="Sequence_4">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -314,7 +314,7 @@
           </If.Else>
         </If>
       </Sequence>
-      <Sequence sap2010:Annotation.AnnotationText="Carbon copy." DisplayName="Carbon copy (CC)" sap:VirtualizedContainerService.HintSize="452,88" sap2010:WorkflowViewState.IdRef="Sequence_5">
+      <Sequence sap2010:Annotation.AnnotationText="Carbon copy." DisplayName="Carbon copy (CC)" sap:VirtualizedContainerService.HintSize="522.6666666666666,88" sap2010:WorkflowViewState.IdRef="Sequence_5">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -362,7 +362,7 @@
           </If.Else>
         </If>
       </Sequence>
-      <Sequence sap2010:Annotation.AnnotationText="Email subject, can use placeholders." DisplayName="Subject" sap:VirtualizedContainerService.HintSize="452,88" sap2010:WorkflowViewState.IdRef="Sequence_6">
+      <Sequence sap2010:Annotation.AnnotationText="Email subject, can use placeholders." DisplayName="Subject" sap:VirtualizedContainerService.HintSize="522.6666666666666,88" sap2010:WorkflowViewState.IdRef="Sequence_6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -408,7 +408,7 @@
           </If.Else>
         </If>
       </Sequence>
-      <Sequence sap2010:Annotation.AnnotationText="Email body, can use placeholders." DisplayName="Email Body" sap:VirtualizedContainerService.HintSize="452,88" sap2010:WorkflowViewState.IdRef="Sequence_7">
+      <Sequence sap2010:Annotation.AnnotationText="Email body, can use placeholders." DisplayName="Email Body" sap:VirtualizedContainerService.HintSize="522.6666666666666,88" sap2010:WorkflowViewState.IdRef="Sequence_7">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -453,7 +453,7 @@
           </If.Then>
         </If>
       </Sequence>
-      <Sequence sap2010:Annotation.AnnotationText="Add all the attachments to a list." DisplayName="Attachments" sap:VirtualizedContainerService.HintSize="452,88" sap2010:WorkflowViewState.IdRef="Sequence_8">
+      <Sequence sap2010:Annotation.AnnotationText="Add all the attachments to a list." DisplayName="Attachments" sap:VirtualizedContainerService.HintSize="522.6666666666666,88" sap2010:WorkflowViewState.IdRef="Sequence_8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -535,53 +535,64 @@
           </If.Then>
         </If>
       </Sequence>
-      <If Condition="[in_UseOffice365]" DisplayName="If use Office 365 Activity" sap:VirtualizedContainerService.HintSize="452,573" sap2010:WorkflowViewState.IdRef="If_15">
-        <If.Then>
-          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,25" sap2010:WorkflowViewState.IdRef="Sequence_14">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="x:String" Name="ApplicationID" />
-              <Variable x:TypeArguments="ss:SecureString" Name="ApplicationSecret" />
-            </Sequence.Variables>
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:LogMessage DisplayName="Log Message - Using Office 365 for Activity" sap:VirtualizedContainerService.HintSize="468,132" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Using Office 365 for Activity&quot;]" />
-            <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[in_AzureAssetAppIDAndSecret]" CacheStrategy="None" DisplayName="Get Credential Application ID &amp; Secret" FolderPath="[in_AzureAssetFolder]" sap:VirtualizedContainerService.HintSize="468,181" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[ApplicationSecret]" Username="[ApplicationID]" />
-            <uma:Office365ApplicationScope ApplicationSecret="{x:Null}" CertificateAsBase64="{x:Null}" CertificatePassword="{x:Null}" ContinueOnError="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" Timeout="{x:Null}" Username="{x:Null}" ApplicationId="[ApplicationID]" AuthenticationType="ApplicationIdAndSecret" DisplayName="Microsoft Office 365 Scope Email Notification" Environment="Global" sap:VirtualizedContainerService.HintSize="468,461" sap2010:WorkflowViewState.IdRef="Office365ApplicationScope_1" OAuthApplication="Custom" SecureApplicationSecret="[ApplicationSecret]" Services="Mail" Tenant="[in_AzureTenantID]">
-              <uma:Office365ApplicationScope.Body>
-                <ActivityAction x:TypeArguments="mg:GraphServiceClient">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="mg:GraphServiceClient" Name="ParentScope" />
-                  </ActivityAction.Argument>
-                  <umam:SendMail Bcc="{x:Null}" ReplyTo="{x:Null}" Account="[in_OutlookAccount]" AttachmentsCollection="[in_Attachments]" Body="[MessageBody]" Cc="[MessageCC.Split(&quot;;&quot;)]" DisplayName="Send Mail Notification" From="[in_OutlookOnBehalfOf]" sap:VirtualizedContainerService.HintSize="434,351" sap2010:WorkflowViewState.IdRef="SendMail_2" Importance="Normal" IsBodyHTML="True" IsDraft="False" Subject="[MessageSubject]" To="[MessageTo.Split(&quot;;&quot;)]">
-                    <umam:SendMail.Attachments>
-                      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
-                    </umam:SendMail.Attachments>
-                  </umam:SendMail>
-                </ActivityAction>
-              </uma:Office365ApplicationScope.Body>
-            </uma:Office365ApplicationScope>
-          </Sequence>
-        </If.Then>
-        <If.Else>
-          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,418" sap2010:WorkflowViewState.IdRef="Sequence_15">
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="522.6666666666666,740.6666666666666" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+        <ui:CommentOut.Body>
+          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="486,638" sap2010:WorkflowViewState.IdRef="Sequence_25">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:LogMessage DisplayName="Log Message - Using classic send Outlook activity" sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Using classic send Outlook activity&quot;]" />
-            <ui:SendOutlookMail Bcc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" Account="[in_OutlookAccount]" AttachmentsCollection="[MessageAttachments.ToArray()]" Body="[MessageBody]" Cc="[MessageCC]" DisplayName="Send Outlook Mail Message - Notification" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="SendOutlookMail_2" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" SentOnBehalfOfName="[in_OutlookOnBehalfOf]" Subject="[MessageSubject]" TimeoutMS="120000" To="[MessageTo]">
-              <ui:SendOutlookMail.Files>
-                <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
-              </ui:SendOutlookMail.Files>
-            </ui:SendOutlookMail>
+            <If Condition="[in_UseOffice365]" DisplayName="If use Office 365 Activity" sap:VirtualizedContainerService.HintSize="452,578" sap2010:WorkflowViewState.IdRef="If_15">
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,25.333333333333332" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="ApplicationID" />
+                    <Variable x:TypeArguments="ss:SecureString" Name="ApplicationSecret" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message - Using Office 365 for Activity" sap:VirtualizedContainerService.HintSize="468,132" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Using Office 365 for Activity&quot;]" />
+                  <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[in_AzureAssetAppIDAndSecret]" CacheStrategy="None" DisplayName="Get Credential Application ID &amp; Secret" FolderPath="[in_AzureAssetFolder]" sap:VirtualizedContainerService.HintSize="468,181" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[ApplicationSecret]" Username="[ApplicationID]" />
+                  <uma:Office365ApplicationScope ApplicationSecret="{x:Null}" CertificateAsBase64="{x:Null}" CertificatePassword="{x:Null}" ContinueOnError="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" Timeout="{x:Null}" Username="{x:Null}" ApplicationId="[ApplicationID]" AuthenticationType="ApplicationIdAndSecret" DisplayName="Microsoft Office 365 Scope Email Notification" Environment="Global" sap:VirtualizedContainerService.HintSize="468,461" sap2010:WorkflowViewState.IdRef="Office365ApplicationScope_1" OAuthApplication="Custom" SecureApplicationSecret="[ApplicationSecret]" Services="Mail" Tenant="[in_AzureTenantID]">
+                    <uma:Office365ApplicationScope.Body>
+                      <ActivityAction x:TypeArguments="mg:GraphServiceClient">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="mg:GraphServiceClient" Name="ParentScope" />
+                        </ActivityAction.Argument>
+                        <umam:SendMail Bcc="{x:Null}" ReplyTo="{x:Null}" Account="[in_OutlookAccount]" AttachmentsCollection="[in_Attachments]" Body="[MessageBody]" Cc="[MessageCC.Split(&quot;;&quot;)]" DisplayName="Send Mail Notification" From="[in_OutlookOnBehalfOf]" sap:VirtualizedContainerService.HintSize="434,351" sap2010:WorkflowViewState.IdRef="SendMail_2" Importance="Normal" IsBodyHTML="True" IsDraft="False" Subject="[MessageSubject]" To="[MessageTo.Split(&quot;;&quot;)]">
+                          <umam:SendMail.Attachments>
+                            <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                          </umam:SendMail.Attachments>
+                        </umam:SendMail>
+                      </ActivityAction>
+                    </uma:Office365ApplicationScope.Body>
+                  </uma:Office365ApplicationScope>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,422" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message - Using classic send Outlook activity" sap:VirtualizedContainerService.HintSize="416,180.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Using classic send Outlook activity&quot;]" />
+                  <ui:SendOutlookMail Bcc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" Account="[in_OutlookAccount]" AttachmentsCollection="[MessageAttachments.ToArray()]" Body="[MessageBody]" Cc="[MessageCC]" DisplayName="Send Outlook Mail Message - Notification" sap:VirtualizedContainerService.HintSize="416,177.33333333333334" sap2010:WorkflowViewState.IdRef="SendOutlookMail_2" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" SentOnBehalfOfName="[in_OutlookOnBehalfOf]" Subject="[MessageSubject]" TimeoutMS="120000" To="[MessageTo]">
+                    <ui:SendOutlookMail.Files>
+                      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                    </ui:SendOutlookMail.Files>
+                  </ui:SendOutlookMail>
+                </Sequence>
+              </If.Else>
+            </If>
           </Sequence>
-        </If.Else>
-      </If>
+        </ui:CommentOut.Body>
+      </ui:CommentOut>
     </Sequence>
     <ui:LogMessage DisplayName="Log Message - Misc_SendNotification Completed" sap:VirtualizedContainerService.HintSize="520,166" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Misc_SendNotification Completed&quot;]" />
   </Sequence>

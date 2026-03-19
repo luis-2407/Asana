@@ -165,12 +165,34 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. &#xA;&#xA;in_TransactionItem: Use this argument when using orchestrator.&#xA;&#xA;io_dr_TranactionItem: Wll contain the transaction item when not using orchestrator." DisplayName="Process" sap:VirtualizedContainerService.HintSize="1394,1076" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
+      <Variable x:TypeArguments="x:Boolean" Name="isInvalidEndDate" />
+      <Variable x:TypeArguments="x:Boolean" Default="False" Name="isBusinessException" />
       <Variable x:TypeArguments="upr:IResource" Name="filepathChairMemo" />
       <Variable x:TypeArguments="upr:IResource" Name="filepathCV" />
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dictPropertiesCV" />
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dictPropertiesChairMemo" />
       <Variable x:TypeArguments="uiascb:tasks_Retrieve" Name="out_task" />
       <Variable x:TypeArguments="x:String" Name="asanaFieldNormalized" />
+      <Variable x:TypeArguments="x:Boolean" Name="isInvalidTitle">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:Boolean" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:Boolean" Name="isInvalidTerm">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:Boolean" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:Boolean" Name="isInvalidName">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:Boolean" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:Boolean" Name="isInvalidStartDate">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:Boolean" />
+        </Variable.Default>
+      </Variable>
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -193,6 +215,15 @@
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ExtractInformationFromIXP - Invoke Workflow File (Main Flows\ExtractInformationFromIXP.xaml)" sap:VirtualizedContainerService.HintSize="450,182" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Main Flows\ExtractInformationFromIXP.xaml">
       <ui:InvokeWorkflowFile.Arguments>
+        <InOutArgument x:TypeArguments="x:Boolean" x:Key="io_isInvalidEndDate">[isInvalidEndDate]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:Boolean" x:Key="io_isInvalidStartDate">[isInvalidStartDate]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:Boolean" x:Key="io_isInvalidName">[isInvalidName]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:Boolean" x:Key="io_isInvalidTerm">[isInvalidTerm]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:Boolean" x:Key="io_isInvalidTitle">[isInvalidTitle]</InOutArgument>
+        <InOutArgument x:TypeArguments="x:Boolean" x:Key="io_isBusinessException">[isBusinessException]</InOutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_taskGID">[io_drTransactionItem("taskGID").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_adminSpecialist">[in_Config("AdministrativeSpecialist").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_APIKey">[in_Config("AsanaAPI").ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_asanaBusinessTitle">[io_drTransactionItem("Business Title").ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_projectedEndDate">[io_drTransactionItem("Projected End Date").ToString]</InArgument>
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="out_dictCV">[dictPropertiesCV]</OutArgument>
@@ -205,6 +236,12 @@
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="ModifyAdjunctReappointmentLetter - Invoke Workflow File (Main Flows\ModifyAdjunctReappointmentLetter.xaml)" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Main Flows\ModifyAdjunctReappointmentLetter.xaml">
       <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="in_isValidEndDate">[isInvalidEndDate]</InArgument>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="in_isValidStartDate">[isInvalidStartDate]</InArgument>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="in_isInvalidName">[isInvalidName]</InArgument>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="in_isInvalidTerm">[isInvalidTerm]</InArgument>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="in_isInvalidTitle">[isInvalidTitle]</InArgument>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="in_isBusinessException">[isBusinessException]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_asanaAPIKey">[in_Config("AsanaAPI").ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_chairAdmin">[In_Config("ChairAdministrative").ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_adminEmail">[in_Config("AdministrativeSpecialist").ToString]</InArgument>
